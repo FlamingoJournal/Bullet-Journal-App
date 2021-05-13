@@ -1,3 +1,5 @@
+/* Datepicker Stylesheet */
+
 input[type="date"] {
     background-color: #194350;
     color: white;
@@ -29,8 +31,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     left: 0;
     right: 0;
     bottom: 0;
-    padding-left: 20px;
-    width: 20%;
+    padding-left: 20px; 
+    width: 50%;
     height: 10%;
     color: transparent;
     background: transparent;

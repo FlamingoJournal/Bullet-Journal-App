@@ -1,58 +1,9 @@
+@import url(color_themes.css);
+
 /* Main Stylesheet */
 
 body {
-    background: #393E46;
-}
-
-/*sidebar style*/
-.sidebaron {
-    position: absolute;
-    left: 0%;
-    right: 85.57%;
-    top: 10.83%;
-    bottom: 0%;
-
-    background: #9DBEB9;
-}
-
-.sidebaroff {
-   background: rgb(226, 241, 9);
-}
-
-
-/*collapse and open button style*/
-.collapse{
-    position: absolute;
-    left: 81.82%;
-    right: 0%;
-    top: -0.5%;
-    bottom: 94.84%;
-    border: none;
-    text-align: center;
-    font-size: 60px;
-    width: 18.2%;
-
-
-    background: #9DBEB9;
-}
-
-.open{
-    position: absolute;
-    left: -0.05%;
-    right: 97.45%;
-    top: 10.2%;
-    bottom: 85.74%;
-    border: none;
-    text-align: center;
-    font-size: 60px;
-    width: 2.8%;
-    height: 5.25%;
-    
-    background: #9DBEB9;
-}
-
-input:hover {
-    cursor: pointer;
+    background: var(--background-color);
 }
 
 /*calendar image style*/
@@ -79,24 +30,4 @@ input:hover {
     border-radius: 12px;
 }
 
-/*log size when sidebar is on/off*/
-.logSideon {
-    position: absolute;
-    left: 15.78%;
-    right: 1.25%;
-    top: 13.15%;
-    bottom: 2.69%;
-    
-    background: #FFFFFF;
-}
-
-.logSideoff{
-    position: absolute;
-    left: 3.7%;
-    right: 3.65%;
-    top: 12.87%;
-    bottom: 2.04%;
-    
-    background: #FFFFFF;
-}
 

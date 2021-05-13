@@ -1,3 +1,5 @@
+@import url(color_themes.css);
+
 /*headbar style*/
 .topnav {
     position: absolute;
@@ -6,21 +8,50 @@
     top: 0%;
     bottom: 92%;
 
-    background: #194350;
+    background: var(--team-primary);
     text-align: center;
     font-family: 'Lato', sans-serif;
+    font-size: 12px;
     
-    color: white;
-}
-
-.appName{
-    position: absolute;
-    left: 8%;
-    top: 6%;
+    color: var(--nav-bar-font-color);
 }
 
 .title{
     position: absolute;
     left: 50%;
-    top: 6%;
+    top: 17%;
+}
+
+#left-arrow{
+    position: absolute;
+    top: 35%;
+    left: 45%;
+    background-color: transparent;
+    border: none;
+}
+
+#right-arrow{
+    position: absolute;
+    top: 35%;
+    right: 41.5%;
+    background-color: transparent;
+    border: none;
+}
+
+#appName{
+    position: absolute;
+    left: 4%;
+    top: 15%;
+}
+
+#flamingo-logo{
+    float: left;
+    padding-left: 1%;
+    padding-top: 1%;
+    width: 33px;
+}
+
+#image{
+    width: 5%;
+    height: 4%;
 }
