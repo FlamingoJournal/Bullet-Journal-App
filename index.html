@@ -5,18 +5,60 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TITLE</title>
-
+  <title>Bullet Journal App</title>
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/master.css">
 </head>
 
 <body>
   <main>
+    <!-- Navigation Bar -->
+    <div class="topnav"> <!-- @TO-DO: MAKE THE TOP NAV BAR SHORTER-->
+      <!-- Flamingo Logo -->
+      <!-- <img src="Files/Icons/flamingo_logo.svg" />-->
+
+      <!-- APP NAME TO THE LEFT -->
+      <h1 class="appName">APP NAME</h1>
+
+      <!-- LEFT ARROW BUTTON -->
+      <button id="sidebar-button">
+        <img src="Files/Icons/prev_page_arrow.svg" />
+     </button>
+      
+      <!-- TITLE(Daily Log, Weekly Log, Montly Log, Future Log) -->
+      <h1 class="title">TITLE</h1>
+
+      <!-- RIGHT ARROW BUTTON -->
+      <button id="sidebar-button">
+        <img src="Files/Icons/next_page_arrow.svg" />
+     </button>
+      
+      <!-- CIRCLE/SETTINGS BUTTON -->
+      
+      <!-- <h2 class="headbar">Headbar</h2> -->
+    </div>
     
+    <sidebar class="sidebaron" id="sidebar">
+      <!-- <input type="button" id="menu" class="collapse" value="<"></input> -->
+      <button id="sidebar-button">
+        <img src="Files/Icons/sidebar_arrow.svg" />
+     </button>
+      <!-- Button to close sidebar, using SVG in Files/Icons/arrow.svg -->
+      <!-- Calendar Date Picker -->
+      
+      <input type="date" id="demo" />
+      <div id="labels">
+        <label for="male"></label>
+      </div>
+      
+      <!-- <img class="calendaron" src="calendar.png" id="calendar"> -->
+      <!-- DAILY, WEEKLY< MONTHLY, FUTURE LOG BUTTONS (INLINE) -->
+      <!-- Font Styling Window TO-DO -->
+    </sidebar>
+    
+    <div id="log" class="logSideon"></div>
   </main>
   <!-- Main Script -->
   <script src="./scripts/script.js" type="module"></script>
 </body>
-
 </html>

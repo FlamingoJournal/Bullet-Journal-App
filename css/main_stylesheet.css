@@ -19,20 +19,6 @@ body {
    background: rgb(226, 241, 9);
 }
 
-/*headbar style*/
-.topnav {
-    position: absolute;
-    left: 0%;
-    right: 0%;
-    top: 0%;
-    bottom: 89.17%;
-
-    background: #194350;
-    text-align: center;
-    
-    color: white;
-}
-
 
 /*collapse and open button style*/
 .collapse{
