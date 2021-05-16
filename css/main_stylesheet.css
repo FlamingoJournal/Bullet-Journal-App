@@ -1,0 +1,33 @@
+@import url(color_themes.css);
+
+/* Main Stylesheet */
+
+body {
+    background: var(--background-color);
+}
+
+/*calendar image style*/
+.calendaron { 
+    position: absolute;
+    left: 1.41%;
+    right: 5%;
+    top: 5.26%;
+    bottom: 100.93%;
+    object-fit: contain;
+    width: 97%;
+    border-radius: 12px;
+}
+
+/*font image style*/
+.fonton {
+    position: absolute;
+    left: 1.41%;
+    right: 5%;
+    top: 35.26%;
+    bottom: 100.93%;
+    object-fit: contain;
+    width: 97%;
+    border-radius: 12px;
+}
+
+
