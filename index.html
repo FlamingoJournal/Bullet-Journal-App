@@ -18,25 +18,25 @@
       <!-- LOGO AND APP NAME TOGETHER -->
       <div id="logo-and-name">
         <!-- Flamingo Logo -->
-        <img id="flamingo-logo" src="Files/Icons/flamingo_logo.png" />
-      
-        <!-- APP NAME TO THE LEFT -->
-        <h1 id="appName">Flamingo Journal</h1>
+        <img id="flamingo-logo" src="Files/Images/Flamingo-Journal-Logo.png" />
       </div>
 
 
       <!-- LEFT ARROW BUTTON -->
-      <button id="left-arrow">
-        <img src="Files/Icons/prev_page_arrow.svg" />
-     </button>
+      <div class="nav-arrows">
+        <button id="left-arrow">
+          <img src="Files/Icons/prev_page_arrow.svg" />
+        </button>
       
-      <!-- TITLE(Daily Log, Weekly Log, Montly Log, Future Log) -->
-      <h1 class="title">TITLE</h1>
-
-      <!-- RIGHT ARROW BUTTON -->
-      <button id="right-arrow">
-        <img src="Files/Icons/next_page_arrow.svg" />
-     </button>
+        <!-- TITLE(Daily Log, Weekly Log, Montly Log, Future Log) -->
+        <h1 class="title">TITLE</h1>
+      
+        <!-- RIGHT ARROW BUTTON -->
+        <button id="right-arrow">
+          <img src="Files/Icons/next_page_arrow.svg" />
+        </button>
+      </div>
+    </div>
       
       <!-- CIRCLE/SETTINGS BUTTON -->
       
@@ -46,47 +46,25 @@
     
     <!-- SIDEBAR START -->
     <sidebar class="sidebaron" id="sidebar">
-      <!-- <input type="button" id="menu" class="collapse" value="<"></input> -->
-      <button id="sidebar-button">
+      <input type="button" id="sidebar-button" class="collapse" value="<"></input>
+      <!-- <button class="collapse" id="sidebar-button">
         <img src="Files/Icons/sidebar_arrow.svg" />
-     </button>
+      </button> -->
       <!-- Button to close sidebar, using SVG in Files/Icons/arrow.svg -->
-      <!-- Calendar Date Picker -->
       
+      <!-- Calendar Date Picker START-->
       <input type="date" id="demo" />
-      <div id="labels">
-        <label for="male"></label>
-      </div>
+      <!-- Calendar Date Picker END-->
 
       <!-- LOG TYPE BUTTONS START -->
       <div id="logtype-button">
-
-        <div class="column">
-          <div class="tab">
-              <button class="ddlinks" onclick="openDropDown(event, 'Daily')">Daily</button>
-              <button class="ddlinks" onclick="openDropDown(event, 'Weekly')">Weekly</button>
-              <button class="ddlinks" onclick="openDropDown(event, 'Monthly')">Monthly</button>
-          </div>
-      
-
-          <!-- <div id="Daily-2" class="select_content">
-              <div class="dropdown">
-                  <div id="myDropdown" class="dropdown-content">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                  </div>
-              </div>
-          </div>
-          
-          <div id="Weekly-2" class="select_content">
-          </div>
-          
-          <div id="Monthly-2" class="select_content">
-          </div> -->
-
+        <div class="tabs-buttonGrp">
+          <button id="daily-btn">DAILY</button>
+          <button id="weekly-btn">WEEKLY</button>
+          <button id="monthly-btn">MONTHLY</button>
+          <button id="future-btn">FUTURE</button>
+        </div>
       </div>
-
       <!-- LOG TYPE BUTTONS END -->
 
     </div>

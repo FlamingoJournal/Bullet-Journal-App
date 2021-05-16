@@ -6,7 +6,9 @@
     left: 0%;
     right: 0%;
     top: 0%;
-    bottom: 92%;
+    min-height: 60px;
+    max-height: 80px;
+    height: 80px;
 
     background: var(--team-primary);
     text-align: center;
@@ -16,26 +18,43 @@
     color: var(--nav-bar-font-color);
 }
 
+.nav-arrows {
+    align-items: center;
+    width: 50%;
+    float: right;
+}
+
 .title{
     position: absolute;
-    left: 50%;
-    top: 17%;
+    left: 54%;
+    top: 0px;
+   /* min-width: 5px;
+    min-height: 2px;
+    */
+    font-size: 1.3vw;
 }
 
 #left-arrow{
+    float: left;
     position: absolute;
-    top: 35%;
-    left: 45%;
+    top: 14px;
+    left: 50%;
     background-color: transparent;
     border: none;
+    min-width: 5px;
+    min-height: 5px;
+
 }
 
 #right-arrow{
+    float: right;
     position: absolute;
-    top: 35%;
-    right: 41.5%;
+    top: 14px;
+    left: 59%;
     background-color: transparent;
     border: none;
+    min-width: 5px;
+    min-height: 5px;
 }
 
 #appName{
@@ -48,7 +67,9 @@
     float: left;
     padding-left: 1%;
     padding-top: 1%;
-    width: 33px;
+    max-width: 30vh;
+    min-width: 10vh;
+    margin: auto;
 }
 
 #image{

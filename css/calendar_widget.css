@@ -5,8 +5,9 @@ input[type="date"] {
     color: white;
     border-radius: 1em;
     font-family: 'Lato', sans-serif;
-    /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
     text-align: center;
+    justify-content: center;
+    align-items: center;
     outline: none;
 }
 
@@ -22,7 +23,7 @@ input[type="date"]:after {
 }
 
 input[type="date"]:hover:after {
-    color: #194350;
+    color: var(--team-primary);
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
