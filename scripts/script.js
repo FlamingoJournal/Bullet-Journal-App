@@ -67,17 +67,3 @@ sidebar_button.onclick = function () {
 
 
 
-/*  mock storage template
-daily = ['2021may01':'today i ...',
-         'may02']
-
-weekly = ['2021may01'
-          '2021may02']
-
-months = [jan,feb,]
-
-monthly = ['2021may']
-future = ['2021_01','2021_02']
-
-mostRecent = ['2021may01', '2021may01']
-*/
