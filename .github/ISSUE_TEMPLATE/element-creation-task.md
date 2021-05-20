@@ -2,7 +2,7 @@
 name: Element Creation Task
 about: Describe the basic functionality of this element.
 title: 'Task: {Element to Create}'
-labels: ''
+labels: feature
 assignees: ''
 
 ---
