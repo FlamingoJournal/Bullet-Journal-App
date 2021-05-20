@@ -1,0 +1,34 @@
+#Uses JSDoc-action
+#https://github.com/lee-dohm/atom-style-tweaks/blob/master/.github/workflows/publish-docs.yml
+#Alternative: https://github.com/marketplace/actions/jsdoc-action
+
+name: GitHub pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build
+        uses: andstor/jsdoc-action@v1
+        with:
+          source_dir: ./demos             #Source directory to build documentation from
+          #output_dir: ./out             #Output folder for the generated documentation.
+          #recurse:                     #Recurse into subdirectories when scanning for source files.
+          #config_file: conf.json        #The path to a JSDoc configuration file.
+          template: minami              #The JSDoc template package to install. Will run npm install template.
+          #template_dir:                #The relative location of the template files directory within the template package.
+          #front_page: README.md        #The path to a Markdown file to be used as a the front page. Normally README.md.
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./out

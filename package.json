@@ -1,0 +1,38 @@
+{
+  "name": "bullet-journal-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cse110-sp21-group18/Bullet-Journal-App.git"
+  },
+  "keywords": [
+    "Javascript",
+    "node",
+    "npm",
+    "CSS",
+    "HTML",
+    "Prettier",
+    "ESLint",
+    "JSDoc",
+    "Travis"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cse110-sp21-group18/Bullet-Journal-App/issues"
+  },
+  "homepage": "https://github.com/cse110-sp21-group18/Bullet-Journal-App#readme",
+  "devDependencies": {
+    "eslint": "^7.26.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.2",
+    "jsdoc": "^3.6.7",
+    "prettier": "2.3.0"
+  }
+}
