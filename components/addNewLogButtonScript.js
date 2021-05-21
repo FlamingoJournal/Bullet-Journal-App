@@ -1,6 +1,6 @@
 let addButton = document.createElement('add-new-log');
-let contentArray = {'button-label' : 'Create New Button', 
-                    'close-button': '&times;'};
+let contentArray = {button_label : 'Create New Button', 
+                    close_button: '&times;'};
 addButton.content = contentArray;
 document.querySelector('main').appendChild(addButton);
 console.log(addButton);
