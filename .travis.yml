@@ -1,7 +1,8 @@
 language: node_js
 node_js:
-  - "14"
-script:
-  - echo 'Installing Dependencies'
+  - "node"
+install:
   - npm ci
-  - echo 'Tests to be added later'
+script:
+  - npm run build
+#  - npm run test
