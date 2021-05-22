@@ -1,25 +1,33 @@
-class addNewLogButton extends HTMLElement {
+class newPageButton extends HTMLElement {
     constructor() {
-        console.log(0);
         super();
   
         const template = document.createElement('template');
   
         template.innerHTML = `
           <style>
-            .post {
-                width:500px;
-                height:500px;
-                display: block;
-                border-style: solid;
-            }
+
             .button {
-                background: gray;
-                padding: 1em 2em;
-                color: white;
-                border: 0;
+              border-style: solid;
+              width: 100px;
+              height: 67px;
+              background-color: #AAAAAA;
+              border-radius: 12px;
+              color: black;
+              border-color: white;
+              position: relative;
+              margin-left: 48%;
+              margin-top: 13%;
+              font-family: Verdana, sans-serif;
+            }
+
+            .template {
+              height : 200px;
+              width : 200px;
+              border-style: solid;
             }
             
+            }
             .button:hover {
                 background:green;
             }
@@ -58,36 +66,25 @@ class addNewLogButton extends HTMLElement {
             }
 
           </style>
-          <section class='post'>
-            <button id="addNewLog" class="button">Test</button>
-            <div id="addNewLogModal" class="modal">
-                <div class="addNewLogModal-content">
-                    <span class="addNewLogModal-close"></span>
-                    <p>Settings go here</p>
-                </div>
-            </div>
+          <section>
+            <button id="addNewPage" class='button'><img src=next_page_arrow.svg></button>
           </section>
           `;
   
       this.attachShadow({ mode: 'open' });
-      console.log(1);
       this.shadowRoot.appendChild(template.content.cloneNode(true));
-      console.log(2);
-    }
-  
-    get content() {
-      let contentobj = {
-        'button_label': this.shadowRoot.querySelector('.button').innerText,
-        'close_button': this.shadowRoot.querySelector('.addNewLogModal-close').innerText,
-      };
-  
-      return contentObj;
-    }
-  
-    set content(content) {
-      this.shadowRoot.querySelector('.button').innerText = content.button_label;
-      this.shadowRoot.querySelector('.addNewLogModal-close').innerText = content_button;
+
+
+      let addBtn = this.shadowRoot.querySelector("#addNewPage"); //get open modal button
+
+      addBtn.onclick = function () {
+        console.log('test');
+      }
+
+
     }
   }
-  
-  customElements.define('add-new-log', addNewLogButton);
+
+
+
+  customElements.define('add-new-page', newPageButton);
