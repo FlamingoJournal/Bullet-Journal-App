@@ -1,0 +1,21 @@
+/* List of buttons position */
+#button-group{
+    position: fixed;
+    text-align: left;
+    top: 650px;
+    padding-left: 20px;
+}
+
+
+/* Sets color for ket buttons*/
+.buttonGroup{
+    border: none;
+    font-size: 20px;
+    background: var(--team-light-blue);
+}
+
+/* When the cursor hovers on a button */
+.buttonGroup:hover{
+    border: solid;
+    cursor: pointer;
+}

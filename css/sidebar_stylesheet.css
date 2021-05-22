@@ -5,28 +5,24 @@
 
 /* MAIN SIDEBAR STYLING */
 
-.sidebaron {
+.sidebar {
     position:absolute;
     left: 0%;
     right: 85.57%;
     top: 80px;
     bottom: 0%;
+    min-width: 264px;
+    /* max-width: 270px; */
     background: var(--team-light-blue);
 }
 
-.sidebaroff {
-    background: var(--background-color); /* TO-DO: FIND OUT FUNCTION OF THIS COLOR*/
-}
-
-/*collapse and open button style*/
-.collapse{
+/* collapse and open button style NOT NEEDED START */
+/* .collapse{
     position: absolute;
-    /* left: 85%; */
     top: 0%;
     right: 0%;
     bottom: 94.84%;
     border: none;
-    /* text-align: center; */
     font-size: 50px;
     border: none;
 
@@ -55,7 +51,7 @@
 
 input:hover {
     cursor: pointer;
-}
+} */
 
 /* #sidebar-button {
     position: relative;
@@ -65,6 +61,7 @@ input:hover {
     background: transparent;
     border: none;
 } */
+/* NOT NEEDED END */
 
 /*LOG TABS STYLING */
 

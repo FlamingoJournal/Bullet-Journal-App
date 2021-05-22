@@ -48,21 +48,22 @@ home_button.onclick = function (){
 
 /****************FUNCTIONS********************/
 
-let sidebar_button = document.getElementById('sidebar-button');
-let sidebar = document.getElementById('sidebar');
-sidebar_button.onclick = function () {
-    console.log("works");
-    if (sidebar.className == "sidebaron") {
-        sidebar.className = "sidebaroff";  
-        sidebar_button.className = 'open';
-        sidebar_button.value = '>';
-    }else {
-        sidebar.className = "sidebaron";
-        sidebar_button.className = 'collapse';
-        sidebar_button.value = '<';
-    }
+// Collapsing SideBar methods NOT NEEDED
+// let sidebar_button = document.getElementById('sidebar-button');
+// let sidebar = document.getElementById('sidebar');
+// sidebar_button.onclick = function () {
+//     console.log("works");
+//     if (sidebar.className == "sidebaron") {
+//         sidebar.className = "sidebaroff";  
+//         sidebar_button.className = 'open';
+//         sidebar_button.value = '>';
+//     }else {
+//         sidebar.className = "sidebaron";
+//         sidebar_button.className = 'collapse';
+//         sidebar_button.value = '<';
+//     }
     
-}
+// }
 
 
 

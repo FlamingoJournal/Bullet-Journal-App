@@ -1,7 +1,7 @@
 /* Style sheet for each different type of log */
 
 /*log size when sidebar is on/off*/
-.logSideon {
+.log {
     position: absolute;
     left: 15.78%;
     right: 1.25%;
@@ -10,17 +10,6 @@
     
     background: var(--log-background-color);
 }
-
-.logSideoff{
-    position: absolute;
-    left: 3.7%;
-    right: 3.65%;
-    top: 12.87%;
-    bottom: 2.04%;
-    
-    background: var(--log-background-color);
-}
-
 
 /*Divs that hold the individual HTML elements between them, 
 each is sized to half of parent div,float used format 
