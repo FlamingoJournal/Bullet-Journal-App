@@ -80,6 +80,50 @@ class LogList extends HTMLElement {
       this.attachShadow({ mode: 'open' })
       this.shadowRoot.appendChild(template.content.cloneNode(true))
     }
+    /**
+    * `set` binds an object property to a function to be called when there is an attempt to set that property.
+    * Change log details based on log type given.
+    * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set}
+    * @todo Retrieve logs from database and populate entries
+    * @todo Make the most recent button switch to the appropriate most recent log
+    */
+    set type(logType) {
+        let logTitle = this.shadowRoot.querySelector('.log-title');
+        let mostRecentButton = this.shadowRoot.querySelector('.most-recent');
+        let logsList = this.shadowRoot.querySelector('.logs-list');
+        switch (logType) {
+            case "daily": {
+                logTitle.textContent = "DAILY LOG";
+                mostRecentButton.addEventListener('click', () =>{
+                    // setState?
+                // populate entries
+                });
+
+                break;
+            }
+            case "weekly": {
+                logTitle.textContent = "WEEKLY LOG";
+                mostRecentButton.addEventListener('click', () =>{
+                    
+                });
+                break;
+            }
+            case "monthly": {
+                logTitle.textContent = "MONTHLY LOG";
+                mostRecentButton.addEventListener('click', () =>{
+                    
+                });
+                break;
+            }
+            case "future": {
+                logTitle.textContent = "FUTURE LOG";
+                mostRecentButton.addEventListener('click', () =>{
+                    
+                });
+                break;
+            }
+        }
+    }
   
   }
   
