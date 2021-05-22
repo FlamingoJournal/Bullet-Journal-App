@@ -17,6 +17,9 @@ class LogList extends HTMLElement {
                 border-width: 3px;
                 border-color: black;
                 text-align: center;
+                margin-left: 5px;
+                margin-right: 5px;
+                float: left;
             }
 
             .log-title {
