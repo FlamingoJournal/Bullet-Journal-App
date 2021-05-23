@@ -4,14 +4,14 @@
 import { router } from './router.js'; // Router imported so you can use it to manipulate your SPA app here
 const setState = router.setState;
 
-let leftArrow = document.getElementById('left-arrow');
+const leftArrow = document.getElementById('left-arrow');
 leftArrow.onclick = function (){
   // get title
   // determine state based on title
   setState({page: "Settings", day: "title"});
 }
 
-let rightArrow = document.getElementById('right-arrow');
+const rightArrow = document.getElementById('right-arrow');
 rightArrow.onclick = function (){
   // setState();
 }
@@ -23,34 +23,34 @@ dailyTab.onclick = function (){
     // }
 }
 
-let weeklyTab = document.getElementById('weekly-btn');
+const weeklyTab = document.getElementById('weekly-btn');
 weeklyTab.onclick = function (){
   // setState();
 }
 
-let monthlyTab = document.getElementById('monthly-btn');
+const monthlyTab = document.getElementById('monthly-btn');
 monthlyTab = function (){
   // setState();
 }
 
-let futureTab = document.getElementById('future-btn');
+const futureTab = document.getElementById('future-btn');
 futureTab.onclick = function (){
   // setState();
 }
 
 
-let homeButton = document.getElementById('flamingo-logo');
+const homeButton = document.getElementById('flamingo-logo');
 // go to the index/home page
 homeButton.onclick = function (){
   // setState({page: 'index'});
 }
 
 
-/****************FUNCTIONS********************/
+/** **************FUNCTIONS******************* */
 
 // Collapsing SideBar methods NOT NEEDED
-let sidebarButton = document.getElementById('sidebar-button');
-let sidebar = document.getElementById('sidebar');
+const sidebarButton = document.getElementById('sidebar-button');
+const sidebar = document.getElementById('sidebar');
 sidebarButton.onclick = function () {
     console.log("works");
     if (sidebar.className == "sidebaron") {
