@@ -29,7 +29,7 @@ weeklyTab.onclick = function (){
 }
 
 const monthlyTab = document.getElementById('monthly-btn');
-monthlyTab = function (){
+monthlyTab.onclick = function (){
   // setState();
 }
 
@@ -53,7 +53,7 @@ const sidebarButton = document.getElementById('sidebar-button');
 const sidebar = document.getElementById('sidebar');
 sidebarButton.onclick = function () {
     console.log("works");
-    if (sidebar.className == "sidebaron") {
+    if (sidebar.className === "sidebaron") {
         sidebar.className = "sidebaroff";  
         sidebarButton.className = 'open';
         sidebarButton.value = '>';
