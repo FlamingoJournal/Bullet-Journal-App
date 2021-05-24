@@ -6,7 +6,7 @@
 /* MAIN SIDEBAR STYLING */
 
 .sidebaron {
-    position:absolute;
+    position: absolute;
     left: 0%;
     right: 85.57%;
     top: 80px;
@@ -15,11 +15,13 @@
 }
 
 .sidebaroff {
-    background: var(--background-color); /* TO-DO: FIND OUT FUNCTION OF THIS COLOR*/
+    background: var(
+        --background-color
+    ); /* TO-DO: FIND OUT FUNCTION OF THIS COLOR*/
 }
 
 /*collapse and open button style*/
-.collapse{
+.collapse {
     position: absolute;
     /* left: 85%; */
     top: 0%;
@@ -38,7 +40,7 @@
     background: var(--team-light-blue);
 }
 
-.open{
+.open {
     position: absolute;
     left: -0.05%;
     right: 97.45%;
@@ -49,7 +51,7 @@
     font-size: 60px;
     width: 2.8%;
     height: 5.25%;
-    
+
     background: var(--team-light-blue);
 }
 
@@ -92,7 +94,7 @@ input:hover {
 
 /* Change background color of buttons on hover */
 .tabs-buttonGrp button:hover {
-    background-color: #ddd; 
+    background-color: #ddd;
     border-bottom: 2px darkgray;
 }
 
@@ -119,7 +121,6 @@ input:hover {
     text-align: center;
 } */
 
-
 /* DROPDOWN STYLING - left for backend*/
 /* Dropdown Content (Hidden by Default)
 .dropdown-content {
@@ -144,4 +145,3 @@ input:hover {
   
 Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button)
   .show {display:block;} */
-

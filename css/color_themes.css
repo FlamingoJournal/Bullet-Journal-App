@@ -1,6 +1,5 @@
 /* Color Theme CSS */
 
-
 /* Team Branding Color Theme */
 :root {
     --team-primary: #194350;
@@ -11,7 +10,7 @@
 
 /* Main Page Colors */
 :root {
-    --background-color: #393E46;
-    --log-background-color: #FFF;
-    --nav-bar-font-color: #FFF;
+    --background-color: #393e46;
+    --log-background-color: #fff;
+    --nav-bar-font-color: #fff;
 }

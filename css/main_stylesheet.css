@@ -7,7 +7,7 @@ body {
 }
 
 /*calendar image style*/
-.calendaron { 
+.calendaron {
     position: absolute;
     left: 1.41%;
     right: 5%;
@@ -29,5 +29,3 @@ body {
     width: 97%;
     border-radius: 12px;
 }
-
-

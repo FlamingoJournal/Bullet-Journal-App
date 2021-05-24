@@ -1,6 +1,6 @@
 /* Datepicker Stylesheet */
 
-input[type="date"] {
+input[type='date'] {
     background-color: #194350;
     color: white;
     border-radius: 1em;
@@ -11,28 +11,28 @@ input[type="date"] {
     outline: none;
 }
 
-input[type="button"]::-moz-focus-inner {
+input[type='button']::-moz-focus-inner {
     border: 0;
 }
 
-input[type="date"]:after {
-    content: "\25BC"; 
+input[type='date']:after {
+    content: '\25BC';
     color: rgb(255, 255, 255);
     padding: 0 5px;
     display: none;
 }
 
-input[type="date"]:hover:after {
+input[type='date']:hover:after {
     color: var(--team-primary);
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
+input[type='date']::-webkit-calendar-picker-indicator {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    padding-left: 20px; 
+    padding-left: 20px;
     width: 50%;
     height: 10%;
     color: transparent;

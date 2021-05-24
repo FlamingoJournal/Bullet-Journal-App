@@ -1,9 +1,9 @@
 class createNewLogButton extends HTMLElement {
     constructor() {
-        super();
-  
-        const template = document.createElement('template');
-  
+        super()
+
+        const template = document.createElement('template')
+
         template.innerHTML = `
           <style>
 
@@ -78,26 +78,25 @@ class createNewLogButton extends HTMLElement {
                 </div>
             </div>
           </section>
-          `;
-  
-      this.attachShadow({ mode: 'open' });
-      this.shadowRoot.appendChild(template.content.cloneNode(true));
+          `
 
-      let modal = this.shadowRoot.querySelector("#createNewLogModal"); //get modal window
-      let modalBtn = this.shadowRoot.querySelector("#createNewLog"); //get open modal button
-      let closeBtn = this.shadowRoot.querySelector(".createNewLogModal-close"); //get close modal button
+        this.attachShadow({ mode: 'open' })
+        this.shadowRoot.appendChild(template.content.cloneNode(true))
 
-      modalBtn.onclick = function () {
-        modal.style.display = 'block';
-      }
-      
-      closeBtn.onclick = function () {
-          modal.style.display = 'none';
-      }
-    
+        const modal = this.shadowRoot.querySelector('#createNewLogModal') // get modal window
+        const modalBtn = this.shadowRoot.querySelector('#createNewLog') // get open modal button
+        const closeBtn = this.shadowRoot.querySelector(
+            '.createNewLogModal-close'
+        ) // get close modal button
+
+        modalBtn.onclick = function showAddPageModal() {
+            modal.style.display = 'block'
+        }
+
+        closeBtn.onclick = function hideAddPageModal() {
+            modal.style.display = 'none'
+        }
     }
-  }
+}
 
-
-
-  customElements.define('create-page-button', createNewLogButton);
+customElements.define('create-page-button', createNewLogButton)

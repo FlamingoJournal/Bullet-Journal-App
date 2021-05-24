@@ -1,7 +1,7 @@
 /* Main Stylesheet */
 
 body {
-    background: #393E46;
+    background: #393e46;
 }
 
 /*sidebar style*/
@@ -12,11 +12,11 @@ body {
     top: 10.83%;
     bottom: 0%;
 
-    background: #9DBEB9;
+    background: #9dbeb9;
 }
 
 .sidebaroff {
-   background: rgb(226, 241, 9);
+    background: rgb(226, 241, 9);
 }
 
 /*headbar style*/
@@ -29,13 +29,12 @@ body {
 
     background: #194350;
     text-align: center;
-    
+
     color: white;
 }
 
-
 /*collapse and open button style*/
-.collapse{
+.collapse {
     position: absolute;
     left: 81.82%;
     right: 0%;
@@ -46,11 +45,10 @@ body {
     font-size: 60px;
     width: 18.2%;
 
-
-    background: #9DBEB9;
+    background: #9dbeb9;
 }
 
-.open{
+.open {
     position: absolute;
     left: -0.05%;
     right: 97.45%;
@@ -61,8 +59,8 @@ body {
     font-size: 60px;
     width: 2.8%;
     height: 5.25%;
-    
-    background: #9DBEB9;
+
+    background: #9dbeb9;
 }
 
 input:hover {
@@ -70,7 +68,7 @@ input:hover {
 }
 
 /*calendar image style*/
-.calendaron { 
+.calendaron {
     position: absolute;
     left: 1.41%;
     right: 5%;
@@ -100,17 +98,16 @@ input:hover {
     right: 1.25%;
     top: 13.15%;
     bottom: 2.69%;
-    
-    background: #FFFFFF;
+
+    background: #ffffff;
 }
 
-.logSideoff{
+.logSideoff {
     position: absolute;
     left: 3.7%;
     right: 3.65%;
     top: 12.87%;
     bottom: 2.04%;
-    
-    background: #FFFFFF;
-}
 
+    background: #ffffff;
+}
