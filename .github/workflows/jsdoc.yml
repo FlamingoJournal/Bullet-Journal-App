@@ -18,9 +18,8 @@ jobs:
             - name: Build
               uses: andstor/jsdoc-action@v1
               with:
-                  source_dir:             
-                    - ./scripts
-                    - ./components
+                  source_dir: ./scripts
+                   # - ./components
                   output_dir: ./docs             
                   recurse: true                  
                   #config_file: conf.json        #The path to a JSDoc configuration file.
