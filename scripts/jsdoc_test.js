@@ -1,15 +1,14 @@
-
 /**
  * Test Name
  * @type {string}
  */
-const testName = 'Joe';
+const testName = 'Joe'
 
 /**
  * Test array of numbers
  * @type {Array<number>}
  */
-const numbers = [55, 3, 22];
+const numbers = [55, 3, 22]
 
 /**
  * Test object
@@ -17,5 +16,9 @@ const numbers = [55, 3, 22];
  */
 const obj = {
     objNum: 5,
-    objText: 'Test'
+    objText: 'Test',
 }
+
+console.log(testName)
+console.log(numbers)
+console.log(obj)

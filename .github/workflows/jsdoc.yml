@@ -14,47 +14,41 @@ jobs:
         steps:
             - name: Checkout code
               uses: actions/checkout@v2
-            
+
             - name: Switch Branch
               run: git switch -c docGen
 
             - name: Build
               uses: andstor/jsdoc-action@v1
               with:
-                  source_dir: ./scripts
-                   # - ./components
-                  recurse: true                  
-                  output_dir: ./docs             
+                  source_dir:
+                      ./scripts
+                      # - ./components
+                  recurse: true
+                  output_dir: ./docs
                   #config_file: conf.json        #The path to a JSDoc configuration file.
-                  #template: minami 
+                  #template: minami
 
             - name: Commit Docs
               runs: |
-                git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-                git config --local user.name "github-actions[bot]"
-                git add *
-                git commit -m "Added Docs" -a
+                  git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+                  git config --local user.name "github-actions[bot]"
+                  git add *
+                  git commit -m "Added Docs" -a
 
             - name: Push Docs
               uses: ad-m/github-push-action@master
               with:
-                github_token: ${{ secrets.GITHUB_TOKEN }}
-                branch: 'docGen'
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  branch: 'docGen'
 
             - name: Merge Branch
               uses: everlytic/branch-merge@1.1.0
               with:
-                github_token: ${{ github.token }}
-                source_ref: 'docGen'
-                target_branch: 'ci-pipeline'
-                commit_message_template: "[Automated] Merged {source_ref} into target {target_branch}"
+                  github_token: ${{ github.token }}
+                  source_ref: 'docGen'
+                  target_branch: 'ci-pipeline'
+                  commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
 
             - name: Delete Branch
               run: git push origin --delete docGen
-
-
-
-            
-
-
-
