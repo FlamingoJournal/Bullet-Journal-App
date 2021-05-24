@@ -23,7 +23,7 @@ jobs:
                   output_dir: ./docs
 
             - name: Commit Docs
-              runs: |
+              run: |
                   git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
                   git config --local user.name "github-actions[bot]"
                   git add *
@@ -44,4 +44,4 @@ jobs:
                   commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
 
             - name: Delete Branch
-              runs: git push origin --delete docGen
+              run: git push origin --delete docGen
