@@ -25,10 +25,12 @@
 
                 <h1 class="title">TITLE</h1>
 
-                <button id="right-arrow" class="nav-arrow">
+                <button id="nav-right" class="nav-arrow">
                     <img src="Files/Icons/next_page_arrow.svg" />
                 </button>
             </div>
+
+            <settings-modal></settings-modal>
         </div>
 
         <div class="sidebar sidebar-grid-container">
@@ -58,8 +60,24 @@
                     <textarea class="textbox">Right Page</textarea>
                 </div>
             </div>
+            <!-- temporary class name for index page: CHANGE THIS KUNAL!!!!-->
+            <div class="index-page">
+                <date-picker></date-picker>
+                <create-page-button></create-page-button>
+                <log-list></log-list>
+                <log-list></log-list>
+                <log-list></log-list>
+                <log-list></log-list>
+            </div>
         </main>
         <!-- Main Script -->
         <script src="./scripts/script.js" type="module"></script>
+        <script src="./scripts/router.js" type="module"></script>
+
+        <!-- Components -->
+        <script src="./components/settingsModal.js" type="module"></script>
+        <script src="./components/logList.js" type="module"></script>
+        <script src="./components/createNewLogButton.js" type="module"></script>
+        <script src="./components/datepicker.js" type="module"></script>
     </body>
 </html>

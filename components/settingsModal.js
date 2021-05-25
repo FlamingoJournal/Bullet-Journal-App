@@ -1,8 +1,8 @@
 class settingsModal extends HTMLElement {
     constructor() {
-        super()
+        super();
 
-        const template = document.createElement('template')
+        const template = document.createElement('template');
 
         template.innerHTML = `
           <style>
@@ -106,23 +106,23 @@ class settingsModal extends HTMLElement {
                 </div>
             </div>
           </section>
-          `
+          `;
 
-        this.attachShadow({ mode: 'open' })
-        this.shadowRoot.appendChild(template.content.cloneNode(true))
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-        const openModalBtn = this.shadowRoot.querySelector('.settingsButton') // get open modal button
-        const modal = this.shadowRoot.querySelector('.settingsModal') // get modal window
-        const closeBtn = this.shadowRoot.querySelector('.settingsModalClose') // get close modal button
+        const openModalBtn = this.shadowRoot.querySelector('.settingsButton'); // get open modal button
+        const modal = this.shadowRoot.querySelector('.settingsModal'); // get modal window
+        const closeBtn = this.shadowRoot.querySelector('.settingsModalClose'); // get close modal button
 
         openModalBtn.onclick = function () {
-            modal.style.display = 'block'
-        }
+            modal.style.display = 'block';
+        };
 
         closeBtn.onclick = function () {
-            modal.style.display = 'none'
-        }
+            modal.style.display = 'none';
+        };
     }
 }
 
-customElements.define('settings-modal', settingsModal)
+customElements.define('settings-modal', settingsModal);

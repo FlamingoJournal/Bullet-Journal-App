@@ -1,9 +1,9 @@
 // <journal-entry> custom web component
 class LogList extends HTMLElement {
     constructor() {
-        super()
+        super();
 
-        const template = document.createElement('template')
+        const template = document.createElement('template');
 
         template.innerHTML = `
         <style>
@@ -78,10 +78,10 @@ class LogList extends HTMLElement {
                 <li>MAY 12, 2021</li>
             </ul>
         </div>
-        `
+        `;
 
-        this.attachShadow({ mode: 'open' })
-        this.shadowRoot.appendChild(template.content.cloneNode(true))
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
     /**
@@ -92,39 +92,39 @@ class LogList extends HTMLElement {
      * @todo Make the most recent button switch to the appropriate most recent log
      */
     set type(logType) {
-        const logTitle = this.shadowRoot.querySelector('.log-title')
-        const mostRecentButton = this.shadowRoot.querySelector('.most-recent')
+        const logTitle = this.shadowRoot.querySelector('.log-title');
+        const mostRecentButton = this.shadowRoot.querySelector('.most-recent');
         // const logsList = this.shadowRoot.querySelector('.logs-list')
         switch (logType) {
             case 'daily': {
-                logTitle.textContent = 'DAILY LOG'
+                logTitle.textContent = 'DAILY LOG';
                 mostRecentButton.addEventListener('click', () => {
                     // setState?
                     // populate entries
-                })
+                });
 
-                break
+                break;
             }
             case 'weekly': {
-                logTitle.textContent = 'WEEKLY LOG'
-                mostRecentButton.addEventListener('click', () => {})
-                break
+                logTitle.textContent = 'WEEKLY LOG';
+                mostRecentButton.addEventListener('click', () => {});
+                break;
             }
             case 'monthly': {
-                logTitle.textContent = 'MONTHLY LOG'
-                mostRecentButton.addEventListener('click', () => {})
-                break
+                logTitle.textContent = 'MONTHLY LOG';
+                mostRecentButton.addEventListener('click', () => {});
+                break;
             }
             case 'future': {
-                logTitle.textContent = 'FUTURE LOG'
-                mostRecentButton.addEventListener('click', () => {})
-                break
+                logTitle.textContent = 'FUTURE LOG';
+                mostRecentButton.addEventListener('click', () => {});
+                break;
             }
             default: {
-                break
+                break;
             }
         }
     }
 }
 
-customElements.define('log-list', LogList)
+customElements.define('log-list', LogList);

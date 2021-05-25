@@ -8,5 +8,7 @@
         "ecmaVersion": 12
     },
     "ignorePatterns": ["docs/**"],
-    "rules": {}
+    "rules": {
+        "import/prefer-default-export": "off"
+    }
 }
