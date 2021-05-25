@@ -8,9 +8,8 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     gap: 0px 0px;
-    grid-template-areas:
-      "left-page right-page";
-  }
+    grid-template-areas: 'left-page right-page';
+}
 
 .main-content-div {
     grid-area: main-content;
@@ -42,7 +41,7 @@ float used format elements side to side */
 }
 
 /*textareas styling, makes borders, sizes to parent div, prevents resizing, and outline coloring*/
-.textbox {    
+.textbox {
     border: transparent;
     outline: none;
     width: 100%;

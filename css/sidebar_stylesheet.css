@@ -10,10 +10,10 @@
     grid-template-rows: 150px 1fr 1fr 1fr;
     gap: 0px 0px;
     grid-template-areas:
-      "calendar"
-      "text-format"
-      "buttons"
-      "log-key";
+        'calendar'
+        'text-format'
+        'buttons'
+        'log-key';
 }
 
 .sidebar {
@@ -31,7 +31,6 @@
 .tabs-buttonGrp {
     width: 150px;
     height: 50px;
-    
 }
 
 .tabs-buttonGrp button {

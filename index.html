@@ -1,67 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Flamingo Journal</title>
+        <!-- Main Stylesheet -->
+        <link rel="stylesheet" href="css/master.css" />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flamingo Journal</title>
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="css/master.css" />
-</head>
+    <body id="log" class="body-grid-container">
+        <div class="navbar">
+            <img
+                id="flamingo-logo"
+                src="Files/Images/Flamingo-Journal-Logo.png"
+            />
 
-<body id="log" class="body-grid-container">
-    <div class="navbar">
-        <img id="flamingo-logo" src="Files/Images/Flamingo-Journal-Logo.png" />
+            <div class="title-logo-divider"></div>
 
-        <div class="title-logo-divider"></div>
+            <div class="main-content-nav">
+                <button id="nav-left" class="nav-arrow">
+                    <img src="Files/Icons/prev_page_arrow.svg" />
+                </button>
 
-        <div class="main-content-nav">
-            <button id="nav-left" class="nav-arrow">
-                <img src="Files/Icons/prev_page_arrow.svg" />
-            </button>
+                <h1 class="title">TITLE</h1>
 
-            <h1 class="title">TITLE</h1>
-
-            <button id="right-arrow" class="nav-arrow">
-                <img src="Files/Icons/next_page_arrow.svg" />
-            </button>
-        </div>
-
-    </div>
-
-    <div class="sidebar sidebar-grid-container">
-        <div class="datepicker">
-            <input type="date" />
-        </div>
-
-        <div class="log-buttons-container">
-            <div class="tabs-buttonGrp">
-                <button id="daily-btn">DAILY</button>
-                <button id="weekly-btn">WEEKLY</button>
-                <button id="monthly-btn">MONTHLY</button>
-                <button id="future-btn">FUTURE</button>
+                <button id="right-arrow" class="nav-arrow">
+                    <img src="Files/Icons/next_page_arrow.svg" />
+                </button>
             </div>
         </div>
 
-    </div>
-
-    <main class="daily">
-        <!-- MAIN LOG CONTENT START -->
-        <!--https://stackoverflow.com/questions/3362/capturing-tab-key-in-text-box/13130#13130-->
-
-        <div class="main-content-div main-content-grid-container">
-            <div class="left-page textDivs">
-                <textarea class="textbox">Left Page</textarea>
+        <div class="sidebar sidebar-grid-container">
+            <div class="datepicker">
+                <input type="date" />
             </div>
-            <div class="right-page textDivs">
-                <textarea class="textbox">Right Page</textarea>
+
+            <div class="log-buttons-container">
+                <div class="tabs-buttonGrp">
+                    <button id="daily-btn">DAILY</button>
+                    <button id="weekly-btn">WEEKLY</button>
+                    <button id="monthly-btn">MONTHLY</button>
+                    <button id="future-btn">FUTURE</button>
+                </div>
             </div>
         </div>
 
-    </main>
-    <!-- Main Script -->
-    <script src="./scripts/script.js" type="module"></script>
-</body>
+        <main class="daily">
+            <!-- MAIN LOG CONTENT START -->
+            <!--https://stackoverflow.com/questions/3362/capturing-tab-key-in-text-box/13130#13130-->
 
+            <div class="main-content-div main-content-grid-container">
+                <div class="left-page textDivs">
+                    <textarea class="textbox">Left Page</textarea>
+                </div>
+                <div class="right-page textDivs">
+                    <textarea class="textbox">Right Page</textarea>
+                </div>
+            </div>
+        </main>
+        <!-- Main Script -->
+        <script src="./scripts/script.js" type="module"></script>
+    </body>
 </html>
