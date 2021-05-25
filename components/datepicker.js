@@ -14,5 +14,4 @@ clearBtn.onclick = function clear() {
 const searchBtn = document.getElementById('search-btn')
 searchBtn.onclick = function search() {
     const selDate = document.getElementById('calendar').value
-    console.log(selDate)
 }
