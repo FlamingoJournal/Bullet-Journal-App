@@ -40,7 +40,7 @@ jobs:
               with:
                   github_token: ${{ github.token }}
                   source_ref: 'docGen'
-                  target_branch: 'ci-pipeline'
+                  target_branch: 'docs-branch'
                   commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
 
             - name: Delete Branch
