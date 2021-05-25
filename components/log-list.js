@@ -1,9 +1,9 @@
 // <journal-entry> custom web component
 class LogList extends HTMLElement {    
     constructor() {
-        super()
+        super();
 
-        const template = document.createElement('template')
+        const template = document.createElement('template');
 
         template.innerHTML = `
         <style>
@@ -80,9 +80,10 @@ class LogList extends HTMLElement {
         </div>
         `
 
-        this.attachShadow({ mode: 'open' })
-        this.shadowRoot.appendChild(template.content.cloneNode(true))
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
+
     /**
      * `set` binds an object property to a function to be called when there is an attempt to set that property.
      * Change log details based on log type given.
@@ -91,33 +92,37 @@ class LogList extends HTMLElement {
      * @todo Make the most recent button switch to the appropriate most recent log
      */
     set type(logType) {
-        let logTitle = this.shadowRoot.querySelector('.log-title')
-        let mostRecentButton = this.shadowRoot.querySelector('.most-recent')
-        let logsList = this.shadowRoot.querySelector('.logs-list')
+        const logTitle = this.shadowRoot.querySelector('.log-title');
+        const mostRecentButton = this.shadowRoot.querySelector('.most-recent');
+        // const logsList = this.shadowRoot.querySelector('.logs-list'); //causing eslint issues
         switch (logType) {
             case 'daily': {
-                logTitle.textContent = 'DAILY LOG'
+                logTitle.textContent = 'DAILY LOG';
                 mostRecentButton.addEventListener('click', () => {
                     // setState?
                     // populate entries
-                })
+                });
 
-                break
+                break;
             }
             case 'weekly': {
-                logTitle.textContent = 'WEEKLY LOG'
-                mostRecentButton.addEventListener('click', () => {})
-                break
+                logTitle.textContent = 'WEEKLY LOG';
+                mostRecentButton.addEventListener('click', () => {});
+                break;
             }
             case 'monthly': {
-                logTitle.textContent = 'MONTHLY LOG'
-                mostRecentButton.addEventListener('click', () => {})
-                break
+                logTitle.textContent = 'MONTHLY LOG';
+                mostRecentButton.addEventListener('click', () => {});
+                break;
             }
             case 'future': {
-                logTitle.textContent = 'FUTURE LOG'
-                mostRecentButton.addEventListener('click', () => {})
-                break
+                logTitle.textContent = 'FUTURE LOG';
+                mostRecentButton.addEventListener('click', () => {});
+                break;
+            }
+            default: {
+                logTitle.textContent = 'ERROR: DEFAULT CASE';
+                break;
             }
         }
     }
