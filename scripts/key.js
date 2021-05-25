@@ -5,7 +5,7 @@ let area
 // Get text area when clicked
 textAreas.forEach((textArea) => {
     textArea.addEventListener('click', () => {
-        area = textArea
+    area = textArea
         // console.log(area);
   })
 })
