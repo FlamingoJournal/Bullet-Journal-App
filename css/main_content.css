@@ -44,10 +44,12 @@ float used format elements side to side */
 /*textareas styling, makes borders, sizes to parent div, prevents resizing, and outline coloring*/
 .textbox {    
     border: transparent;
+    outline: none;
     width: 100%;
     height: 100%;
     resize: none;
     overflow: auto;
+    font-size: 20pt;
 }
 
 #home .main-content-grid-container {
