@@ -12,7 +12,7 @@ textAreas.forEach((textArea) => {
 
 // on button click add key to last clicked textarea
 btns.forEach((btn) => {
-    btn.addEventListener('click', () => {
+  btn.addEventListener('click', () => {
     area.value += btn.value
     })
 })
