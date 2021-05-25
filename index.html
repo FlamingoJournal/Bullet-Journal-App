@@ -1,103 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Bullet Journal App</title>
-        <!-- Main Stylesheet -->
-        <link rel="stylesheet" href="css/master.css" />
-    </head>
 
-    <body>
-        <main>
-            <!-- NAVIGATION BAR START -->
-            <div class="topnav">
-                <!-- @TO-DO: MAKE THE TOP NAV BAR SHORTER-->
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bullet Journal App</title>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/master.css" />
+</head>
 
-                <!-- LOGO AND APP NAME TOGETHER -->
-                <div id="logo-and-name">
-                    <!-- Flamingo Logo -->
-                    <img
-                        id="flamingo-logo"
-                        src="Files/Images/Flamingo-Journal-Logo.png"
-                    />
-                </div>
+<body>
+    <main>
+        <!-- NAVIGATION BAR START -->
+        <div class="topnav">
+            <!-- @TO-DO: MAKE THE TOP NAV BAR SHORTER-->
 
-                <!-- LEFT ARROW BUTTON -->
-                <div class="nav-arrows">
-                    <button id="left-arrow">
-                        <img src="Files/Icons/prev_page_arrow.svg" />
-                    </button>
-
-                    <!-- TITLE(Daily Log, Weekly Log, Montly Log, Future Log) -->
-                    <h1 class="title">TITLE</h1>
-
-                    <!-- RIGHT ARROW BUTTON -->
-                    <button id="right-arrow">
-                        <img src="Files/Icons/next_page_arrow.svg" />
-                    </button>
-                </div>
+            <!-- LOGO AND APP NAME TOGETHER -->
+            <div id="logo-and-name">
+                <!-- Flamingo Logo -->
+                <img id="flamingo-logo" src="Files/Images/Flamingo-Journal-Logo.png" />
             </div>
 
-            <!-- CIRCLE/SETTINGS BUTTON -->
+            <!-- LEFT ARROW BUTTON -->
+            <div class="nav-arrows">
+                <button id="left-arrow">
+                    <img src="Files/Icons/prev_page_arrow.svg" />
+                </button>
 
-            <!-- <h2 class="headbar">Headbar</h2> -->
+                <!-- TITLE(Daily Log, Weekly Log, Montly Log, Future Log) -->
+                <h1 class="title">TITLE</h1>
 
-            <!-- NAVIGATION BAR END -->
+                <!-- RIGHT ARROW BUTTON -->
+                <button id="right-arrow">
+                    <img src="Files/Icons/next_page_arrow.svg" />
+                </button>
+            </div>
+        </div>
 
-            <!-- SIDEBAR START -->
-            <sidebar class="sidebaron" id="sidebar">
-                <input
-                    type="button"
-                    id="sidebar-button"
-                    class="collapse"
-                    value="<"
-                />
-                <!-- <button class="collapse" id="sidebar-button">
+        <!-- CIRCLE/SETTINGS BUTTON -->
+
+        <!-- <h2 class="headbar">Headbar</h2> -->
+
+        <!-- NAVIGATION BAR END -->
+
+        <!-- SIDEBAR START -->
+        <sidebar class="sidebaron" id="sidebar">
+            <input type="button" id="sidebar-button" class="collapse" value="<" />
+            <!-- <button class="collapse" id="sidebar-button">
         <img src="Files/Icons/sidebar_arrow.svg" />
       </button> -->
-                <!-- Button to close sidebar, using SVG in Files/Icons/arrow.svg -->
+            <!-- Button to close sidebar, using SVG in Files/Icons/arrow.svg -->
 
-                <!-- Calendar Date Picker START-->
-                <input type="date" id="demo" />
-                <!-- Calendar Date Picker END-->
+            <!-- Calendar Date Picker START-->
+            <input type="date" id="demo" />
+            <!-- Calendar Date Picker END-->
 
-                <!-- LOG TYPE BUTTONS START -->
-                <div id="logtype-button">
-                    <div class="tabs-buttonGrp">
-                        <button id="daily-btn">DAILY</button>
-                        <button id="weekly-btn">WEEKLY</button>
-                        <button id="monthly-btn">MONTHLY</button>
-                        <button id="future-btn">FUTURE</button>
-                    </div>
-                </div>
-                <!-- LOG TYPE BUTTONS END -->
-
-                <!-- <img class="calendaron" src="calendar.png" id="calendar"> -->
-                <!-- DAILY, WEEKLY< MONTHLY, FUTURE LOG BUTTONS (INLINE) -->
-                <!-- Font Styling Window TO-DO -->
-            </sidebar>
-
-            <!-- SIDEBAR END -->
-
-            <!-- MAIN LOG CONTENT START -->
-            <div id="log" class="logSideon">
-                <!--Textboxes-->
-                <!--https://stackoverflow.com/questions/3362/capturing-tab-key-in-text-box/13130#13130-->
-
-                <div class="textDivs">
-                    <textarea class="textbox"></textarea>
-                </div>
-
-                <div class="textDivs">
-                    <textarea class="textbox"></textarea>
+            <!-- LOG TYPE BUTTONS START -->
+            <div id="logtype-button">
+                <div class="tabs-buttonGrp">
+                    <button id="daily-btn">DAILY</button>
+                    <button id="weekly-btn">WEEKLY</button>
+                    <button id="monthly-btn">MONTHLY</button>
+                    <button id="future-btn">FUTURE</button>
                 </div>
             </div>
-            <!-- MAIN LOG CONTENT END -->
-        </main>
+            <!-- LOG TYPE BUTTONS END -->
+            <!-- Key Buttons Start -->
+            <div id="button-group">
+                <!--src= https://www.w3schools.com/charsets/ref_utf_dingbats.asp -->
+                <!-- <button value="&#9744;" class="buttonGroup">&#9744;  INCOMPLETE</button> square <br /> -->
+                <button value="&#9745;" class="buttonGroup">&#9745; COMPLETE</button> <!-- square w/ check --> <br />
+                <button value="&#9675;" class="buttonGroup">&#9675; EVENT</button> <!-- circle --> <br />
+                <button value="&ndash;" class="buttonGroup">&ndash; IMPORTANT</button> <!-- dash --> <br />
+                <button value="&#10033;" class="buttonGroup">&#10033; PRIORITY</button> <!-- star --> <br />
+                <button value="&#9888;" class="buttonGroup">&#9888; INSPIRATIONAL</button> <!-- exclamation mark -->
+                <br />
+            </div>
+            <!-- Key Buttons End -->
 
-        <!-- Main Script -->
-        <script src="./scripts/script.js" type="module"></script>
-    </body>
+            <!-- <img class="calendaron" src="calendar.png" id="calendar"> -->
+            <!-- DAILY, WEEKLY< MONTHLY, FUTURE LOG BUTTONS (INLINE) -->
+            <!-- Font Styling Window TO-DO -->
+        </sidebar>
+
+        <!-- SIDEBAR END -->
+
+        <!-- MAIN LOG CONTENT START -->
+        <div id="log" class="logSideon">
+            <!--Textboxes-->
+            <!--https://stackoverflow.com/questions/3362/capturing-tab-key-in-text-box/13130#13130-->
+
+            <div class="textDivs">
+                <textarea class="textbox"></textarea>
+            </div>
+
+            <div class="textDivs">
+                <textarea class="textbox"></textarea>
+            </div>
+        </div>
+        <!-- MAIN LOG CONTENT END -->
+    </main>
+
+    <!-- Main Script -->
+    <script src="./scripts/script.js" type="module"></script>
+    <script src="./scripts/key.js" type="module"></script>
+</body>
+
 </html>
