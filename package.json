@@ -29,6 +29,7 @@
     "bugs": {
         "url": "https://github.com/cse110-sp21-group18/Bullet-Journal-App/issues"
     },
+    "eslintIgnore:" : ["docs/**"],
     "homepage": "https://github.com/cse110-sp21-group18/Bullet-Journal-App#readme",
     "devDependencies": {
         "@babel/core": "^7.14.3",
