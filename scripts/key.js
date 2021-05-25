@@ -1,4 +1,4 @@
-const btns = document.getElementById('button-group').querySelectorAll('button') // keys
+const btns = document.getElementById('button-group').querySelectorAll('button'); // keys
 const textAreas = document.querySelectorAll('textarea')
 let area
 
