@@ -1,4 +1,4 @@
-#Action that uses ESLint and Prettier, ESLint extends Airbnb style guide
+# Action that uses ESLint and Prettier, ESLint extends Airbnb style guide
 
 name: Lint
 

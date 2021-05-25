@@ -1,6 +1,6 @@
-@import url(main_stylesheet.css);
-@import url(topnav.css);
-@import url(logs_stylesheet.css);
+@import url(body_stylesheet.css);
+@import url(navbar.css);
+@import url(main_content.css);
 @import url(sidebar_stylesheet.css);
 @import url(color_themes.css);
 @import url(key.css);

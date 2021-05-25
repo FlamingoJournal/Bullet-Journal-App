@@ -1,0 +1,19 @@
+@import url(color_themes.css);
+
+/* body Stylesheet */
+body {
+    background: var(--background-color);
+}
+
+.body-grid-container {
+    height: 100vh;
+    overflow-y: hidden;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 275px 1fr;
+    grid-template-rows: 80px 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        'navbar navbar'
+        'sidebar main-content';
+}

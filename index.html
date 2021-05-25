@@ -4,73 +4,44 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Bullet Journal App</title>
+        <title>Flamingo Journal</title>
         <!-- Main Stylesheet -->
         <link rel="stylesheet" href="css/master.css" />
     </head>
 
-    <body>
-        <main>
-            <!-- NAVIGATION BAR START -->
-            <div class="topnav">
-                <!-- @TO-DO: MAKE THE TOP NAV BAR SHORTER-->
+    <body id="log" class="body-grid-container">
+        <div class="navbar">
+            <img
+                id="flamingo-logo"
+                src="Files/Images/Flamingo-Journal-Logo.png"
+            />
 
-                <!-- LOGO AND APP NAME TOGETHER -->
-                <div id="logo-and-name">
-                    <!-- Flamingo Logo -->
-                    <img
-                        id="flamingo-logo"
-                        src="Files/Images/Flamingo-Journal-Logo.png"
-                    />
-                </div>
+            <div class="title-logo-divider"></div>
 
-                <!-- LEFT ARROW BUTTON -->
-                <div class="nav-arrows">
-                    <button id="left-arrow">
-                        <img src="Files/Icons/prev_page_arrow.svg" />
-                    </button>
+            <div class="main-content-nav">
+                <button id="nav-left" class="nav-arrow">
+                    <img src="Files/Icons/prev_page_arrow.svg" />
+                </button>
 
-                    <!-- TITLE(Daily Log, Weekly Log, Montly Log, Future Log) -->
-                    <h1 class="title">TITLE</h1>
+                <h1 class="title">TITLE</h1>
 
-                    <!-- RIGHT ARROW BUTTON -->
-                    <button id="right-arrow">
-                        <img src="Files/Icons/next_page_arrow.svg" />
-                    </button>
-                </div>
+                <button id="right-arrow" class="nav-arrow">
+                    <img src="Files/Icons/next_page_arrow.svg" />
+                </button>
+            </div>
+        </div>
+
+        <div class="sidebar sidebar-grid-container">
+            <div class="datepicker">
+                <input type="date" />
             </div>
 
-            <!-- CIRCLE/SETTINGS BUTTON -->
-
-            <!-- <h2 class="headbar">Headbar</h2> -->
-
-            <!-- NAVIGATION BAR END -->
-
-            <!-- SIDEBAR START -->
-            <sidebar class="sidebaron" id="sidebar">
-                <input
-                    type="button"
-                    id="sidebar-button"
-                    class="collapse"
-                    value="<"
-                />
-                <!-- <button class="collapse" id="sidebar-button">
-        <img src="Files/Icons/sidebar_arrow.svg" />
-      </button> -->
-                <!-- Button to close sidebar, using SVG in Files/Icons/arrow.svg -->
-
-                <!-- Calendar Date Picker START-->
-                <input type="date" id="demo" />
-                <!-- Calendar Date Picker END-->
-
-                <!-- LOG TYPE BUTTONS START -->
-                <div id="logtype-button">
-                    <div class="tabs-buttonGrp">
-                        <button id="daily-btn">DAILY</button>
-                        <button id="weekly-btn">WEEKLY</button>
-                        <button id="monthly-btn">MONTHLY</button>
-                        <button id="future-btn">FUTURE</button>
-                    </div>
+            <div class="log-buttons-container">
+                <div class="tabs-buttonGrp">
+                    <button id="daily-btn">DAILY</button>
+                    <button id="weekly-btn">WEEKLY</button>
+                    <button id="monthly-btn">MONTHLY</button>
+                    <button id="future-btn">FUTURE</button>
                 </div>
                 <!-- LOG TYPE BUTTONS END -->
                 <!-- Key Buttons Start -->
@@ -112,22 +83,19 @@
 
             <!-- SIDEBAR END -->
 
+        <main class="daily">
             <!-- MAIN LOG CONTENT START -->
-            <div id="log" class="logSideon">
-                <!--Textboxes-->
-                <!--https://stackoverflow.com/questions/3362/capturing-tab-key-in-text-box/13130#13130-->
+            <!--https://stackoverflow.com/questions/3362/capturing-tab-key-in-text-box/13130#13130-->
 
-                <div class="textDivs">
-                    <textarea class="textbox"></textarea>
+            <div class="main-content-div main-content-grid-container">
+                <div class="left-page textDivs">
+                    <textarea class="textbox">Left Page</textarea>
                 </div>
-
-                <div class="textDivs">
-                    <textarea class="textbox"></textarea>
+                <div class="right-page textDivs">
+                    <textarea class="textbox">Right Page</textarea>
                 </div>
             </div>
-            <!-- MAIN LOG CONTENT END -->
         </main>
-
         <!-- Main Script -->
         <script src="./scripts/script.js" type="module"></script>
         <script src="./scripts/key.js" type="module"></script>

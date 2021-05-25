@@ -1,0 +1,56 @@
+@import url(color_themes.css);
+/* Style sheet for each different type of log */
+
+/* Styling for main */
+.main-content-grid-container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas: 'left-page right-page';
+}
+
+.main-content-div {
+    grid-area: main-content;
+    background-color: var(--background-color);
+}
+
+/*log size when sidebar is on/off*/
+.daily-log-content {
+    background: var(--log-background-color);
+}
+
+.right-page {
+    grid-area: right-page;
+    padding-right: 3%;
+    padding-left: 3px;
+}
+
+.left-page {
+    grid-area: left-page;
+    padding-left: 3%;
+    padding-right: 3px;
+}
+
+/* Divs that hold the individual HTML elements between them, each is sized to half of parent div,
+float used format elements side to side */
+.textDivs {
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+/*textareas styling, makes borders, sizes to parent div, prevents resizing, and outline coloring*/
+.textbox {
+    border: transparent;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    resize: none;
+    overflow: auto;
+    font-size: 20pt;
+}
+
+#home .main-content-grid-container {
+    display: none;
+}
