@@ -7,7 +7,7 @@ textAreas.forEach((textArea) => {
     textArea.addEventListener('click', () => {
         area = textArea
         // console.log(area);
-    })
+  })
 })
 
 // on button click add key to last clicked textarea
