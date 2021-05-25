@@ -1,10 +1,10 @@
 class newPageButton extends HTMLElement {
-    constructor() {
-        super()
+  constructor() {
+    super();
 
-        const template = document.createElement('template')
+    const template = document.createElement('template');
 
-        template.innerHTML = `
+    template.innerHTML = `
           <style>
 
             .button {
@@ -69,17 +69,17 @@ class newPageButton extends HTMLElement {
           <section>
             <button id="addNewPage" class='button'><img src=../Files/icons/next_page_arrow.svg></button>
           </section>
-          `
+          `;
 
-        this.attachShadow({ mode: 'open' })
-        this.shadowRoot.appendChild(template.content.cloneNode(true))
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-        const addBtn = this.shadowRoot.querySelector('#addNewPage') // get open modal button
+    const addBtn = this.shadowRoot.querySelector('#addNewPage'); // get open modal button
 
-        addBtn.onclick = function addNewTemplate() {
-            console.log('test')
-        }
-    }
+    addBtn.onclick = function addNewTemplate() {
+      // console.log('test');
+    };
+  }
 }
 
-customElements.define('add-new-page', newPageButton)
+customElements.define('add-new-page', newPageButton);

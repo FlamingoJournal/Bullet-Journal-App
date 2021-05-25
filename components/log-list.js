@@ -1,11 +1,11 @@
 // <journal-entry> custom web component
 class LogList extends HTMLElement {
-    constructor() {
-        super()
+  constructor() {
+    super();
 
-        const template = document.createElement('template')
+    const template = document.createElement('template');
 
-        template.innerHTML = `
+    template.innerHTML = `
         <style>
             .log-list-comp {
                 width: 18vw;
@@ -78,53 +78,54 @@ class LogList extends HTMLElement {
                 <li>MAY 12, 2021</li>
             </ul>
         </div>
-        `
+        `;
 
-        this.attachShadow({ mode: 'open' })
-        this.shadowRoot.appendChild(template.content.cloneNode(true))
-    }
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
+  }
 
-    /**
-     * `set` binds an object property to a function to be called when there is an attempt to set that property.
+  /**
+     * `set` binds an object property to a function to be called when there is an
+     * attempt to set that property.
      * Change log details based on log type given.
      * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set}
      * @todo Retrieve logs from database and populate entries
      * @todo Make the most recent button switch to the appropriate most recent log
      */
-    set type(logType) {
-        const logTitle = this.shadowRoot.querySelector('.log-title')
-        const mostRecentButton = this.shadowRoot.querySelector('.most-recent')
-        // const logsList = this.shadowRoot.querySelector('.logs-list')
-        switch (logType) {
-            case 'daily': {
-                logTitle.textContent = 'DAILY LOG'
-                mostRecentButton.addEventListener('click', () => {
-                    // setState?
-                    // populate entries
-                })
+  set type(logType) {
+    const logTitle = this.shadowRoot.querySelector('.log-title');
+    const mostRecentButton = this.shadowRoot.querySelector('.most-recent');
+    // const logsList = this.shadowRoot.querySelector('.logs-list')
+    switch (logType) {
+      case 'daily': {
+        logTitle.textContent = 'DAILY LOG';
+        mostRecentButton.addEventListener('click', () => {
+          // setState?
+          // populate entries
+        });
 
-                break
-            }
-            case 'weekly': {
-                logTitle.textContent = 'WEEKLY LOG'
-                mostRecentButton.addEventListener('click', () => {})
-                break
-            }
-            case 'monthly': {
-                logTitle.textContent = 'MONTHLY LOG'
-                mostRecentButton.addEventListener('click', () => {})
-                break
-            }
-            case 'future': {
-                logTitle.textContent = 'FUTURE LOG'
-                mostRecentButton.addEventListener('click', () => {})
-                break
-            }
-            default: {
-                break
-            }
-        }
+        break;
+      }
+      case 'weekly': {
+        logTitle.textContent = 'WEEKLY LOG';
+        mostRecentButton.addEventListener('click', () => {});
+        break;
+      }
+      case 'monthly': {
+        logTitle.textContent = 'MONTHLY LOG';
+        mostRecentButton.addEventListener('click', () => {});
+        break;
+      }
+      case 'future': {
+        logTitle.textContent = 'FUTURE LOG';
+        mostRecentButton.addEventListener('click', () => {});
+        break;
+      }
+      default: {
+        break;
+      }
     }
+  }
 }
 
-customElements.define('log-list', LogList)
+customElements.define('log-list', LogList);
