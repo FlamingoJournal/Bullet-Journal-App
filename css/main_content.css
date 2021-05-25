@@ -48,7 +48,7 @@ float used format elements side to side */
     height: 100%;
     resize: none;
     overflow: auto;
-    font-size: 20pt;
+    font-size: 18pt;
 }
 
 #home .main-content-grid-container {

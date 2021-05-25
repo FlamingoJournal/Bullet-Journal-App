@@ -57,6 +57,27 @@
     border-bottom: 2px solid black;
 }
 
+/* Key Buttons */
+.key-button-group {
+    grid-area: log-key;
+    display: block;
+    padding: 10%;
+}
+
+.key-button-group button {
+    padding-top: 10px;
+    border: transparent;
+    outline: none;
+}
+
+.key-button-group button:hover {
+    padding-top: 10px;
+    background: var(--team-primary);
+    color: white;
+    border: transparent;
+    outline: none;
+}
+
 #home .sidebar {
     display: none;
 }
