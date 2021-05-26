@@ -7,11 +7,11 @@ export const router = {};
  * @todo Implement this function
  */
 router.setState = function switchState(state) {
-    const body = document.querySelector("body");
+    const body = document.querySelector('body');
     switch (state.page) {
         case 'home': {
-            body.id = "home";
-            
+            body.id = 'home';
+
             break;
         }
         default: {
