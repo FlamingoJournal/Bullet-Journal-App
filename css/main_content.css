@@ -12,7 +12,6 @@
 }
 
 .main-content-div {
-    
     grid-area: main-content;
     background-color: var(--background-color);
 }

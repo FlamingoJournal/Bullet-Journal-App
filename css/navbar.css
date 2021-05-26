@@ -8,8 +8,7 @@
     grid-template-columns: 300px 1fr 60px;
     grid-template-rows: 1fr;
     gap: 0px 0px;
-    grid-template-areas:
-        'logo main-nav settings';
+    grid-template-areas: 'logo main-nav settings';
 }
 
 /*headbar style*/
