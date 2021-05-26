@@ -1,8 +1,8 @@
 class keyButton extends HTMLElement {
     constructor() {
-        super()
+        super();
 
-        const template = document.createElement('template')
+        const template = document.createElement('template');
 
         template.innerHTML = `
           <style>
@@ -57,32 +57,32 @@ class keyButton extends HTMLElement {
                     <br />
                 </div>
                 <!-- Key Buttons End -->
-          `
+          `;
 
-        this.attachShadow({ mode: 'open' })
-        this.shadowRoot.appendChild(template.content.cloneNode(true))
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
 
         const btns = this.shadowRoot
             .getElementById('button-group')
-            .querySelectorAll('button') // keys
-        const textAreas = document.querySelectorAll('textarea')
-        let area
+            .querySelectorAll('button'); // keys
+        const textAreas = document.querySelectorAll('textarea');
+        let area;
 
         // Get text area when clicked
         textAreas.forEach((textArea) => {
             textArea.addEventListener('click', () => {
-                area = textArea
+                area = textArea;
                 // console.log(area)
-            })
-        })
+            });
+        });
 
         // on button click add key to last clicked textarea
         btns.forEach((btn) => {
             btn.addEventListener('click', () => {
-                area.value += btn.value
-            })
-        })
+                area.value += btn.value;
+            });
+        });
     }
 }
 
-customElements.define('key-button', keyButton)
+customElements.define('key-button', keyButton);
