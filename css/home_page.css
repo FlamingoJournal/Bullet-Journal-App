@@ -1,0 +1,39 @@
+.home-page-grid-container {
+    height: 100vh;
+    overflow-y: hidden;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 250px 250px 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        'search'
+        'add-page'
+        'log-list-comps';
+}
+
+.home-page {
+    grid-area: body-content;
+}
+
+.home-page date-picker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-page create-page-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-page .log-list-components {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+#log .home-page {
+    display: none;
+}

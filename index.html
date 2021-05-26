@@ -10,13 +10,11 @@
     </head>
 
     <body id="log" class="body-grid-container">
-        <div class="navbar">
+        <div class="navbar navbar-grid-container">
             <img
                 id="flamingo-logo"
                 src="Files/Images/Flamingo-Journal-Logo.png"
             />
-
-            <div class="title-logo-divider"></div>
 
             <div class="main-content-nav">
                 <button id="nav-left" class="nav-arrow">
@@ -28,46 +26,55 @@
                 <button id="nav-right" class="nav-arrow">
                     <img src="Files/Icons/next_page_arrow.svg" />
                 </button>
+
+                <!-- YUE PUT YOUR HTML CODE HERE -->
+                <!-- YUE PUT YOUR HTML CODE HERE -->
+                <div class="log-key"></div>
+                <!-- YUE DO NOT PUT YOUR HTML CODE PAST HERE -->
+                <!-- YUE DO NOT PUT YOUR HTML CODE PAST HERE -->
             </div>
 
-            <settings-modal></settings-modal>
+            <settings-modal class="settings-modal"></settings-modal>
         </div>
 
-        <div class="sidebar sidebar-grid-container">
-            <div class="datepicker">
-                <input type="date" />
-            </div>
-
-            <div class="log-buttons-container">
-                <div class="tabs-buttonGrp">
-                    <button id="daily-btn">DAILY</button>
-                    <button id="weekly-btn">WEEKLY</button>
-                    <button id="monthly-btn">MONTHLY</button>
-                    <button id="future-btn">FUTURE</button>
-                </div>
-            </div>
-        </div>
-
-        <main class="daily">
+        <main>
             <!-- MAIN LOG CONTENT START -->
             <!--https://stackoverflow.com/questions/3362/capturing-tab-key-in-text-box/13130#13130-->
+            <div class="log-page log-page-grid-container">
+                <div class="sidebar sidebar-grid-container">
+                    <div class="datepicker">
+                        <input type="date" />
+                    </div>
 
-            <div class="main-content-div main-content-grid-container">
-                <div class="left-page textDivs">
-                    <textarea class="textbox">Left Page</textarea>
+                    <div class="log-buttons-container">
+                        <div class="tabs-buttonGrp">
+                            <button id="daily-btn">DAILY</button>
+                            <button id="weekly-btn">WEEKLY</button>
+                            <button id="monthly-btn">MONTHLY</button>
+                            <button id="future-btn">FUTURE</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="right-page textDivs">
-                    <textarea class="textbox">Right Page</textarea>
+
+                <div class="main-content-div main-content-grid-container">
+                    <div class="left-page textDivs">
+                        <textarea class="textbox">Left Page</textarea>
+                    </div>
+                    <div class="right-page textDivs">
+                        <textarea class="textbox">Right Page</textarea>
+                    </div>
                 </div>
             </div>
-            <!-- temporary class name for index page: CHANGE THIS KUNAL!!!!-->
-            <div class="index-page">
+
+            <div class="home-page home-page-grid-container">
                 <date-picker></date-picker>
                 <create-page-button></create-page-button>
-                <log-list></log-list>
-                <log-list></log-list>
-                <log-list></log-list>
-                <log-list></log-list>
+                <div class="log-list-components">
+                    <log-list></log-list>
+                    <log-list></log-list>
+                    <log-list></log-list>
+                    <log-list></log-list>
+                </div>
             </div>
         </main>
         <!-- Main Script -->

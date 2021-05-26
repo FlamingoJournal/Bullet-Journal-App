@@ -7,16 +7,13 @@ class settingsModal extends HTMLElement {
         template.innerHTML = `
           <style>
             .settingsButton {
-                width: 40px;
-                height: 40px;
-                position: absolute;
-                right: 20px;
-            }
-            
-            .settingsImage {
-                position: absolute;
-                right:10px;
-                top:10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: transparent;
+                border: none;
+                width: 30px;
+                height: 30px;
             }
 
             .settingsModal {
@@ -47,6 +44,12 @@ class settingsModal extends HTMLElement {
                 left: 50%;
                 margin-top: -14%;
                 margin-left: -20%;
+            }
+
+            .settingsModal-content button {
+                background-color: transparent;
+                outline: none;
+                border: transparent;
             }
 
 
@@ -100,9 +103,9 @@ class settingsModal extends HTMLElement {
                     <span class="settingsModalClose">&times;</span>
                     <h3 class="modalHeader">CHOOSE THEME</h3>
                     <br>
-                    <button class='leftTheme'><img src="../Files/Icons/prev_page_arrow.svg"></button>
-                    <button class='midTheme'><img src="../Files/Icons/next_page_arrow.svg"></button>
-                    <button class='rightTheme'><img src="../Files/Icons/sidebar_arrow.svg"></button>
+                    <button class='leftTheme'><img src="../Files/Icons/settings/dark_mode_circle.svg"></button>
+                    <button class='midTheme'><img src="../Files/Icons/settings/default_mode_circle.svg"></button>
+                    <button class='rightTheme'><img src="../Files/Icons/settings/pink_mode_circle.svg"></button>
                 </div>
             </div>
           </section>

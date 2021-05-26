@@ -8,8 +8,8 @@ class LogList extends HTMLElement {
         template.innerHTML = `
         <style>
             .log-list-comp {
-                width: 18vw;
-                height: 30vh;
+                width: 20vw;
+                height: 33vh;
                 min-width: 170px;
                 min-height: 275px;
                 background-color: #9DBEB9;

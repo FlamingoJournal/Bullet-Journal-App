@@ -1,0 +1,14 @@
+.log-page-grid-container {
+    height: 100vh;
+    overflow-y: hidden;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 275px 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas: 'sidebar main-content';
+}
+
+#home .log-page {
+    display: none;
+}
