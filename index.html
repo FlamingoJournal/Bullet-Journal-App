@@ -1,56 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Flamingo Journal</title>
-        <!-- Main Stylesheet -->
-        <link rel="stylesheet" href="css/master.css" />
-    </head>
 
-    <body id="log" class="body-grid-container">
-        <div class="navbar">
-            <img
-                id="flamingo-logo"
-                src="Files/Images/Flamingo-Journal-Logo.png"
-            />
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flamingo Journal</title>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/master.css" />
+</head>
 
-            <div class="title-logo-divider"></div>
+<body id="log" class="body-grid-container">
+    <div class="navbar navbar-grid-container">
+        <img id="flamingo-logo" src="Files/Images/Flamingo-Journal-Logo.png" />
 
-            <div class="main-content-nav">
-                <button id="nav-left" class="nav-arrow">
-                    <img src="Files/Icons/prev_page_arrow.svg" />
-                </button>
+        <div class="main-content-nav">
+            <button id="nav-left" class="nav-arrow">
+                <img src="Files/Icons/prev_page_arrow.svg" />
+            </button>
 
-                <h1 class="title">TITLE</h1>
+            <h1 class="title">TITLE</h1>
 
-                <button id="nav-right" class="nav-arrow">
-                    <img src="Files/Icons/next_page_arrow.svg" />
-                </button>
+            <button id="nav-right" class="nav-arrow">
+                <img src="Files/Icons/next_page_arrow.svg" />
+            </button>
+
+            <!-- YUE PUT YOUR HTML CODE HERE -->
+            <!-- YUE PUT YOUR HTML CODE HERE -->
+            <div class="log-key">
+
             </div>
+            <!-- YUE DO NOT PUT YOUR HTML CODE PAST HERE -->
+            <!-- YUE DO NOT PUT YOUR HTML CODE PAST HERE -->
 
-            <settings-modal></settings-modal>
         </div>
 
-        <div class="sidebar sidebar-grid-container">
-            <div class="datepicker">
-                <input type="date" />
-            </div>
+        <settings-modal class="settings-modal"></settings-modal>
+    </div>
 
-            <div class="log-buttons-container">
-                <div class="tabs-buttonGrp">
-                    <button id="daily-btn">DAILY</button>
-                    <button id="weekly-btn">WEEKLY</button>
-                    <button id="monthly-btn">MONTHLY</button>
-                    <button id="future-btn">FUTURE</button>
+    <main>
+        <!-- MAIN LOG CONTENT START -->
+        <!--https://stackoverflow.com/questions/3362/capturing-tab-key-in-text-box/13130#13130-->
+        <div class="log-page log-page-grid-container">
+
+            <div class="sidebar sidebar-grid-container">
+                <div class="datepicker">
+                    <input type="date" />
+                </div>
+
+                <div class="log-buttons-container">
+                    <div class="tabs-buttonGrp">
+                        <button id="daily-btn">DAILY</button>
+                        <button id="weekly-btn">WEEKLY</button>
+                        <button id="monthly-btn">MONTHLY</button>
+                        <button id="future-btn">FUTURE</button>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <main class="daily">
-            <!-- MAIN LOG CONTENT START -->
-            <!--https://stackoverflow.com/questions/3362/capturing-tab-key-in-text-box/13130#13130-->
 
             <div class="main-content-div main-content-grid-container">
                 <div class="left-page textDivs">
@@ -60,24 +66,28 @@
                     <textarea class="textbox">Right Page</textarea>
                 </div>
             </div>
-            <!-- temporary class name for index page: CHANGE THIS KUNAL!!!!-->
-            <div class="index-page">
-                <date-picker></date-picker>
-                <create-page-button></create-page-button>
+        </div>
+
+        <div class="home-page home-page-grid-container">
+            <date-picker></date-picker>
+            <create-page-button></create-page-button>
+            <div class="log-list-components">
                 <log-list></log-list>
                 <log-list></log-list>
                 <log-list></log-list>
                 <log-list></log-list>
             </div>
-        </main>
-        <!-- Main Script -->
-        <script src="./scripts/script.js" type="module"></script>
-        <script src="./scripts/router.js" type="module"></script>
+        </div>
+    </main>
+    <!-- Main Script -->
+    <script src="./scripts/script.js" type="module"></script>
+    <script src="./scripts/router.js" type="module"></script>
 
-        <!-- Components -->
-        <script src="./components/settingsModal.js" type="module"></script>
-        <script src="./components/logList.js" type="module"></script>
-        <script src="./components/createNewLogButton.js" type="module"></script>
-        <script src="./components/datepicker.js" type="module"></script>
-    </body>
+    <!-- Components -->
+    <script src="./components/settingsModal.js" type="module"></script>
+    <script src="./components/logList.js" type="module"></script>
+    <script src="./components/createNewLogButton.js" type="module"></script>
+    <script src="./components/datepicker.js" type="module"></script>
+</body>
+
 </html>

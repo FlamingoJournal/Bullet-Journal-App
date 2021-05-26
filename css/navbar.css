@@ -1,21 +1,30 @@
 @import url(color_themes.css);
 
+.navbar-grid-container {
+    /* width: 100%;
+    overflow-x: hidden; */
+    margin: 0;
+    display: grid;
+    grid-template-columns: 300px 1fr 60px;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        'logo main-nav settings';
+}
+
 /*headbar style*/
 .navbar {
     grid-area: navbar;
     background-color: var(--team-primary);
 }
 
-.title-logo-divider {
-    float: left;
-    width: 35%;
-    height: 50px;
-}
-
 .main-content-nav {
+    grid-area: main-nav;
     display: flex;
     align-items: center;
-    padding-top: 15px;
+    padding-top: 20px;
+    padding-left: 35%;
+    padding-right: 0;
     width: 200px;
     height: 50px;
     color: var(--nav-bar-font-color);
@@ -37,10 +46,22 @@
     font-size: 20pt;
 }
 
+.settings-modal {
+    display: flex;
+    /* justify-content: right; */
+    align-items: center;
+    grid-area: settings;
+    /* margin: 20px;
+    width: 40px;
+    height: 40px; */
+    /* float: right; */
+}
+
 #flamingo-logo {
+    grid-area: logo;
     float: left;
     padding-left: 10px;
-    padding-top: 20px;
+    padding-top: 25px;
     width: 300px;
     margin: 0;
 }

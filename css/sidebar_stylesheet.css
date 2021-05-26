@@ -57,6 +57,13 @@
     border-bottom: 2px solid black;
 }
 
+/* Log Key Buttons */
+.log-key {
+    display: flex;
+    justify-content: center;
+    grid-area: log-key;
+}
+
 #home .sidebar {
     display: none;
 }
