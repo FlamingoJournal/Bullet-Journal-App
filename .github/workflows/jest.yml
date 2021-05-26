@@ -4,15 +4,16 @@ jobs:
     Run-Jest:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v2
-            - name: Install
-              run: yarn add --dev jest
+            # - uses: actions/checkout@v2
+            # - name: Install
+            #   run: yarn add --dev jest
 
-            - name: Run Tests
-              run: npm run test
-# uses: willcaul/jest-github-action@v1
-# env:
-#   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-# with:
-#   # this is just an example, this could be any command that will trigger jest
-#   test-command: "npm test"
+            # - name: Run Tests
+            #   run: npm run test
+
+            - uses: willcaul/jest-github-action@v1
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                  test-command: "npm test"
+
