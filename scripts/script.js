@@ -1,7 +1,7 @@
 // script.js
 
 /** **************NAVIGATION******************* */
-import router from './router'
+import router from './router.js'
 // Router imported so you can use it to manipulate your SPA app here
 const { setState } = router
 
