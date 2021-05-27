@@ -6,7 +6,7 @@ class keyButton extends HTMLElement {
 
         template.innerHTML = `
           <style>
-          #button-group {
+        #button-group {
             position: fixed;
             text-align: left;
             top: 650px;
@@ -15,6 +15,7 @@ class keyButton extends HTMLElement {
         
         /* Sets color for ket buttons*/
         .buttonGroup {
+            grid-area: log-key;
             border: none;
             font-size: 20px;
             background: var(--team-light-blue);

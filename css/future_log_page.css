@@ -1,0 +1,40 @@
+.future-log-grid-container {
+    /* height: 91.75vh; * might need to be changed* */
+    /* overflow-y: hidden; */
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        'month1 month2 month3'
+        'month4 month5 month6';
+}
+
+.month {
+    padding: 2%;
+}
+
+.month1 {
+    grid-area: month1;
+}
+
+.month2 {
+    grid-area: month2;
+}
+
+.month3 {
+    grid-area: month3;
+}
+
+.month4 {
+    grid-area: month4;
+}
+
+.month5 {
+    grid-area: month5;
+}
+
+.month6 {
+    grid-area: month6;
+}
