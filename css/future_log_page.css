@@ -38,3 +38,7 @@
 .month6 {
     grid-area: month6;
 }
+
+#log .future-log-grid-container {
+    display: none;
+}
