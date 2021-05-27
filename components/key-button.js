@@ -6,10 +6,8 @@ class keyButton extends HTMLElement {
 
         template.innerHTML = `
           <style>
-        #button-group {
-            position: fixed;
+          #button-group {
             text-align: left;
-            top: 650px;
             padding-left: 20px;
         }
         
@@ -18,7 +16,7 @@ class keyButton extends HTMLElement {
             grid-area: log-key;
             border: none;
             font-size: 20px;
-            background: var(--team-light-blue);
+            background: transparent;
         }
         
         /* When the cursor hovers on a button */
