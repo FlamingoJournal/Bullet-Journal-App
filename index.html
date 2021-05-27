@@ -26,16 +26,6 @@
                 <button id="nav-right" class="nav-arrow">
                     <img src="Files/Icons/next_page_arrow.svg" />
                 </button>
-
-                <!-- YUE PUT YOUR HTML CODE HERE -->
-                <!-- YUE PUT YOUR HTML CODE HERE -->
-                <!-- <key-button></key-button> -->
-
-                <div class="log-key">
-                    <key-button></key-button>
-                </div>
-                <!-- YUE DO NOT PUT YOUR HTML CODE PAST HERE -->
-                <!-- YUE DO NOT PUT YOUR HTML CODE PAST HERE -->
             </div>
 
             <settings-modal class="settings-modal"></settings-modal>
@@ -58,15 +48,17 @@
                             <button id="future-btn">FUTURE</button>
                         </div>
                     </div>
+
+                    <!-- Log Key -->
                     <key-button></key-button>
                 </div>
 
                 <div class="main-content-div main-content-grid-container">
                     <div class="left-page textDivs">
-                        <textarea class="textbox">Left Page</textarea>
+                        <textarea class="textbox" rows="1"></textarea>
                     </div>
                     <div class="right-page textDivs">
-                        <textarea class="textbox">Right Page</textarea>
+                        <textarea class="textbox" rows="1"></textarea>
                     </div>
                 </div>
             </div>
@@ -85,12 +77,13 @@
         <!-- Main Script -->
         <script src="./scripts/script.js" type="module"></script>
         <script src="./scripts/router.js" type="module"></script>
-
+        <script src="./scripts/textbox.js" type="module"></script>
         <!-- Components -->
         <script src="./components/settingsModal.js" type="module"></script>
         <script src="./components/logList.js" type="module"></script>
         <script src="./components/createNewLogButton.js" type="module"></script>
         <script src="./components/datepicker.js" type="module"></script>
         <script src="./components/key-button.js" type="module"></script>
+        
     </body>
 </html>
