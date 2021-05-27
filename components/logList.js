@@ -73,10 +73,12 @@ class LogList extends HTMLElement {
 
         <div class="log-list-comp">
             <h1 class="log-title">DAILY LOG</h2>
-            <button class="most-recent" type="button">MOST RECENT</button>
+            <button class="most-recent" id="most-recent" type="button">MOST RECENT</button>
+            <button class="most-recent" id = "create-new" type="button">CREATE NEW</button>
             <ul class="logs-list">
                 <li>MAY 12, 2021</li>
             </ul>
+            
         </div>
         `;
 
@@ -94,6 +96,7 @@ class LogList extends HTMLElement {
     set type(logType) {
         const logTitle = this.shadowRoot.querySelector('.log-title');
         const mostRecentButton = this.shadowRoot.querySelector('.most-recent');
+        const createNewButton = this.shadowRoot.querySelector('#create-new');
         // const logsList = this.shadowRoot.querySelector('.logs-list')
         switch (logType) {
             case 'daily': {
@@ -102,7 +105,14 @@ class LogList extends HTMLElement {
                     // setState?
                     // populate entries
                 });
-
+                createNewButton.addEventListener('click', () => {
+                    // check if today's log already exists
+                    // dailies = {"5/02/2021": ["baked a cake", "ate breakfast"], '05032021': ["pooped"]}
+                    if (localStorage.getItem('dailies')) {
+                        let dailies = JSON.parse(localStorage.getItem('dailies'));
+                        let today = new Date().toLocaleDateString()
+                    }
+                });
                 break;
             }
             case 'weekly': {

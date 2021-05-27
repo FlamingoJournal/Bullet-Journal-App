@@ -15,7 +15,7 @@ class newPageButton extends HTMLElement {
               border-radius: 12px;
               color: black;
               border-color: white;
-              position: relative;
+              position: absolute;
               margin-left: 48%;
               margin-top: 13%;
               font-family: Verdana, sans-serif;

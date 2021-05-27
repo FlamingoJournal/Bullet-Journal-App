@@ -107,7 +107,7 @@ class BulletEntries extends HTMLElement {
     // Go through the textareas and save their values into localStorage
     window.addEventListener('click', () => {
         let entries = document.getElementsByClassName("entry");
-        console.log(entries);
+        //console.log(entries);
         let data = [];
         for (e of entries) {
             data.push(e.value);
