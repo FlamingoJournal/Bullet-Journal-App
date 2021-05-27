@@ -14,8 +14,16 @@ router.setState = function switchState(state) {
 
             break;
         }
+        case 'daily': {
+            // swap the ID to daily, show the daily divs
+            // delete any leftover custom textareas from last time we were here
+            // create new textareas with date passed in
+            // textarea needs to pull data and save data to that date in the storage
+            pushState()
+        }
         default: {
             break;
         }
     }
+    // page switches to daily, date is given somehow? create bulletEntry dynamically, set date
 };

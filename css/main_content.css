@@ -23,32 +23,39 @@
 }
 
 .right-page {
+    margin: 10px 10px 10px 4px;
     grid-area: right-page;
     padding-right: 3%;
     padding-left: 3px;
+    height: 76vh;
+    overflow-y: auto;
+    background-color: white;
 }
 
 .left-page {
+    margin: 10px 4px 10px 10px;
     grid-area: left-page;
     padding-left: 3%;
     padding-right: 3px;
-    height: 75vh;
+    height: 76vh;
     overflow-y: auto;
+    background-color: white;
 }
 
 /* Divs that hold the individual HTML elements between them, each is sized to half of parent div,
 float used format elements side to side */
 .textDivs {
-    padding-top: 3%;
-    padding-bottom: 100px;
+    /* padding-top: 3%; */
+    padding-bottom: 15%;
+    
 }
 
 /*textareas styling, makes borders, sizes to parent div, prevents resizing, and outline coloring*/
 
 .textbox {
-    /* border: transparent; */
+    /* border: transparent; 
     /* outline: none; */
-    width: 100%;
+    width: 97%;
     /* height: 100%; */
     resize: none;
     /* overflow: auto; */
