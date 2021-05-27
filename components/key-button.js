@@ -13,6 +13,7 @@ class keyButton extends HTMLElement {
         
         /* Sets color for ket buttons*/
         .buttonGroup {
+            grid-area: log-key;
             border: none;
             font-size: 20px;
             background: transparent;
