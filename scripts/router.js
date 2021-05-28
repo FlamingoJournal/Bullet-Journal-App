@@ -19,7 +19,8 @@ router.setState = function switchState(state) {
             // delete any leftover custom textareas from last time we were here
             // create new textareas with date passed in
             // textarea needs to pull data and save data to that date in the storage
-            pushState()
+            // pushState();
+            break;
         }
         default: {
             break;

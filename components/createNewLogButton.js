@@ -1,6 +1,3 @@
-import { router } from './router.js';
-const { setState } = router;
-
 class createNewLogButton extends HTMLElement {
     constructor() {
         super();
@@ -99,7 +96,6 @@ class createNewLogButton extends HTMLElement {
         closeBtn.onclick = function hideAddPageModal() {
             modal.style.display = 'none';
         };
-
     }
 }
 

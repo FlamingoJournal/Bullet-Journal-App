@@ -108,10 +108,12 @@ class LogList extends HTMLElement {
                 createNewButton.addEventListener('click', () => {
                     // check if today's log already exists
                     // dailies = {"5/02/2021": ["baked a cake", "ate breakfast"], '05032021': ["pooped"]}
-                    if (localStorage.getItem('dailies')) {
-                        let dailies = JSON.parse(localStorage.getItem('dailies'));
-                        let today = new Date().toLocaleDateString()
-                    }
+                    // if (localStorage.getItem('dailies')) {
+                    //     let dailies = JSON.parse(
+                    //         localStorage.getItem('dailies')
+                    //     );
+                    //     let today = new Date().toLocaleDateString();
+                    // }
                 });
                 break;
             }
