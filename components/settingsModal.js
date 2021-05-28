@@ -47,7 +47,7 @@ class settingsModal extends HTMLElement {
 
                     display: grid;
                     grid-template-columns: 1fr 1fr 1fr;
-                    grid-template-rows: 100px 1fr;
+                    grid-template-rows: 10% 1fr;
                     gap: 0px 0px;
                     grid-template-areas:
                     "Header Header Header"
@@ -83,7 +83,8 @@ class settingsModal extends HTMLElement {
                     font-family: Lato;
                     font-style: normal;
                     font-weight: 1200;
-                    font-size: 30px;
+                    font-size: 3vw;
+                    font-size: 3vh;
                     line-height: 60px;
                     margin-top: 0;
                     margin-left: 25%;
@@ -94,12 +95,10 @@ class settingsModal extends HTMLElement {
                 }
 
                 #home .leftTheme > img{
-                    vertical-align: middle;
                     grid-area: leftTheme;
                     position: absolute;
                 }
                 #home .midTheme > img {
-                    vertical-align: middle;
                     grid-area: midTheme;
                     position: absolute;
                 }
@@ -107,7 +106,6 @@ class settingsModal extends HTMLElement {
                 #home .rightTheme > img{
                     grid-area: rightTheme;
                     position: absolute;
-                    align: center;
                 }
 
             </style>
@@ -118,9 +116,9 @@ class settingsModal extends HTMLElement {
                         <span class="settingsModalClose">&times;</span>
                         <h3 class="modalHeader">CHOOSE THEME</h3>
                                                 
-                        <button class='leftTheme'><img src="../Files/Icons/settings/dark_mode_circle.svg"></button>
-                        <button class='midTheme'><img src="../Files/Icons/settings/default_mode_circle.svg"></button>
-                        <button class='rightTheme'><img src="../Files/Icons/settings/pink_mode_circle.svg"></button>
+                        <button class='leftTheme'><img style="width:80%; height:80%;" src="../Files/Icons/settings/dark_mode_circle.svg"></button>
+                        <button class='midTheme'><img style="width:80%; height:80%;" src="../Files/Icons/settings/default_mode_circle.svg"></button>
+                        <button class='rightTheme'><img style="width:80%; height:80%;" src="../Files/Icons/settings/pink_mode_circle.svg"></button>
                     </div>
                 </div>
             </section>
