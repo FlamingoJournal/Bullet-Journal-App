@@ -65,3 +65,7 @@ float used format elements side to side */
 #home .main-content-grid-container {
     display: none;
 }
+
+#future-log .main-content-div {
+    display: none;
+}

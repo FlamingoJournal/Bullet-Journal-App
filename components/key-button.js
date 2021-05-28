@@ -7,17 +7,16 @@ class keyButton extends HTMLElement {
         template.innerHTML = `
           <style>
           #button-group {
-            position: fixed;
             text-align: left;
-            top: 650px;
             padding-left: 20px;
         }
         
         /* Sets color for ket buttons*/
         .buttonGroup {
+            grid-area: log-key;
             border: none;
             font-size: 20px;
-            background: var(--team-light-blue);
+            background: transparent;
         }
         
         /* When the cursor hovers on a button */
