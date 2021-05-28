@@ -6,24 +6,23 @@ class keyButton extends HTMLElement {
 
         template.innerHTML = `
           <style>
-          #button-group {
-            text-align: left;
-            padding-left: 20px;
-        }
-        
-        /* Sets color for ket buttons*/
-        .buttonGroup {
-            grid-area: log-key;
-            border: none;
-            font-size: 20px;
-            background: transparent;
-        }
-        
-        /* When the cursor hovers on a button */
-        .buttonGroup:hover {
-            border: solid;
-            cursor: pointer;
-        }        
+            #button-group {
+                text-align: left;
+            }
+            
+            /* Sets color for ket buttons*/
+            .buttonGroup {
+                grid-area: log-key;
+                border: none;
+                font-size: 20px;
+                background: transparent;
+            }
+            
+            /* When the cursor hovers on a button */
+            .buttonGroup:hover {
+                border: solid;
+                cursor: pointer;
+            }        
           </style>
           <!-- Key Buttons Start -->
                 <div id="button-group">
