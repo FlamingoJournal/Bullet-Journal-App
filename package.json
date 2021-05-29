@@ -4,10 +4,10 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "jest",
-        "test:watch": "jest --watch",
-        "test:coverage": "jest --coverage",
-        "test:staged": "jest --findRelatedTests"
+        "test": "jest ./tests/*",
+        "test:watch": "jest --watch ./tests/*",
+        "test:coverage": "jest --coverage ./tests/*",
+        "test:staged": "jest --findRelatedTests ./tests/*"
     },
     "repository": {
         "type": "git",
