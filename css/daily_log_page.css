@@ -1,0 +1,34 @@
+@import url(color_themes.css);
+/* Style sheet for each different type of log */
+
+/* Styling for main */
+.daily-log-grid-container {
+    height: 100vh;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas: 'single-page';
+}
+
+.daily-log-content-div {
+    grid-area: single-page;
+    background-color: var(--background-color);
+}
+
+#home .daily-log-grid-container {
+    display: none;
+}
+
+#future-log .daily-log-grid-container {
+    display: none;
+}
+
+#weekly-log .daily-log-grid-container {
+    display: none;
+}
+
+#monthly-log .daily-log-grid-container {
+    display: none;
+}

@@ -1,9 +1,13 @@
 @import url(body_stylesheet.css);
 @import url(navbar.css);
-@import url(main_content.css);
+
+@import url(home_page.css);
+@import url(log_page.css);
+@import url(daily_log_page.css);
+@import url(weekly_log_page.css);
+@import url(monthly_log_page.css);
+@import url(future_log_page.css);
+
 @import url(sidebar_stylesheet.css);
 @import url(color_themes.css);
-@import url(log_page.css);
-@import url(home_page.css);
-@import url(future_log_page.css);
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');

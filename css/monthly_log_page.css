@@ -1,0 +1,26 @@
+@import url(color_themes.css);
+/* Style sheet for each different type of log */
+
+/* Styling for main */
+.monthly-log-grid-container {
+    height: 100vh;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas: 'monthly-page';
+}
+
+.monthly-log-content-div {
+    grid-area: monthly-page;
+    background-color: var(--background-color);
+}
+
+#home .monthly-log-grid-container {
+    display: none;
+}
+
+#future-log .monthly-log-grid-container {
+    display: none;
+}
