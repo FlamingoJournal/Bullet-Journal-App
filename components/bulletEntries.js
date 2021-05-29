@@ -4,6 +4,32 @@
 /* eslint-disable eqeqeq */
 // <journal-entry> custom web component
 class BulletEntries extends HTMLElement {
+
+    //  return array containing names of attributes to observe. Used by attributeChangedCallback()
+    // static get observedAttributes() {
+    //     return ['logType', 'date'];
+    //   }
+    
+    // attributeChangedCallback(name, oldValue, newValue) {
+    //     if (name === 'logtype') {
+    //         this.logtype = newValue;
+    //     }
+    //     if (name === 'date') {
+    //         this.date = newValue;
+    //     }
+    // }
+    // set date(date) {
+    //     this.date = date;
+    // }
+
+    // set logtype(logType) {
+    //     this.logtype = logType;
+    // }
+    //  runs when element is added to the DOM.
+    // connectedCallback() {
+    //     fetchData();
+    // }
+
     constructor() {
         super();
 
@@ -106,27 +132,36 @@ class BulletEntries extends HTMLElement {
         const shadow = this.shadowRoot;
         const main = this.shadowRoot.querySelector('section');
         const firstEntry = this.shadowRoot.querySelector('.entry');
+        this.date = "";
+        this.logtype="";
         firstEntry.addEventListener('input', autoScroll);
         firstEntry.addEventListener('keydown', checkEnterKey);
         firstEntry.addEventListener('keydown', checkTab);
         firstEntry.addEventListener('blur', checkBlur);
 
         // Go through the textareas and save their values into localStorage
-        window.addEventListener('click', () => {
+        document.addEventListener('click', () => {
             const entries = document.getElementsByClassName('entry');
             // console.log(entries);
             const data = [];
             for (e of entries) {
                 data.push(e.value);
             }
-            localStorage.setItem('data', JSON.stringify(data));
+
+            //  get info from storage, add new data array to current date key, save it back in
+            const logStorage = JSON.parse(localStorage.getItem(this.logtype));
+            console.log(this.logtype);
+            console.log(this.date);
+            logStorage[this.date] = data;
+            localStorage.setItem(this.logtype, JSON.stringify(logStorage));
         });
 
         // When page loads, retrieve localStorage info and create textareas accordingly
 
         function fetchData() {
-            if (localStorage.getItem('data')) {
-                const data = JSON.parse(localStorage.getItem('data'));
+            const logStorage = JSON.parse(localStorage.getItem(this.logtype))
+            if (logStorage[this.date]) {
+                const data = logStorage[this.date];
                 // eslint-disable-next-line prefer-destructuring
                 firstEntry.value = data[0];
                 firstEntry.style.height = `${firstEntry.scrollHeight}px`;
@@ -137,10 +172,13 @@ class BulletEntries extends HTMLElement {
                 }
             }
         }
-        window.addEventListener('load', fetchData);
+
+
+        
     }
 
     // given date, set date info
+    
 }
 
 customElements.define('bullet-entries', BulletEntries);
