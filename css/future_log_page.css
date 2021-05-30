@@ -42,3 +42,15 @@
 #log .future-log-grid-container {
     display: none;
 }
+
+#daily-log .future-log-grid-container {
+    display: none;
+}
+
+#weekly-log .future-log-grid-container {
+    display: none;
+}
+
+#monthly-log .future-log-grid-container {
+    display: none;
+}

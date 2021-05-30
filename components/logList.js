@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/newline-after-import
 import { router } from '../scripts/router.js';
 const { setState } = router;
 
@@ -109,31 +110,35 @@ class LogList extends HTMLElement {
                     // populate entries
                 });
                 createNewButton.addEventListener('click', () => {
-                    console.log("creating");
+                    console.log('creating');
                     // check if today's log already exists
                     // dailies = {"5/02/2021": ["baked a cake", "ate breakfast"], '05032021': ["pooped"]}
                     if (localStorage.getItem('daily')) {
-                        let dailies = JSON.parse(localStorage.getItem('daily'));
-                        let today = new Date().toLocaleDateString();
+                        const dailies = JSON.parse(
+                            localStorage.getItem('daily')
+                        );
+                        const today = new Date().toLocaleDateString();
                         if (dailies[today]) {
-                            console.log("log already exists for today");
-                        }
-                        else { // today's log doesn't exist yet
+                            console.log('log already exists for today');
+                        } else {
+                            // today's log doesn't exist yet
                             dailies[today] = [];
-                            localStorage.setItem('daily', JSON.stringify(dailies));
-                            let state = {page : 'daily', date: today};
+                            localStorage.setItem(
+                                'daily',
+                                JSON.stringify(dailies)
+                            );
+                            const state = { page: 'daily', date: today };
                             setState(state);
                         }
                     }
                     //  no daily log yet. First time user?
                     else {
-                        let dailies = {}; // create new object to hold entries
-                        let today = new Date().toLocaleDateString();
+                        const dailies = {}; // create new object to hold entries
+                        const today = new Date().toLocaleDateString();
                         dailies[today] = [];
                         localStorage.setItem('daily', JSON.stringify(dailies));
-                        let state = {page : 'daily', date: today};
+                        const state = { page: 'daily', date: today };
                         setState(state);
-
                     }
                 });
                 break;

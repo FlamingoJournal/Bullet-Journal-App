@@ -4,12 +4,11 @@
 /* eslint-disable eqeqeq */
 // <journal-entry> custom web component
 class BulletEntries extends HTMLElement {
-
     //  return array containing names of attributes to observe. Used by attributeChangedCallback()
     // static get observedAttributes() {
     //     return ['logType', 'date'];
     //   }
-    
+
     // attributeChangedCallback(name, oldValue, newValue) {
     //     if (name === 'logtype') {
     //         this.logtype = newValue;
@@ -132,8 +131,8 @@ class BulletEntries extends HTMLElement {
         const shadow = this.shadowRoot;
         const main = this.shadowRoot.querySelector('section');
         const firstEntry = this.shadowRoot.querySelector('.entry');
-        this.date = "";
-        this.logtype="";
+        this.date = '';
+        this.logtype = '';
         firstEntry.addEventListener('input', autoScroll);
         firstEntry.addEventListener('keydown', checkEnterKey);
         firstEntry.addEventListener('keydown', checkTab);
@@ -158,8 +157,9 @@ class BulletEntries extends HTMLElement {
 
         // When page loads, retrieve localStorage info and create textareas accordingly
 
+        // eslint-disable-next-line no-unused-vars
         function fetchData() {
-            const logStorage = JSON.parse(localStorage.getItem(this.logtype))
+            const logStorage = JSON.parse(localStorage.getItem(this.logtype));
             if (logStorage[this.date]) {
                 const data = logStorage[this.date];
                 // eslint-disable-next-line prefer-destructuring
@@ -172,13 +172,9 @@ class BulletEntries extends HTMLElement {
                 }
             }
         }
-
-
-        
     }
 
     // given date, set date info
-    
 }
 
 customElements.define('bullet-entries', BulletEntries);

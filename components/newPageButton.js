@@ -76,7 +76,7 @@ class newPageButton extends HTMLElement {
 
         const addBtn = this.shadowRoot.querySelector('#addNewPage'); // get open modal button
 
-        addBtn.onclick = function (){
+        addBtn.onclick = function () {
             console.log('test');
         };
     }
