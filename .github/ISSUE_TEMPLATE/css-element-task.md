@@ -1,5 +1,5 @@
 ---
-name: Element Creation Task
+name: CSS Element Task
 about: Describe the basic functionality of this element.
 title: 'Task: {Element to Create}'
 labels: feature
