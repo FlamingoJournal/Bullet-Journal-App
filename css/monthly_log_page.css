@@ -3,18 +3,38 @@
 
 /* Styling for main */
 .monthly-log-grid-container {
-    height: 100vh;
-    margin: 0;
+    margin: 10px;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     gap: 0px 0px;
-    grid-template-areas: 'monthly-page';
+    grid-template-areas: 'week-1' 'week-2' 'week-3' 'week-4' 'week-5';
 }
 
-.monthly-log-content-div {
-    grid-area: monthly-page;
-    background-color: var(--background-color);
+.monthly-log-grid-container > div {
+    padding: 0;
+    margin: 1px;
+    background-color: white;
+}
+
+.week-1 {
+    grid-area: week-1;
+}
+
+.week-2 {
+    grid-area: week-2;
+}
+
+.week-3 {
+    grid-area: week-3;
+}
+
+.week-4 {
+    grid-area: week-4;
+}
+
+.week-5 {
+    grid-area: week-5;
 }
 
 #home .monthly-log-grid-container {
@@ -22,5 +42,13 @@
 }
 
 #future-log .monthly-log-grid-container {
+    display: none;
+}
+
+#daily-log .monthly-log-grid-container {
+    display: none;
+}
+
+#weekly-log .monthly-log-grid-container {
     display: none;
 }

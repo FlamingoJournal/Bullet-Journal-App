@@ -110,7 +110,7 @@ class settingsModal extends HTMLElement {
 
             </style>
             <section>
-                <button id="openSettings" class="settingsButton" className='log'><img class="settingsImage" src="../Files/Icons/next_page_arrow.svg"></button>
+                <button id="openSettings" class="settingsButton" className='log'><img class="settingsImage" src="../Files/Icons/settings/settings.svg"></button>
                 <div class="settingsModal">
                     <div class="settingsModal-content">
                         <span class="settingsModalClose">&times;</span>

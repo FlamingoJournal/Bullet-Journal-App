@@ -3,20 +3,45 @@
 
 /* Styling for main */
 .weekly-log-grid-container {
-    height: 100vh;
-    margin: 0;
+    margin: 10px;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     gap: 0px 0px;
-    grid-template-areas: 'weekly-page';
+    grid-template-areas: 'weekly-page-left weekly-page-right';
 }
 
-.weekly-log-content-div {
-    grid-area: weekly-page;
-    background-color: var(--background-color);
+.weekly-log-grid-container > div > div {
+    margin: 1px;
+    background-color: white;
 }
 
+/* LEFT */
+.weekly-log-left-grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        'monday'
+        'tuesday'
+        'wednesday';
+}
+
+/* RIGHT */
+.weekly-log-right-grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        'thursday'
+        'friday'
+        'saturday'
+        'sunday';
+}
+
+/* ROUTING */
 #home .weekly-log-grid-container {
     display: none;
 }
