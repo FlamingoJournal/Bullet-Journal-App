@@ -11,7 +11,7 @@ assignees: ''
 -   What page(s) does this issue concern?
 -   What does it do?
 -   What CSS components does it use? (ex: buttons, datepicker, text label, ..)
-  
+
 ## Notes (optional):
 
 -

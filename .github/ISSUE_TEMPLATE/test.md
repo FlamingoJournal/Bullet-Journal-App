@@ -18,7 +18,7 @@ assignees: ''
 ## Components:
 
 -   What components does the user click?
--   How does each component interact with the page/router? 
+-   How does each component interact with the page/router?
 
 ## Notes (optional):
 

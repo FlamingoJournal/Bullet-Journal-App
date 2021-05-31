@@ -15,7 +15,7 @@ assignees: ''
 
 ## Type of Error:
 
--   Syntax error 
+-   Syntax error
 -   Logic error
 -   Unknown error
 -   Styling (CSS) error
@@ -27,4 +27,4 @@ assignees: ''
 
 ## Potential Solutions (optional)
 
-- Do you have any ideas on how to resolve this error?
+-   Do you have any ideas on how to resolve this error?
