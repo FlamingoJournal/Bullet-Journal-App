@@ -4,26 +4,32 @@
 /* eslint-disable eqeqeq */
 // <journal-entry> custom web component
 class BulletEntries extends HTMLElement {
-    //  return array containing names of attributes to observe. Used by attributeChangedCallback()
-    // static get observedAttributes() {
-    //     return ['logType', 'date'];
-    //   }
+    
+    set date(date) {
+        if (date) {
+            this.setAttribute('date', date);
+        }
+        else {
+            this.removeAttribute('date');
+        }
+    }
 
-    // attributeChangedCallback(name, oldValue, newValue) {
-    //     if (name === 'logtype') {
-    //         this.logtype = newValue;
-    //     }
-    //     if (name === 'date') {
-    //         this.date = newValue;
-    //     }
-    // }
-    // set date(date) {
-    //     this.date = date;
-    // }
+    get date() {
+        return this.getAttribute('date');
+    }
 
-    // set logtype(logType) {
-    //     this.logtype = logType;
-    // }
+    set logtype(logType) {
+        if (logType) {
+            this.setAttribute('logtype', logType);
+        }
+        else {
+            this.removeAttribute('logtype');
+        }
+    }
+
+    get logtype() {
+        return this.getAttribute('logtype');
+    }
     //  runs when element is added to the DOM.
     // connectedCallback() {
     //     fetchData();
@@ -62,7 +68,7 @@ class BulletEntries extends HTMLElement {
 
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(template.content.cloneNode(true));
-
+        const self = this;
         // increases textarea height automatically
 
         function autoScroll() {
@@ -118,7 +124,7 @@ class BulletEntries extends HTMLElement {
             newEntry.addEventListener('keydown', checkDelete);
             newEntry.addEventListener('keydown', checkTab);
             newEntry.addEventListener('blur', checkBlur);
-            shadow.appendChild(newEntry);
+            self.shadowRoot.appendChild(newEntry);
         }
 
         // add a new textarea if the user clicks off of the latest textarea and there's stuff in it
@@ -128,40 +134,34 @@ class BulletEntries extends HTMLElement {
             }
         }
 
-        const shadow = this.shadowRoot;
         const main = this.shadowRoot.querySelector('section');
         const firstEntry = this.shadowRoot.querySelector('.entry');
-        this.date = '';
-        this.logtype = '';
         firstEntry.addEventListener('input', autoScroll);
         firstEntry.addEventListener('keydown', checkEnterKey);
         firstEntry.addEventListener('keydown', checkTab);
         firstEntry.addEventListener('blur', checkBlur);
 
         // Go through the textareas and save their values into localStorage
-        document.addEventListener('click', () => {
-            const entries = document.getElementsByClassName('entry');
-            // console.log(entries);
+        self.shadowRoot.addEventListener('click', () => {
+            const entries = self.shadowRoot.querySelectorAll('textarea');
             const data = [];
-            for (e of entries) {
-                data.push(e.value);
+            for (let i = 0; i < entries.length; i++) {
+                data.push(entries[i].value);
             }
 
             //  get info from storage, add new data array to current date key, save it back in
-            const logStorage = JSON.parse(localStorage.getItem(this.logtype));
-            console.log(this.logtype);
-            console.log(this.date);
-            logStorage[this.date] = data;
-            localStorage.setItem(this.logtype, JSON.stringify(logStorage));
+            const logStorage = JSON.parse(localStorage.getItem(self.logtype));
+            logStorage[self.date] = data;
+            localStorage.setItem(self.logtype, JSON.stringify(logStorage));
         });
 
         // When page loads, retrieve localStorage info and create textareas accordingly
 
         // eslint-disable-next-line no-unused-vars
         function fetchData() {
-            const logStorage = JSON.parse(localStorage.getItem(this.logtype));
-            if (logStorage[this.date]) {
-                const data = logStorage[this.date];
+            const logStorage = JSON.parse(localStorage.getItem(self.logtype));
+            if (logStorage[self.date]) {
+                const data = logStorage[self.date];
                 // eslint-disable-next-line prefer-destructuring
                 firstEntry.value = data[0];
                 firstEntry.style.height = `${firstEntry.scrollHeight}px`;

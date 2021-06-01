@@ -25,13 +25,13 @@ router.setState = function switchState(state) {
             // textarea needs to pull data and save data to that date in the storage
             // pushState();
             body.id = 'log';
-            const bulletEntries = document.querySelectorAll('bullet-entries');
-            const newLeftPage = document.createElement('bullet-entries');
-            newLeftPage.logtype = 'daily'; // !!! these things don't want to update inside the component for some reason
-            newLeftPage.date = state.date;
-            bulletEntries[0].parentNode.replaceChild(
-                newLeftPage,
-                bulletEntries[0]
+            const bulletEntries = document.querySelector('bullet-entries');
+            const newPage = document.createElement('bullet-entries');
+            newPage.logtype = 'daily'; // !!! these things don't want to update inside the component for some reason
+            newPage.date = state.date;
+            bulletEntries.parentNode.replaceChild(
+                newPage,
+                bulletEntries
             );
 
             break;
