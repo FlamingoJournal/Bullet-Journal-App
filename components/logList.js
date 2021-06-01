@@ -80,7 +80,6 @@ class LogList extends HTMLElement {
             <button class="most-recent" id="most-recent" type="button">MOST RECENT</button>
             <button class="most-recent" id="create-new" type="button">CREATE NEW</button>
             <ul class="logs-list">
-                <li>MAY 12, 2021</li>
             </ul>
             
         </div>
@@ -101,16 +100,35 @@ class LogList extends HTMLElement {
         const logTitle = this.shadowRoot.querySelector('.log-title');
         const mostRecentButton = this.shadowRoot.querySelector('.most-recent');
         const createNewButton = this.shadowRoot.querySelector('#create-new');
-        // const logsList = this.shadowRoot.querySelector('.logs-list')
+        const logsList = this.shadowRoot.querySelector('.logs-list');
         switch (logType) {
             case 'daily': {
                 logTitle.textContent = 'DAILY LOG';
+
+                // refresh list
+                // get rid of all old stuff
+                while (logsList.firstElementChild) {
+                    logsList.removeChild(logsList.firstElementChild);
+                }
+                // entries exist
+                if (localStorage.getItem('daily')) {
+                    const dailies = JSON.parse(localStorage.getItem('daily'));
+                    const keys = Object.keys(dailies);
+                    for (let i = 0; i < keys.length; i += 1) {
+                        const listEntry = document.createElement('li');
+                        listEntry.textContent = keys[i];
+                        const state = { page: 'daily', date: keys[i] };
+                        listEntry.addEventListener('click', () => {
+                            setState(state);
+                        });
+                        logsList.appendChild(listEntry);
+                    }
+                }
                 mostRecentButton.addEventListener('click', () => {
                     // setState?
                     // populate entries
                 });
                 createNewButton.addEventListener('click', () => {
-                    console.log('creating');
                     // check if today's log already exists
                     // dailies = {"5/02/2021": ["baked a cake", "ate breakfast"], '05032021': ["pooped"]}
                     if (localStorage.getItem('daily')) {
@@ -119,7 +137,7 @@ class LogList extends HTMLElement {
                         );
                         const today = new Date().toLocaleDateString();
                         if (dailies[today]) {
-                            console.log('log already exists for today');
+                            // console.log('log already exists for today');
                         } else {
                             // today's log doesn't exist yet
                             dailies[today] = [];

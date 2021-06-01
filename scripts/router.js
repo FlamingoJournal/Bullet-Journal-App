@@ -29,10 +29,12 @@ router.setState = function switchState(state) {
             const newPage = document.createElement('bullet-entries');
             newPage.logtype = 'daily'; // !!! these things don't want to update inside the component for some reason
             newPage.date = state.date;
-            bulletEntries.parentNode.replaceChild(
-                newPage,
-                bulletEntries
-            );
+            if (bulletEntries) {
+                bulletEntries.parentNode.replaceChild(newPage, bulletEntries);
+            } else {
+                const singlePage = document.querySelector('.single-page');
+                singlePage.appendChild(newPage);
+            }
 
             break;
         }

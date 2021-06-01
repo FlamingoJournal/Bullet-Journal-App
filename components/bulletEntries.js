@@ -4,12 +4,10 @@
 /* eslint-disable eqeqeq */
 // <journal-entry> custom web component
 class BulletEntries extends HTMLElement {
-    
     set date(date) {
         if (date) {
             this.setAttribute('date', date);
-        }
-        else {
+        } else {
             this.removeAttribute('date');
         }
     }
@@ -21,8 +19,7 @@ class BulletEntries extends HTMLElement {
     set logtype(logType) {
         if (logType) {
             this.setAttribute('logtype', logType);
-        }
-        else {
+        } else {
             this.removeAttribute('logtype');
         }
     }
@@ -30,9 +27,11 @@ class BulletEntries extends HTMLElement {
     get logtype() {
         return this.getAttribute('logtype');
     }
+
     //  runs when element is added to the DOM.
     // connectedCallback() {
-    //     fetchData();
+    //     this.fetchData();
+
     // }
 
     constructor() {
@@ -63,7 +62,9 @@ class BulletEntries extends HTMLElement {
         <div class="date">
             <h1>YAHA</h1>
         </div>
-        <textarea class="entry" cols="50" rows="1"></textarea>
+        <div class="text">
+            <textarea class="entry" cols="50" rows="1"></textarea>
+        </div>
         `;
 
         this.attachShadow({ mode: 'open' });
@@ -124,7 +125,7 @@ class BulletEntries extends HTMLElement {
             newEntry.addEventListener('keydown', checkDelete);
             newEntry.addEventListener('keydown', checkTab);
             newEntry.addEventListener('blur', checkBlur);
-            self.shadowRoot.appendChild(newEntry);
+            text.appendChild(newEntry);
         }
 
         // add a new textarea if the user clicks off of the latest textarea and there's stuff in it
@@ -134,7 +135,7 @@ class BulletEntries extends HTMLElement {
             }
         }
 
-        const main = this.shadowRoot.querySelector('section');
+        const text = this.shadowRoot.querySelector('.text');
         const firstEntry = this.shadowRoot.querySelector('.entry');
         firstEntry.addEventListener('input', autoScroll);
         firstEntry.addEventListener('keydown', checkEnterKey);
@@ -145,7 +146,7 @@ class BulletEntries extends HTMLElement {
         self.shadowRoot.addEventListener('click', () => {
             const entries = self.shadowRoot.querySelectorAll('textarea');
             const data = [];
-            for (let i = 0; i < entries.length; i++) {
+            for (let i = 0; i < entries.length; i += 1) {
                 data.push(entries[i].value);
             }
 
@@ -167,11 +168,13 @@ class BulletEntries extends HTMLElement {
                 firstEntry.style.height = `${firstEntry.scrollHeight}px`;
                 for (let i = 1; i < data.length; i += 1) {
                     addNewEntry();
-                    main.lastElementChild.value = data[i];
-                    main.lastElementChild.style.height = `${main.lastElementChild.scrollHeight}px`;
+                    text.lastElementChild.value = data[i];
+                    text.lastElementChild.style.height = `${text.lastElementChild.scrollHeight}px`;
                 }
             }
         }
+
+        setTimeout(fetchData, 1);
     }
 
     // given date, set date info

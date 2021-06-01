@@ -80,4 +80,4 @@ window.onload = function () {
     logLists[1].type = 'weekly';
     logLists[2].type = 'monthly';
     logLists[3].type = 'future';
-}
+};
