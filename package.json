@@ -4,10 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "jest ./tests/*",
-        "test:watch": "jest --watch ./tests/*",
-        "test:coverage": "jest --coverage ./tests/*",
-        "test:staged": "jest --findRelatedTests ./tests/*"
+        "test": "jest"
     },
     "repository": {
         "type": "git",
@@ -42,7 +39,13 @@
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-import": "^2.23.3",
         "jest": "^27.0.1",
+        "jest-puppeteer": "^5.0.4",
         "jsdoc": "^3.6.7",
-        "prettier": "2.3.0"
+        "prettier": "2.3.0",
+        "puppeteer": "^10.0.0"
+    },
+    "jest": {
+        "preset": "jest-puppeteer",
+        "verbose": true
     }
 }
