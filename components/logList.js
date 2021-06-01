@@ -12,10 +12,8 @@ class LogList extends HTMLElement {
         template.innerHTML = `
         <style>
             .log-list-comp {
-                width: 20vw;
+                width: 24vw;
                 height: 33vh;
-                min-width: 170px;
-                min-height: 275px;
                 background-color: #9DBEB9;
                 border-radius: 25px;
                 border-width: 3px;

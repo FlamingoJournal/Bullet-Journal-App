@@ -14,6 +14,7 @@ class settingsModal extends HTMLElement {
                     border: none;
                     width: 30px;
                     height: 30px;
+                    cursor: pointer;
                 }
 
                 .settingsModal {
