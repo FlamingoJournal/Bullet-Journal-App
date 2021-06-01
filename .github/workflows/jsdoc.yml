@@ -23,13 +23,17 @@ jobs:
             - name: Switch Branch
               run: git switch -c docGen
 
-            # - name: Pull Changes
-            #   run: git pull doc-branch docGen
-
-            - name: Build
+            - name: Build Scripts
               uses: andstor/jsdoc-action@v1
               with:
                   source_dir: ./scripts
+                  recurse: true
+                  output_dir: ./docs
+
+            - name: Build Components
+              uses: andstor/jsdoc-action@v1
+              with:
+                  source_dir: ./components
                   recurse: true
                   output_dir: ./docs
 
