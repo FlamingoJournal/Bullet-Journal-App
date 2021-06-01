@@ -50,7 +50,7 @@
                     </div>
 
                     <!-- Log Key -->
-                    <key-button></key-button>
+                    <key-button class="log-key"></key-button>
                 </div>
 
                 <!-- DAILY LOG DIV -->
@@ -94,7 +94,11 @@
             </div>
 
             <div class="home-page home-page-grid-container">
-                <date-picker></date-picker>
+                <div class="home-page-search">
+                    <input class="datepicker" type="date" />
+                    <button class="search-btn">SEARCH</button>
+                    <button class="clear-btn">CLEAR</button>
+                </div>
                 <div class="log-list-components">
                     <log-list></log-list>
                     <log-list></log-list>
@@ -111,9 +115,8 @@
         <script src="./components/settingsModal.js" type="module"></script>
         <script src="./components/logList.js" type="module"></script>
         <script src="./components/createNewLogButton.js" type="module"></script>
-        <script src="./components/datepicker.js" type="module"></script>
+        <!-- <script src="./components/datepicker.js" type="module"></script> -->
         <script src="./components/key-button.js" type="module"></script>
         <script src="./components/bulletEntries.js" type="module"></script>
     </body>
 </html>
-/

@@ -10,11 +10,11 @@ class keyButton extends HTMLElement {
                 text-align: left;
             }
             
-            /* Sets color for ket buttons*/
+            /* Sets color for key buttons*/
             .buttonGroup {
-                grid-area: log-key;
                 border: none;
                 font-size: 20px;
+                font-family: 'Lato', sans-serif;
                 background: transparent;
             }
             
