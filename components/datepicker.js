@@ -50,7 +50,7 @@ class datePicker extends HTMLElement {
             }
             
             input[type='date']:after {
-                content: "/25BC";
+                /* content: "\\25BC"; */
                 color: rgb(255, 255, 255);
                 padding: 0 5px;
                 display: none;
