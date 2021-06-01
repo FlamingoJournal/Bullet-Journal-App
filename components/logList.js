@@ -1,5 +1,7 @@
 // eslint-disable-next-line import/newline-after-import
 import { router } from '../scripts/router.js';
+import { addEntryToStorage } from '../scripts/indexdb.js';
+
 const { setState } = router;
 
 // <journal-entry> custom web component
@@ -125,8 +127,7 @@ class LogList extends HTMLElement {
                     }
                 }
                 mostRecentButton.addEventListener('click', () => {
-                    // setState?
-                    // populate entries
+                    addEntryToStorage('different messages');
                 });
                 createNewButton.addEventListener('click', () => {
                     // check if today's log already exists
