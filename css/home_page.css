@@ -34,10 +34,18 @@
     padding-top: 20px;
 }
 
-#log .home-page {
+#future-log .home-page {
     display: none;
 }
 
-#future-log .home-page {
+#daily-log .home-page {
+    display: none;
+}
+
+#weekly-log .home-page {
+    display: none;
+}
+
+#monthly-log .home-page {
     display: none;
 }

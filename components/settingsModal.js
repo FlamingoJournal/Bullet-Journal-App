@@ -110,7 +110,7 @@ class settingsModal extends HTMLElement {
 
             </style>
             <section>
-                <button id="openSettings" class="settingsButton" className='log'><img class="settingsImage" src="../Files/Icons/next_page_arrow.svg"></button>
+                <button id="openSettings" class="settingsButton" className='log'><img class="settingsImage" src="../Files/Icons/settings/settings.svg"></button>
                 <div class="settingsModal">
                     <div class="settingsModal-content">
                         <span class="settingsModalClose">&times;</span>
@@ -131,6 +131,14 @@ class settingsModal extends HTMLElement {
         const modal = this.shadowRoot.querySelector('.settingsModal'); // get modal window
         const closeBtn = this.shadowRoot.querySelector('.settingsModalClose'); // get close modal button
 
+        const header = document.querySelector('.navbar'); // get the header
+        const sidebar = document.querySelector('.sidebar'); // get the sidebar
+        const datepicker = document.querySelector('.datepicker > input'); // get date picker in sidebar
+
+        const leftButton = this.shadowRoot.querySelector('.leftTheme'); // get left button in settings modal
+        const midButton = this.shadowRoot.querySelector('.midTheme'); // get middle button in settings modal
+        const rightButton = this.shadowRoot.querySelector('.rightTheme'); // get right button in settings modal
+
         openModalBtn.onclick = function () {
             modal.style.display = 'block';
         };
@@ -138,6 +146,24 @@ class settingsModal extends HTMLElement {
         closeBtn.onclick = function () {
             modal.style.display = 'none';
         };
+
+        leftButton.addEventListener('click', () => {
+            header.style.backgroundColor = '#393E46';
+            sidebar.style.backgroundColor = '#7C7C7C';
+            datepicker.style.backgroundColor = '#393E46';
+        });
+
+        midButton.addEventListener('click', () => {
+            header.style.backgroundColor = '#194350';
+            sidebar.style.backgroundColor = '#9DBEB9';
+            datepicker.style.backgroundColor = '#194350';
+        });
+
+        rightButton.addEventListener('click', () => {
+            header.style.backgroundColor = '#FF8882';
+            sidebar.style.backgroundColor = '#FFC2B4';
+            datepicker.style.backgroundColor = '#FF8882';
+        });
     }
 }
 

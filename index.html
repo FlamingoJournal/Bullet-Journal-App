@@ -55,35 +55,46 @@
 
                 <!-- DAILY LOG DIV -->
                 <div class="daily-log-grid-container">
-                    <bullet-entries></bullet-entries>
-                    <h1>DAILY</h1>
-                    
+                    <div class="daily single-page"><bullet-entries></bullet-entries></div>
                 </div>
 
                 <!-- WEEKLY LOG DIV -->
                 <div class="weekly-log-grid-container">
-                    <h1>WEEKLY</h1>
+                    <div class="weekly-log-left-grid-container">
+                        <div class="monday">Monday</div>
+                        <div class="tuesday">Tuesday</div>
+                        <div class="wednesday">Wednesday</div>
+                    </div>
+                    <div class="weekly-log-right-grid-container">
+                        <div class="thursday">Thursday</div>
+                        <div class="friday">Friday</div>
+                        <div class="saturday">Saturday</div>
+                        <div class="sunday">Sunday</div>
+                    </div>
                 </div>
 
                 <!-- MONTHLY LOG DIV -->
                 <div class="monthly-log-grid-container">
-                    <h1>MONTHLY</h1>
+                    <div class="week-1">Week 1</div>
+                    <div class="week-2">Week 2</div>
+                    <div class="week-3">Week 3</div>
+                    <div class="week-4">Week 4</div>
+                    <div class="week-5">Week 5</div>
                 </div>
 
                 <!-- FUTURE LOG DIV -->
                 <div class="future-log-grid-container">
-                    <div class="month month1">ADD STUFF HERE</div>
-                    <div class="month month2">ADD STUFF HERE</div>
-                    <div class="month month3">ADD STUFF HERE</div>
-                    <div class="month month4">ADD STUFF HERE</div>
-                    <div class="month month5">ADD STUFF HERE</div>
-                    <div class="month month6">ADD STUFF HERE</div>
+                    <div class="month1">JAN</div>
+                    <div class="month2">FEB</div>
+                    <div class="month3">MAR</div>
+                    <div class="month4">APR</div>
+                    <div class="month5">MAY</div>
+                    <div class="month6">JUN</div>
                 </div>
             </div>
 
             <div class="home-page home-page-grid-container">
                 <date-picker></date-picker>
-                <create-page-button></create-page-button>
                 <div class="log-list-components">
                     <log-list></log-list>
                     <log-list></log-list>
