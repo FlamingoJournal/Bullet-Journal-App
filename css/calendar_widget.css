@@ -1,13 +1,13 @@
 /* Datepicker Stylesheet */
 
-.datepicker {
+.sidebar > .datepicker {
     grid-area: calendar;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.datepicker input {
+.sidebar > .datepicker input {
     height: 25px;
     width: 150px;
 
@@ -20,14 +20,14 @@
     color: white;
 }
 
-input[type='date']:after {
+.sidebar > input[type='date']:after {
     content: '\25BC';
     color: rgb(255, 255, 255);
     padding: 0 5px;
     display: none;
 }
 
-input[type='date']:hover:after {
+.sidebar > input[type='date']:hover:after {
     color: var(--team-primary);
 }
 
