@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="css/master.css" />
     </head>
 
-    <body id="daily-log" class="body-grid-container">
+    <body id="home" class="body-grid-container">
         <div class="navbar navbar-grid-container">
             <img
                 id="flamingo-logo"
@@ -35,7 +35,6 @@
             <!-- MAIN LOG CONTENT START -->
             <!--https://stackoverflow.com/questions/3362/capturing-tab-key-in-text-box/13130#13130-->
             <div class="log-page log-page-grid-container">
-                <!-- SIDEBAR DIV -->
                 <div class="sidebar sidebar-grid-container">
                     <div class="datepicker">
                         <input type="date" />
@@ -51,7 +50,7 @@
                     </div>
 
                     <!-- Log Key -->
-                    <key-button class="log-key"></key-button>
+                    <key-button></key-button>
                 </div>
 
                 <!-- DAILY LOG DIV -->
@@ -107,12 +106,14 @@
         <!-- Main Script -->
         <script src="./scripts/script.js" type="module"></script>
         <script src="./scripts/router.js" type="module"></script>
-
+        <!-- <script src="./scripts/textbox.js" type="module"></script> -->
         <!-- Components -->
         <script src="./components/settingsModal.js" type="module"></script>
         <script src="./components/logList.js" type="module"></script>
         <script src="./components/createNewLogButton.js" type="module"></script>
         <script src="./components/datepicker.js" type="module"></script>
         <script src="./components/key-button.js" type="module"></script>
+        <script src="./components/bulletEntries.js" type="module"></script>
     </body>
 </html>
+/

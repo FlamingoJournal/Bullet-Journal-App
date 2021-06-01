@@ -1,3 +1,7 @@
+// eslint-disable-next-line import/newline-after-import
+import { router } from '../scripts/router.js';
+const { setState } = router;
+
 // <journal-entry> custom web component
 class LogList extends HTMLElement {
     constructor() {
@@ -73,10 +77,11 @@ class LogList extends HTMLElement {
 
         <div class="log-list-comp">
             <h1 class="log-title">DAILY LOG</h2>
-            <button class="most-recent" type="button">MOST RECENT</button>
+            <button class="most-recent" id="most-recent" type="button">MOST RECENT</button>
+            <button class="most-recent" id="create-new" type="button">CREATE NEW</button>
             <ul class="logs-list">
-                <li>MAY 12, 2021</li>
             </ul>
+            
         </div>
         `;
 
@@ -94,15 +99,66 @@ class LogList extends HTMLElement {
     set type(logType) {
         const logTitle = this.shadowRoot.querySelector('.log-title');
         const mostRecentButton = this.shadowRoot.querySelector('.most-recent');
-        // const logsList = this.shadowRoot.querySelector('.logs-list')
+        const createNewButton = this.shadowRoot.querySelector('#create-new');
+        const logsList = this.shadowRoot.querySelector('.logs-list');
         switch (logType) {
             case 'daily': {
                 logTitle.textContent = 'DAILY LOG';
+
+                // refresh list
+                // get rid of all old stuff
+                while (logsList.firstElementChild) {
+                    logsList.removeChild(logsList.firstElementChild);
+                }
+                // entries exist
+                if (localStorage.getItem('daily')) {
+                    const dailies = JSON.parse(localStorage.getItem('daily'));
+                    const keys = Object.keys(dailies);
+                    for (let i = 0; i < keys.length; i += 1) {
+                        const listEntry = document.createElement('li');
+                        listEntry.textContent = keys[i];
+                        const state = { page: 'daily', date: keys[i] };
+                        listEntry.addEventListener('click', () => {
+                            setState(state);
+                        });
+                        logsList.appendChild(listEntry);
+                    }
+                }
                 mostRecentButton.addEventListener('click', () => {
                     // setState?
                     // populate entries
                 });
-
+                createNewButton.addEventListener('click', () => {
+                    // check if today's log already exists
+                    // dailies = {"5/02/2021": ["baked a cake", "ate breakfast"], '05032021': ["pooped"]}
+                    if (localStorage.getItem('daily')) {
+                        const dailies = JSON.parse(
+                            localStorage.getItem('daily')
+                        );
+                        const today = new Date().toLocaleDateString();
+                        if (dailies[today]) {
+                            // console.log('log already exists for today');
+                        } else {
+                            // today's log doesn't exist yet
+                            dailies[today] = [];
+                            localStorage.setItem(
+                                'daily',
+                                JSON.stringify(dailies)
+                            );
+                            const state = { page: 'daily', date: today };
+                            setState(state);
+                        }
+                    }
+                    //  no daily log yet. First time user?
+                    else {
+                        const dailies = {}; // create new object to hold entries
+                        const today = new Date().toLocaleDateString();
+                        dailies[today] = [];
+                        localStorage.setItem('daily', JSON.stringify(dailies));
+                        const state = { page: 'daily', date: today };
+                        setState(state);
+                    }
+                });
                 break;
             }
             case 'weekly': {

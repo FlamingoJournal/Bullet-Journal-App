@@ -15,7 +15,7 @@ class newPageButton extends HTMLElement {
               border-radius: 12px;
               color: black;
               border-color: white;
-              position: relative;
+              position: absolute;
               margin-left: 48%;
               margin-top: 13%;
               font-family: Verdana, sans-serif;
@@ -67,7 +67,7 @@ class newPageButton extends HTMLElement {
 
           </style>
           <section>
-            <button id="addNewPage" class='button'><img src=../Files/icons/next_page_arrow.svg></button>
+            <button id="addNewPage" class='button'><img src=../Files/icons/add_page_button.svg></button>
           </section>
           `;
 
@@ -76,7 +76,7 @@ class newPageButton extends HTMLElement {
 
         const addBtn = this.shadowRoot.querySelector('#addNewPage'); // get open modal button
 
-        addBtn.onclick = function addNewTemplate() {
+        addBtn.onclick = function () {
             console.log('test');
         };
     }
