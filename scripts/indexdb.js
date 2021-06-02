@@ -1,36 +1,81 @@
-/* eslint-disable no-unused-vars */
 // eslint-disable-next-line import/no-mutable-exports
 export let db;
 const dbReq = indexedDB.open('myDatabase', 1);
-dbReq.onupgradeneeded = function(event) {
-  // Set the db variable to our database so we can use it!  
-  db = event.target.result;
 
-  // Create an object store named notes. Object stores
-  // in databases are where data are stored.
-  const daily = db.createObjectStore('daily', {autoIncrement: false});
-  const weekly = db.createObjectStore('weekly', {autoIncrement: false});
-  const monthly = db.createObjectStore('mohthly', {autoIncrement: false});
-  const future = db.createObjectStore('future', {autoIncrement: false});
-  const mostRecent = db.createObjectStore('mostRecent', {autoIncrement: false});
-}
-dbReq.onsuccess = function(event) {
-  db = event.target.result;
-}
-dbReq.onerror = function(event) {
-  alert(`error opening database ${  event.target.errorCode}`);
+/**
+ *
+ * @param {*} event If there is not database, create the database
+ *                  with version 1 and stores
+ */
+dbReq.onupgradeneeded = function (event) {
+    // Set the db variable to our database so we can use it!
+    db = event.target.result;
+
+    // Create an object store named notes. Object stores
+    // in databases are where data are stored.
+    db.createObjectStore('daily', { autoIncrement: false });
+    db.createObjectStore('weekly', { autoIncrement: false });
+    db.createObjectStore('monthly', { autoIncrement: false });
+    db.createObjectStore('future', { autoIncrement: false });
+    db.createObjectStore('mostRecent', { autoIncrement: false });
+    db.createObjectStore('color', { autoIncrement: false });
+};
+dbReq.onsuccess = function (event) {
+    db = event.target.result;
+    const logLists = document.querySelectorAll('log-list');
+    logLists[0].type = 'daily';
+    logLists[1].type = 'weekly';
+    logLists[2].type = 'monthly';
+    logLists[3].type = 'future';
+};
+dbReq.onerror = function (event) {
+    alert(`error opening database ${event.target.errorCode}`);
+};
+
+/**
+ *
+ * @param {*} logType The store name that is being added to
+ * @param {*} date Unique identifier for log
+ * @param {*} data Array that holds all of the text area content
+ */
+
+export function saveEntryToStorage(logType, date, data) {
+    // Start a database transaction and get the notes object store
+    const tx = db.transaction([String(logType)], 'readwrite');
+    const store = tx.objectStore(String(logType));
+
+    store.put(data, date);
+    // Wait for the database transaction to complete
+    tx.onerror = function (event) {
+        alert(`error storing note ${event.target.errorCode}`);
+    };
 }
 
-export function addEntryToStorage(message) {
-  // Start a database transaction and get the notes object store
-  const tx = db.transaction(['daily'], 'readwrite');
-  const store = tx.objectStore('daily');
-  // Put the sticky note into the object store
-  const note = {text: message, timestamp: Date.now()};
-  store.add(note, 'test');
-  // Wait for the database transaction to complete
-  tx.oncomplete = function() { console.log('stored note!') }
-  tx.onerror = function(event) {
-    alert(`error storing note ${  event.target.errorCode}`);
-  }
+/**
+ *
+ * @param {*} logType The store name that is being accessed
+ * @param {*} date Unique identifier for log
+ * @param {*} dataHandlerFunction Caller function that will take data and do something with it
+ */
+export function getEntryFromStorage(logType, date, dataHandlerFunction) {
+    const tx = db.transaction([String(logType)], 'readwrite');
+    const store = tx.objectStore(String(logType));
+    const req = store.get(date);
+    req.onsuccess = function () {
+        dataHandlerFunction(req.result);
+    };
+}
+
+/**
+ *
+ * @param {*} logType The store name that is being accessed
+ * @param {*} dataHandlerFunction Caller function that will take data and do something with it
+ */
+export function getAllKeys(logType, dataHandlerFunction) {
+    const tx = db.transaction([String(logType)], 'readwrite');
+    const store = tx.objectStore(String(logType));
+    const req = store.getAllKeys();
+    req.onsuccess = function () {
+        dataHandlerFunction(req.result);
+    };
 }

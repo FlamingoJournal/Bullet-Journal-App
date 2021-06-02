@@ -3,6 +3,8 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable eqeqeq */
 // <journal-entry> custom web component
+import { saveEntryToStorage, getEntryFromStorage } from '../scripts/indexdb.js';
+
 class BulletEntries extends HTMLElement {
     set date(date) {
         if (date) {
@@ -46,22 +48,7 @@ class BulletEntries extends HTMLElement {
                 resize: none;
                 font-size: 20px;
             }
-            .date {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width:50%;
-                background-color: #E6E6E6;
-                position: sticky;
-                top: 0;
-            }
-            .date h1 {
-                margin-top: 0;
-            }
         </style>
-        <div class="date">
-            <h1>YAHA</h1>
-        </div>
         <div class="text">
             <textarea class="entry" cols="50" rows="1"></textarea>
         </div>
@@ -143,35 +130,48 @@ class BulletEntries extends HTMLElement {
         firstEntry.addEventListener('blur', checkBlur);
 
         // Go through the textareas and save their values into localStorage
-        self.shadowRoot.addEventListener('click', () => {
+        text.addEventListener('click', () => {
             const entries = self.shadowRoot.querySelectorAll('textarea');
             const data = [];
             for (let i = 0; i < entries.length; i += 1) {
                 data.push(entries[i].value);
             }
-
+            console.log('saving?');
             //  get info from storage, add new data array to current date key, save it back in
-            const logStorage = JSON.parse(localStorage.getItem(self.logtype));
-            logStorage[self.date] = data;
-            localStorage.setItem(self.logtype, JSON.stringify(logStorage));
+            saveEntryToStorage(self.logtype, self.date, data);
         });
 
         // When page loads, retrieve localStorage info and create textareas accordingly
 
         // eslint-disable-next-line no-unused-vars
         function fetchData() {
-            const logStorage = JSON.parse(localStorage.getItem(self.logtype));
-            if (logStorage[self.date]) {
-                const data = logStorage[self.date];
-                // eslint-disable-next-line prefer-destructuring
-                firstEntry.value = data[0];
+            getEntryFromStorage(self.logtype, self.date, (entryData) => {
+                if (entryData[0] == 'undefined') {
+                    firstEntry.value = '';
+                } else {
+                    // eslint-disable-next-line prefer-destructuring
+                    firstEntry.value = entryData[0];
+                }
+
                 firstEntry.style.height = `${firstEntry.scrollHeight}px`;
-                for (let i = 1; i < data.length; i += 1) {
+                for (let i = 1; i < entryData.length; i += 1) {
                     addNewEntry();
-                    text.lastElementChild.value = data[i];
+                    text.lastElementChild.value = entryData[i];
                     text.lastElementChild.style.height = `${text.lastElementChild.scrollHeight}px`;
                 }
-            }
+            });
+            // const logStorage = JSON.parse(localStorage.getItem(self.logtype));
+            // if (logStorage[self.date]) {
+            //     const data = logStorage[self.date];
+            //     // eslint-disable-next-line prefer-destructuring
+            //     firstEntry.value = data[0];
+            //     firstEntry.style.height = `${firstEntry.scrollHeight}px`;
+            //     for (let i = 1; i < data.length; i += 1) {
+            //         addNewEntry();
+            //         text.lastElementChild.value = data[i];
+            //         text.lastElementChild.style.height = `${text.lastElementChild.scrollHeight}px`;
+            //     }
+            // }
         }
 
         setTimeout(fetchData, 1);

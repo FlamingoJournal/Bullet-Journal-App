@@ -1,6 +1,10 @@
 // eslint-disable-next-line import/newline-after-import
 import { router } from '../scripts/router.js';
-import { addEntryToStorage } from '../scripts/indexdb.js';
+import {
+    saveEntryToStorage,
+    getEntryFromStorage,
+    getAllKeys,
+} from '../scripts/indexdb.js';
 
 const { setState } = router;
 
@@ -101,84 +105,43 @@ class LogList extends HTMLElement {
         const mostRecentButton = this.shadowRoot.querySelector('.most-recent');
         const createNewButton = this.shadowRoot.querySelector('#create-new');
         const logsList = this.shadowRoot.querySelector('.logs-list');
-        switch (logType) {
-            case 'daily': {
-                logTitle.textContent = 'DAILY LOG';
 
-                // refresh list
-                // get rid of all old stuff
-                while (logsList.firstElementChild) {
-                    logsList.removeChild(logsList.firstElementChild);
-                }
-                // entries exist
-                if (localStorage.getItem('daily')) {
-                    const dailies = JSON.parse(localStorage.getItem('daily'));
-                    const keys = Object.keys(dailies);
-                    for (let i = 0; i < keys.length; i += 1) {
-                        const listEntry = document.createElement('li');
-                        listEntry.textContent = keys[i];
-                        const state = { page: 'daily', date: keys[i] };
-                        listEntry.addEventListener('click', () => {
-                            setState(state);
-                        });
-                        logsList.appendChild(listEntry);
-                    }
-                }
-                mostRecentButton.addEventListener('click', () => {
-                    addEntryToStorage('different messages');
-                });
-                createNewButton.addEventListener('click', () => {
-                    // check if today's log already exists
-                    // dailies = {"5/02/2021": ["baked a cake", "ate breakfast"], '05032021': ["pooped"]}
-                    if (localStorage.getItem('daily')) {
-                        const dailies = JSON.parse(
-                            localStorage.getItem('daily')
-                        );
-                        const today = new Date().toLocaleDateString();
-                        if (dailies[today]) {
-                            // console.log('log already exists for today');
-                        } else {
-                            // today's log doesn't exist yet
-                            dailies[today] = [];
-                            localStorage.setItem(
-                                'daily',
-                                JSON.stringify(dailies)
-                            );
-                            const state = { page: 'daily', date: today };
-                            setState(state);
-                        }
-                    }
-                    //  no daily log yet. First time user?
-                    else {
-                        const dailies = {}; // create new object to hold entries
-                        const today = new Date().toLocaleDateString();
-                        dailies[today] = [];
-                        localStorage.setItem('daily', JSON.stringify(dailies));
-                        const state = { page: 'daily', date: today };
-                        setState(state);
-                    }
-                });
-                break;
-            }
-            case 'weekly': {
-                logTitle.textContent = 'WEEKLY LOG';
-                mostRecentButton.addEventListener('click', () => {});
-                break;
-            }
-            case 'monthly': {
-                logTitle.textContent = 'MONTHLY LOG';
-                mostRecentButton.addEventListener('click', () => {});
-                break;
-            }
-            case 'future': {
-                logTitle.textContent = 'FUTURE LOG';
-                mostRecentButton.addEventListener('click', () => {});
-                break;
-            }
-            default: {
-                break;
-            }
+        logTitle.textContent = `${logType.toUpperCase()} LOG`;
+
+        // get rid of old entries if there are any
+        while (logsList.firstElementChild) {
+            logsList.removeChild(logsList.firstElementChild);
         }
+
+        // fill entry list
+        getAllKeys(logType, (keysArray) => {
+            for (let i = 0; i < keysArray.length; i += 1) {
+                const listEntry = document.createElement('li');
+                listEntry.textContent = keysArray[i];
+                const state = { page: logType, date: keysArray[i] };
+                listEntry.addEventListener('click', () => {
+                    setState(state);
+                });
+                logsList.appendChild(listEntry);
+            }
+        });
+        createNewButton.addEventListener('click', () => {
+            const today = new Date().toLocaleDateString();
+            getEntryFromStorage(logType, today, (entryData) => {
+                if (!entryData) {
+                    const blankEntry = [''];
+                    saveEntryToStorage(logType, today, blankEntry);
+                    const state = { page: logType, date: today };
+                    setState(state);
+                } else {
+                    // do something
+                    // right now, just go to that page when there already is one
+                    const state = { page: logType, date: today };
+                    setState(state);
+                }
+            });
+        });
+        mostRecentButton.addEventListener('click', () => {});
     }
 }
 
