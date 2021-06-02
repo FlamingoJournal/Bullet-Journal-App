@@ -70,14 +70,5 @@ const homeButton = document.getElementById('flamingo-logo');
  * @todo Implement this function
  */
 homeButton.onclick = function () {
-    console.log('test');
     setState({ page: 'home' });
-};
-
-window.onload = function () {
-    const logLists = document.querySelectorAll('log-list');
-    logLists[0].type = 'daily';
-    logLists[1].type = 'weekly';
-    logLists[2].type = 'monthly';
-    logLists[3].type = 'future';
 };

@@ -2,9 +2,10 @@
 // export default router;
 
 export const router = {};
+
 /**
- * Updates page display and information based on the state passed into the function.
- * @todo Implement this function
+ *
+ * @param {*} state An object that has data about the caller and will switch pages based on that information
  */
 router.setState = function switchState(state) {
     const body = document.querySelector('body');
@@ -24,7 +25,7 @@ router.setState = function switchState(state) {
             // create new textareas with date passed in
             // textarea needs to pull data and save data to that date in the storage
             // pushState();
-            body.id = 'log';
+            body.id = 'daily-log';
             const bulletEntries = document.querySelector('bullet-entries');
             const newPage = document.createElement('bullet-entries');
             newPage.logtype = 'daily'; // !!! these things don't want to update inside the component for some reason
