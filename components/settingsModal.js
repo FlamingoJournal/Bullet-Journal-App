@@ -1,3 +1,6 @@
+// import { color_theme } from './logList.js';
+import { saveEntryToStorage, getEntryFromStorage } from '../scripts/indexdb.js';
+
 class settingsModal extends HTMLElement {
     constructor() {
         super();
@@ -14,7 +17,6 @@ class settingsModal extends HTMLElement {
                     border: none;
                     width: 30px;
                     height: 30px;
-                    cursor: pointer;
                 }
 
                 .settingsModal {
@@ -128,17 +130,99 @@ class settingsModal extends HTMLElement {
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(template.content.cloneNode(true));
 
+        // saveEntryToStorage('color', '0', 'normal');
+        let color = "normal";
+        if(localStorage.getItem('color') == null){
+            localStorage.setItem('color', JSON.stringify(color));
+        }
+        else{
+            color = JSON.parse(localStorage.getItem('color'));
+        }
+
         const openModalBtn = this.shadowRoot.querySelector('.settingsButton'); // get open modal button
         const modal = this.shadowRoot.querySelector('.settingsModal'); // get modal window
         const closeBtn = this.shadowRoot.querySelector('.settingsModalClose'); // get close modal button
+        // const logList = JSON.parse(localStorage.getItem('logList'));
+        // console.log(localStorage);
+        // console.log(logList);
 
         const header = document.querySelector('.navbar'); // get the header
         const sidebar = document.querySelector('.sidebar'); // get the sidebar
         const datepicker = document.querySelector('.datepicker > input'); // get date picker in sidebar
+        const settingsModal = this.shadowRoot.querySelector('.settingsModal-content');
 
         const leftButton = this.shadowRoot.querySelector('.leftTheme'); // get left button in settings modal
         const midButton = this.shadowRoot.querySelector('.midTheme'); // get middle button in settings modal
         const rightButton = this.shadowRoot.querySelector('.rightTheme'); // get right button in settings modal
+
+        // getEntryFromStorage('color', '0', (color) => {
+        //     console.log(color);
+        //     // if(color == null){
+        //     //     addEntryToStorage('color', '0', 'normal');
+        //     // }
+        //     // else{
+        //     //     switch(color){
+        //     //         case "dark": {
+        //     //             header.style.backgroundColor = '#393E46';
+        //     //             sidebar.style.backgroundColor = '#7C7C7C';
+        //     //             datepicker.style.backgroundColor = '#393E46';
+        //     //             // logList.style.backgroundColor = '#7C7C7C';
+        //     //             // color_theme("dark");
+        //     //             break;
+        //     //         }
+        
+        //     //         case "normal": {
+        //     //             header.style.backgroundColor = '#194350';
+        //     //             sidebar.style.backgroundColor = '#9DBEB9';
+        //     //             datepicker.style.backgroundColor = '#194350';
+        //     //             // logList.style.backgroundColor = '#9DBEB9';
+        //     //             // color_theme("normal");
+        //     //             break;
+        //     //         }
+        
+        //     //         case "light": {
+        //     //             header.style.backgroundColor = '#FF8882';
+        //     //             sidebar.style.backgroundColor = '#FFC2B4';
+        //     //             datepicker.style.backgroundColor = '#FF8882';
+        //     //             // logList.style.backgroundColor = '#FFC2B4';
+        //     //             // color_theme("light");
+        //     //             break;
+        //     //         }
+        //     //     }
+        //     // }
+        // });
+       
+        switch(color){
+            case "dark": {
+                header.style.backgroundColor = '#393E46';
+                sidebar.style.backgroundColor = '#7C7C7C';
+                datepicker.style.backgroundColor = '#393E46';
+                settingsModal.style.backgroundColor = '#7C7C7C';
+                // logList.style.backgroundColor = '#7C7C7C';
+                // color_theme("dark");
+                break;
+            }
+        
+            case "normal": {
+                header.style.backgroundColor = '#194350';
+                sidebar.style.backgroundColor = '#9DBEB9';
+                datepicker.style.backgroundColor = '#194350';
+                settingsModal.style.backgroundColor = '#9DBEB9';
+                // logList.style.backgroundColor = '#9DBEB9';
+                // color_theme("normal");
+                break;
+                }
+        
+            case "light": {
+                header.style.backgroundColor = '#FF8882';
+                sidebar.style.backgroundColor = '#FFC2B4';
+                datepicker.style.backgroundColor = '#FF8882';
+                settingsModal.style.backgroundColor = '#FFC2B4';
+                // logList.style.backgroundColor = '#FFC2B4';
+                // color_theme("light");
+                break;
+            }
+        }
 
         openModalBtn.onclick = function () {
             modal.style.display = 'block';
@@ -152,18 +236,30 @@ class settingsModal extends HTMLElement {
             header.style.backgroundColor = '#393E46';
             sidebar.style.backgroundColor = '#7C7C7C';
             datepicker.style.backgroundColor = '#393E46';
+            settingsModal.style.backgroundColor = '#7C7C7C';
+            // logList.style.backgroundColor = '#7C7C7C';
+            color = 'dark';
+            localStorage.setItem('color', JSON.stringify(color));
         });
 
         midButton.addEventListener('click', () => {
             header.style.backgroundColor = '#194350';
             sidebar.style.backgroundColor = '#9DBEB9';
             datepicker.style.backgroundColor = '#194350';
+            settingsModal.style.backgroundColor = '#9DBEB9';
+            // logList.style.backgroundColor = '#9DBEB9';
+            color = 'normal';
+            localStorage.setItem('color', JSON.stringify(color));
         });
 
         rightButton.addEventListener('click', () => {
             header.style.backgroundColor = '#FF8882';
             sidebar.style.backgroundColor = '#FFC2B4';
             datepicker.style.backgroundColor = '#FF8882';
+            settingsModal.style.backgroundColor = '#FFC2B4';
+            // logList.style.backgroundColor = '#FFC2B4';
+            color = 'light';
+            localStorage.setItem('color', JSON.stringify(color));
         });
     }
 }
