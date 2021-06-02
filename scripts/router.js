@@ -4,8 +4,8 @@
 export const router = {};
 
 /**
- * 
- * @param {*} state An object that has data about the caller and will switch pages based on that information 
+ *
+ * @param {*} state An object that has data about the caller and will switch pages based on that information
  */
 router.setState = function switchState(state) {
     const body = document.querySelector('body');
