@@ -1,5 +1,4 @@
 // import { color_theme } from './logList.js';
-import { saveEntryToStorage, getEntryFromStorage } from '../scripts/indexdb.js';
 
 class settingsModal extends HTMLElement {
     constructor() {
@@ -131,11 +130,10 @@ class settingsModal extends HTMLElement {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
 
         // saveEntryToStorage('color', '0', 'normal');
-        let color = "normal";
-        if(localStorage.getItem('color') == null){
+        let color = 'normal';
+        if (localStorage.getItem('color') == null) {
             localStorage.setItem('color', JSON.stringify(color));
-        }
-        else{
+        } else {
             color = JSON.parse(localStorage.getItem('color'));
         }
 
@@ -149,7 +147,9 @@ class settingsModal extends HTMLElement {
         const header = document.querySelector('.navbar'); // get the header
         const sidebar = document.querySelector('.sidebar'); // get the sidebar
         const datepicker = document.querySelector('.datepicker > input'); // get date picker in sidebar
-        const settingsModal = this.shadowRoot.querySelector('.settingsModal-content');
+        const settingModal = this.shadowRoot.querySelector(
+            '.settingsModal-content'
+        );
 
         const leftButton = this.shadowRoot.querySelector('.leftTheme'); // get left button in settings modal
         const midButton = this.shadowRoot.querySelector('.midTheme'); // get middle button in settings modal
@@ -170,7 +170,7 @@ class settingsModal extends HTMLElement {
         //     //             // color_theme("dark");
         //     //             break;
         //     //         }
-        
+
         //     //         case "normal": {
         //     //             header.style.backgroundColor = '#194350';
         //     //             sidebar.style.backgroundColor = '#9DBEB9';
@@ -179,7 +179,7 @@ class settingsModal extends HTMLElement {
         //     //             // color_theme("normal");
         //     //             break;
         //     //         }
-        
+
         //     //         case "light": {
         //     //             header.style.backgroundColor = '#FF8882';
         //     //             sidebar.style.backgroundColor = '#FFC2B4';
@@ -191,35 +191,39 @@ class settingsModal extends HTMLElement {
         //     //     }
         //     // }
         // });
-       
-        switch(color){
-            case "dark": {
+
+        switch (color) {
+            case 'dark': {
                 header.style.backgroundColor = '#393E46';
                 sidebar.style.backgroundColor = '#7C7C7C';
                 datepicker.style.backgroundColor = '#393E46';
-                settingsModal.style.backgroundColor = '#7C7C7C';
+                settingModal.style.backgroundColor = '#7C7C7C';
                 // logList.style.backgroundColor = '#7C7C7C';
                 // color_theme("dark");
                 break;
             }
-        
-            case "normal": {
+
+            case 'normal': {
                 header.style.backgroundColor = '#194350';
                 sidebar.style.backgroundColor = '#9DBEB9';
                 datepicker.style.backgroundColor = '#194350';
-                settingsModal.style.backgroundColor = '#9DBEB9';
+                settingModal.style.backgroundColor = '#9DBEB9';
                 // logList.style.backgroundColor = '#9DBEB9';
                 // color_theme("normal");
                 break;
-                }
-        
-            case "light": {
+            }
+
+            case 'light': {
                 header.style.backgroundColor = '#FF8882';
                 sidebar.style.backgroundColor = '#FFC2B4';
                 datepicker.style.backgroundColor = '#FF8882';
-                settingsModal.style.backgroundColor = '#FFC2B4';
+                settingModal.style.backgroundColor = '#FFC2B4';
                 // logList.style.backgroundColor = '#FFC2B4';
                 // color_theme("light");
+                break;
+            }
+
+            default: {
                 break;
             }
         }
@@ -236,7 +240,7 @@ class settingsModal extends HTMLElement {
             header.style.backgroundColor = '#393E46';
             sidebar.style.backgroundColor = '#7C7C7C';
             datepicker.style.backgroundColor = '#393E46';
-            settingsModal.style.backgroundColor = '#7C7C7C';
+            settingModal.style.backgroundColor = '#7C7C7C';
             // logList.style.backgroundColor = '#7C7C7C';
             color = 'dark';
             localStorage.setItem('color', JSON.stringify(color));
@@ -246,7 +250,7 @@ class settingsModal extends HTMLElement {
             header.style.backgroundColor = '#194350';
             sidebar.style.backgroundColor = '#9DBEB9';
             datepicker.style.backgroundColor = '#194350';
-            settingsModal.style.backgroundColor = '#9DBEB9';
+            settingModal.style.backgroundColor = '#9DBEB9';
             // logList.style.backgroundColor = '#9DBEB9';
             color = 'normal';
             localStorage.setItem('color', JSON.stringify(color));
@@ -256,7 +260,7 @@ class settingsModal extends HTMLElement {
             header.style.backgroundColor = '#FF8882';
             sidebar.style.backgroundColor = '#FFC2B4';
             datepicker.style.backgroundColor = '#FF8882';
-            settingsModal.style.backgroundColor = '#FFC2B4';
+            settingModal.style.backgroundColor = '#FFC2B4';
             // logList.style.backgroundColor = '#FFC2B4';
             color = 'light';
             localStorage.setItem('color', JSON.stringify(color));

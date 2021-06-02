@@ -91,28 +91,30 @@ class LogList extends HTMLElement {
 
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(template.content.cloneNode(true));
-        
+
         const logList = this.shadowRoot.querySelector('.log-list-comp');
 
         const color = JSON.parse(localStorage.getItem('color'));
-        
-        switch(color){
-            case "dark": {
+
+        switch (color) {
+            case 'dark': {
                 logList.style.backgroundColor = '#7C7C7C';
                 break;
             }
 
-            case "normal": {
+            case 'normal': {
                 logList.style.backgroundColor = '#9DBEB9';
                 break;
             }
 
-            case "light": {
+            case 'light': {
                 logList.style.backgroundColor = '#FFC2B4';
                 break;
             }
+            default: {
+                break;
+            }
         }
-
     }
 
     /**
