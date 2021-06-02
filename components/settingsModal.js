@@ -1,8 +1,10 @@
 // import { color_theme } from './logList.js';
 
+// function to reload page when user is in home page
 function homeReload() {
-    const bodyId = document.querySelector('body').id;
+    const bodyId = document.querySelector('body').id; // get body id
 
+    // if bodyId is home then reload page
     switch (bodyId) {
         case 'home': {
             window.location.reload();
@@ -206,7 +208,9 @@ class settingsModal extends HTMLElement {
         //     // }
         // });
 
+        // when reloading check color scheme from local storage
         switch (color) {
+            // use dark mode
             case 'dark': {
                 header.style.backgroundColor = '#393E46';
                 sidebar.style.backgroundColor = '#7C7C7C';
@@ -216,7 +220,7 @@ class settingsModal extends HTMLElement {
                 // color_theme("dark");
                 break;
             }
-
+            // use default
             case 'normal': {
                 header.style.backgroundColor = '#194350';
                 sidebar.style.backgroundColor = '#9DBEB9';
@@ -226,7 +230,7 @@ class settingsModal extends HTMLElement {
                 // color_theme("normal");
                 break;
             }
-
+            // use light mode
             case 'light': {
                 header.style.backgroundColor = '#FF8882';
                 sidebar.style.backgroundColor = '#FFC2B4';
@@ -250,7 +254,9 @@ class settingsModal extends HTMLElement {
             modal.style.display = 'none';
         };
 
+        // when left theme is clicked change the color scheme
         leftButton.addEventListener('click', () => {
+            // change color for navbar, sidebar, datepicker, settings modal, and loglist
             header.style.backgroundColor = '#393E46';
             sidebar.style.backgroundColor = '#7C7C7C';
             datepicker.style.backgroundColor = '#393E46';
@@ -258,11 +264,12 @@ class settingsModal extends HTMLElement {
             color = 'dark';
             localStorage.setItem('color', JSON.stringify(color));
 
-            homeReload();
+            homeReload(); // changes color for loglist
             // logList.style.backgroundColor = '#7C7C7C';
         });
-
+        // when middle theme is clicked change the color scheme
         midButton.addEventListener('click', () => {
+            // change color for navbar, sidebar, datepicker, settings modal, and loglist
             header.style.backgroundColor = '#194350';
             sidebar.style.backgroundColor = '#9DBEB9';
             datepicker.style.backgroundColor = '#194350';
@@ -270,11 +277,12 @@ class settingsModal extends HTMLElement {
             color = 'normal';
             localStorage.setItem('color', JSON.stringify(color));
 
-            homeReload();
+            homeReload(); // changes color for loglist
             // logList.style.backgroundColor = '#9DBEB9';
         });
-
+        // when right theme is clicked change the color scheme
         rightButton.addEventListener('click', () => {
+            // change color for navbar, sidebar, datepicker, settings modal, and loglist
             header.style.backgroundColor = '#FF8882';
             sidebar.style.backgroundColor = '#FFC2B4';
             datepicker.style.backgroundColor = '#FF8882';
@@ -282,7 +290,7 @@ class settingsModal extends HTMLElement {
             color = 'light';
             localStorage.setItem('color', JSON.stringify(color));
 
-            homeReload();
+            homeReload(); // changes color for loglist
             // logList.style.backgroundColor = '#FFC2B4';
         });
     }
