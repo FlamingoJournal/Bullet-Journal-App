@@ -49,10 +49,11 @@ class LogList extends HTMLElement {
                 box-shadow: 0px 0px 10px 0px white;
                 text-align: center;
                 margin-bottom: 10px;
+                cursor: pointer;
             }
             
             .most-recent:hover {
-            background-color: lightgray;
+                background-color: lightgray;
             }
 
             .logs-list {
@@ -74,8 +75,8 @@ class LogList extends HTMLElement {
             }
 
             .logs-list li:hover {
-            color: gray;
-            text-decoration: underline;
+                color: gray;
+                text-decoration: underline;
             }
         </style>
 
@@ -85,7 +86,6 @@ class LogList extends HTMLElement {
             <button class="most-recent" id="create-new" type="button">CREATE NEW</button>
             <ul class="logs-list">
             </ul>
-            
         </div>
         `;
 
