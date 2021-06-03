@@ -98,7 +98,6 @@ class LogList extends HTMLElement {
         const color = JSON.parse(localStorage.getItem('color')); // get the color theme from local storage
 
         // when reloading choose theme based on local stoage theme
-        // when reloading choose theme based on local stoage theme
         switch (color) {
             // use dark mode
             case 'dark': {
