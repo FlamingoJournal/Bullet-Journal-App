@@ -81,15 +81,16 @@ class settingsModal extends HTMLElement {
 
 
                 .settingsModalClose {
+                    width: 30px;
                     grid-area: Header;
-                    color: rgb(121, 120, 120);
+                    color: black;
                     float: right;
                     font-size: 30px;
                     display: 'inline-block';
                 }
                 
                 .settingsModalClose:hover, .settingsModalClose:focus {
-                    color: black;
+                    color: white;
                     text-decoration: none;
                     cursor: pointer;
                 }
