@@ -156,8 +156,6 @@ class settingsModal extends HTMLElement {
         const openModalBtn = this.shadowRoot.querySelector('.settingsButton'); // get open modal button
         const modal = this.shadowRoot.querySelector('.settingsModal'); // get modal window
         const closeBtn = this.shadowRoot.querySelector('.settingsModalClose'); // get close modal button
-        // console.log(localStorage);
-        // console.log(logList);
 
         const header = document.querySelector('.navbar'); // get the header
         const sidebar = document.querySelector('.sidebar'); // get the sidebar
@@ -170,43 +168,6 @@ class settingsModal extends HTMLElement {
         const midButton = this.shadowRoot.querySelector('.midTheme'); // get middle button in settings modal
         const rightButton = this.shadowRoot.querySelector('.rightTheme'); // get right button in settings modal
 
-        // getEntryFromStorage('color', '0', (color) => {
-        //     console.log(color);
-        //     // if(color == null){
-        //     //     addEntryToStorage('color', '0', 'normal');
-        //     // }
-        //     // else{
-        //     //     switch(color){
-        //     //         case "dark": {
-        //     //             header.style.backgroundColor = '#393E46';
-        //     //             sidebar.style.backgroundColor = '#7C7C7C';
-        //     //             datepicker.style.backgroundColor = '#393E46';
-        //     //             // logList.style.backgroundColor = '#7C7C7C';
-        //     //             // color_theme("dark");
-        //     //             break;
-        //     //         }
-
-        //     //         case "normal": {
-        //     //             header.style.backgroundColor = '#194350';
-        //     //             sidebar.style.backgroundColor = '#9DBEB9';
-        //     //             datepicker.style.backgroundColor = '#194350';
-        //     //             // logList.style.backgroundColor = '#9DBEB9';
-        //     //             // color_theme("normal");
-        //     //             break;
-        //     //         }
-
-        //     //         case "light": {
-        //     //             header.style.backgroundColor = '#FF8882';
-        //     //             sidebar.style.backgroundColor = '#FFC2B4';
-        //     //             datepicker.style.backgroundColor = '#FF8882';
-        //     //             // logList.style.backgroundColor = '#FFC2B4';
-        //     //             // color_theme("light");
-        //     //             break;
-        //     //         }
-        //     //     }
-        //     // }
-        // });
-
         // when reloading check color scheme from local storage
         switch (color) {
             // use dark mode
@@ -215,8 +176,6 @@ class settingsModal extends HTMLElement {
                 sidebar.style.backgroundColor = '#7C7C7C';
                 datepicker.style.backgroundColor = '#393E46';
                 settingModal.style.backgroundColor = '#7C7C7C';
-                // logList.style.backgroundColor = '#7C7C7C';
-                // color_theme("dark");
                 break;
             }
             // use default
@@ -225,8 +184,6 @@ class settingsModal extends HTMLElement {
                 sidebar.style.backgroundColor = '#9DBEB9';
                 datepicker.style.backgroundColor = '#194350';
                 settingModal.style.backgroundColor = '#9DBEB9';
-                // logList.style.backgroundColor = '#9DBEB9';
-                // color_theme("normal");
                 break;
             }
             // use light mode
@@ -235,8 +192,6 @@ class settingsModal extends HTMLElement {
                 sidebar.style.backgroundColor = '#FFC2B4';
                 datepicker.style.backgroundColor = '#FF8882';
                 settingModal.style.backgroundColor = '#FFC2B4';
-                // logList.style.backgroundColor = '#FFC2B4';
-                // color_theme("light");
                 break;
             }
 
@@ -264,7 +219,6 @@ class settingsModal extends HTMLElement {
             localStorage.setItem('color', JSON.stringify(color));
 
             homeReload(); // changes color for loglist
-            // logList.style.backgroundColor = '#7C7C7C';
         });
         // when middle theme is clicked change the color scheme
         midButton.addEventListener('click', () => {
@@ -277,7 +231,6 @@ class settingsModal extends HTMLElement {
             localStorage.setItem('color', JSON.stringify(color));
 
             homeReload(); // changes color for loglist
-            // logList.style.backgroundColor = '#9DBEB9';
         });
         // when right theme is clicked change the color scheme
         rightButton.addEventListener('click', () => {
@@ -290,7 +243,6 @@ class settingsModal extends HTMLElement {
             localStorage.setItem('color', JSON.stringify(color));
 
             homeReload(); // changes color for loglist
-            // logList.style.backgroundColor = '#FFC2B4';
         });
     }
 }
