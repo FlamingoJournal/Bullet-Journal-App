@@ -9,8 +9,7 @@ class BulletEntries extends HTMLElement {
     set position(pos) {
         if (pos) {
             this.setAttribute('position', pos);
-        }
-        else {
+        } else {
             this.removeAttribute('position');
         }
     }
@@ -18,7 +17,7 @@ class BulletEntries extends HTMLElement {
     get position() {
         return this.getAttribute('position');
     }
-    
+
     set date(date) {
         if (date) {
             this.setAttribute('date', date);

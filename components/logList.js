@@ -116,16 +116,16 @@ class LogList extends HTMLElement {
         getAllKeys(logType, (keysArray) => {
             for (let i = 0; i < keysArray.length; i += 1) {
                 const listEntry = document.createElement('li');
-                switch(logType) {
-                    // case 'weekly': { 
+                switch (logType) {
+                    // case 'weekly': {
                     //     listEntry.textContent = keysArray[i].substring(keysArray[i].length - 1);
                     //     break;
                     // }
-                    case 'monthly': { 
+                    case 'monthly': {
                         // Format listEntry.textContent = keysArray[i];
                         break;
                     }
-                    case 'future': { 
+                    case 'future': {
                         // Format listEntry.textContent = keysArray[i];
                         break;
                     }
@@ -142,15 +142,20 @@ class LogList extends HTMLElement {
                 logsList.appendChild(listEntry);
             }
         });
-        
+
         createNewButton.addEventListener('click', () => {
-            switch(logType) {
+            switch (logType) {
                 case 'daily': {
                     const today = new Date().toLocaleDateString();
                     getEntryFromStorage(logType, today, (entryData) => {
                         if (!entryData) {
-                            const blankEntry = {1:['']};
-                            saveEntryToStorage(logType, today, blankEntry, 'undefined');
+                            const blankEntry = { 1: [''] };
+                            saveEntryToStorage(
+                                logType,
+                                today,
+                                blankEntry,
+                                'undefined'
+                            );
                             const state = { page: logType, date: today };
                             setState(state);
                         } else {
@@ -167,12 +172,25 @@ class LogList extends HTMLElement {
                     const day = new Date().getDate();
                     const week = parseInt(day / 7, 10) + 1;
                     const year = new Date().getFullYear();
-                    const today = `${year  }${   week  }${day}`;
-                    console.log(today); 
+                    const today = `${year}${week}${day}`;
+                    console.log(today);
                     getEntryFromStorage(logType, today, (entryData) => {
                         if (!entryData) {
-                            const blankEntry = {1:[''], 2:[''], 3:[''], 4:[''], 5:[''], 6:[''], 7:['']};
-                            saveEntryToStorage(logType, today, blankEntry, 'undefined');
+                            const blankEntry = {
+                                1: [''],
+                                2: [''],
+                                3: [''],
+                                4: [''],
+                                5: [''],
+                                6: [''],
+                                7: [''],
+                            };
+                            saveEntryToStorage(
+                                logType,
+                                today,
+                                blankEntry,
+                                'undefined'
+                            );
                             const state = { page: logType, date: today };
                             setState(state);
                         } else {
@@ -194,7 +212,6 @@ class LogList extends HTMLElement {
                     break;
                 }
             }
-            
         });
         mostRecentButton.addEventListener('click', () => {});
     }

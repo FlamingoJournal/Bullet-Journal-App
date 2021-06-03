@@ -30,7 +30,7 @@ router.setState = function switchState(state) {
             title.textContent = state.date;
             const bulletEntries = document.querySelector('bullet-entries');
             const newPage = document.createElement('bullet-entries');
-            newPage.logtype = 'daily'; 
+            newPage.logtype = 'daily';
             newPage.date = state.date;
             newPage.position = 1;
             if (bulletEntries) {
@@ -45,16 +45,18 @@ router.setState = function switchState(state) {
         case 'weekly': {
             body.id = 'weekly-log';
             title.textContent = state.date;
-            const leftPage = document.querySelector(".weekly-log-left-grid-container");
+            const leftPage = document.querySelector(
+                '.weekly-log-left-grid-container'
+            );
             let counter = 1;
             // eslint-disable-next-line no-restricted-syntax
             for (const day of leftPage.children) {
                 const newPage = document.createElement('bullet-entries');
-                newPage.logtype = 'weekly'; 
+                newPage.logtype = 'weekly';
                 newPage.date = state.date;
                 newPage.position = counter;
                 day.appendChild(newPage);
-                counter+=1;
+                counter += 1;
             }
             break;
         }

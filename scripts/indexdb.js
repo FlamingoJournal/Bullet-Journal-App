@@ -43,21 +43,19 @@ export function saveEntryToStorage(logType, date, data, position) {
     // Start a database transaction and get the notes object store
     const tx = db.transaction([String(logType)], 'readwrite');
     const store = tx.objectStore(String(logType));
-    if (position === 'undefined'){
+    if (position === 'undefined') {
         store.put(data, date);
-    }
-    else{
+    } else {
         const storeData = store.get(date);
 
-        storeData.onsuccess = function() {
-            if (storeData){
+        storeData.onsuccess = function () {
+            if (storeData) {
                 console.log(storeData);
                 storeData.result[position] = data;
                 console.log(storeData.result);
                 store.put(storeData.result, date);
             }
-            
-        }
+        };
     }
     // Wait for the database transaction to complete
     tx.onerror = function (event) {
@@ -76,7 +74,7 @@ export function getEntryFromStorage(logType, date, dataHandlerFunction) {
     const store = tx.objectStore(String(logType));
     const req = store.get(date);
     req.onsuccess = function () {
-        dataHandlerFunction(req.result); 
+        dataHandlerFunction(req.result);
     };
 }
 
