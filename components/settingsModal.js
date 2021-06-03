@@ -156,7 +156,6 @@ class settingsModal extends HTMLElement {
         const openModalBtn = this.shadowRoot.querySelector('.settingsButton'); // get open modal button
         const modal = this.shadowRoot.querySelector('.settingsModal'); // get modal window
         const closeBtn = this.shadowRoot.querySelector('.settingsModalClose'); // get close modal button
-        // const logList = JSON.parse(localStorage.getItem('logList'));
         // console.log(localStorage);
         // console.log(logList);
 
