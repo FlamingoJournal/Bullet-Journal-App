@@ -43,7 +43,6 @@ export function saveEntryToStorage(logType, date, data) {
     // Start a database transaction and get the notes object store
     const tx = db.transaction([String(logType)], 'readwrite');
     const store = tx.objectStore(String(logType));
-
     store.put(data, date);
     // Wait for the database transaction to complete
     tx.onerror = function (event) {

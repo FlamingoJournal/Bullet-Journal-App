@@ -105,7 +105,6 @@ class LogList extends HTMLElement {
         const mostRecentButton = this.shadowRoot.querySelector('.most-recent');
         const createNewButton = this.shadowRoot.querySelector('#create-new');
         const logsList = this.shadowRoot.querySelector('.logs-list');
-
         logTitle.textContent = `${logType.toUpperCase()} LOG`;
 
         // get rid of old entries if there are any
@@ -125,21 +124,43 @@ class LogList extends HTMLElement {
                 logsList.appendChild(listEntry);
             }
         });
+        
         createNewButton.addEventListener('click', () => {
-            const today = new Date().toLocaleDateString();
-            getEntryFromStorage(logType, today, (entryData) => {
-                if (!entryData) {
-                    const blankEntry = [''];
-                    saveEntryToStorage(logType, today, blankEntry);
-                    const state = { page: logType, date: today };
-                    setState(state);
-                } else {
-                    // do something
-                    // right now, just go to that page when there already is one
-                    const state = { page: logType, date: today };
-                    setState(state);
+            switch(logType) {
+                case 'daily': {
+                    const today = new Date().toLocaleDateString();
+                    getEntryFromStorage(logType, today, (entryData) => {
+                        if (!entryData) {
+                            const blankEntry = [''];
+                            saveEntryToStorage(logType, today, blankEntry);
+                            const state = { page: logType, date: today };
+                            setState(state);
+                        } else {
+                            // do something
+                            // right now, just go to that page when there already is one
+                            const state = { page: logType, date: today };
+                            setState(state);
+                        }
+                    });
+                    break;
                 }
-            });
+                case 'weekly': {
+                    const day = new Date().getDate();
+                    const week = parseInt(day / 7) + 1;
+                    getEntryFromStorage(logType, week)
+                    break;
+                }
+                case 'monthly': {
+                    break;
+                }
+                case 'future': {
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
+            
         });
         mostRecentButton.addEventListener('click', () => {});
     }
