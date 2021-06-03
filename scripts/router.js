@@ -30,8 +30,9 @@ router.setState = function switchState(state) {
             title.textContent = state.date;
             const bulletEntries = document.querySelector('bullet-entries');
             const newPage = document.createElement('bullet-entries');
-            newPage.logtype = 'daily'; // !!! these things don't want to update inside the component for some reason
+            newPage.logtype = 'daily'; 
             newPage.date = state.date;
+            newPage.position = 1;
             if (bulletEntries) {
                 bulletEntries.parentNode.replaceChild(newPage, bulletEntries);
             } else {
@@ -45,16 +46,15 @@ router.setState = function switchState(state) {
             body.id = 'weekly-log';
             title.textContent = state.date;
             const leftPage = document.querySelector(".weekly-log-left-grid-container");
-            // const monday = document.querySelector('.monday');
-            // const tuesday = document.querySelector('.tuesday');
-            // const wednesday = document.querySelector('.wednesday');
-            // const thursday = document.querySelector('.thursday');
-            // const friday = document.querySelector('.friday');
-            // const saturday = document.querySelector('.saturday');
-            // const sunday = document.querySelector('.sunday');
-            for (let day of leftPage.children) {
+            let counter = 1;
+            // eslint-disable-next-line no-restricted-syntax
+            for (const day of leftPage.children) {
                 const newPage = document.createElement('bullet-entries');
+                newPage.logtype = 'weekly'; 
+                newPage.date = state.date;
+                newPage.position = counter;
                 day.appendChild(newPage);
+                counter+=1;
             }
             break;
         }

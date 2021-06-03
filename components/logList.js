@@ -116,10 +116,28 @@ class LogList extends HTMLElement {
         getAllKeys(logType, (keysArray) => {
             for (let i = 0; i < keysArray.length; i += 1) {
                 const listEntry = document.createElement('li');
-                listEntry.textContent = keysArray[i];
+                switch(logType) {
+                    // case 'weekly': { 
+                    //     listEntry.textContent = keysArray[i].substring(keysArray[i].length - 1);
+                    //     break;
+                    // }
+                    case 'monthly': { 
+                        // Format listEntry.textContent = keysArray[i];
+                        break;
+                    }
+                    case 'future': { 
+                        // Format listEntry.textContent = keysArray[i];
+                        break;
+                    }
+                    default: {
+                        listEntry.textContent = keysArray[i];
+                        break;
+                    }
+                }
                 const state = { page: logType, date: keysArray[i] };
                 listEntry.addEventListener('click', () => {
                     setState(state);
+                    console.log(state);
                 });
                 logsList.appendChild(listEntry);
             }
@@ -131,8 +149,8 @@ class LogList extends HTMLElement {
                     const today = new Date().toLocaleDateString();
                     getEntryFromStorage(logType, today, (entryData) => {
                         if (!entryData) {
-                            const blankEntry = [''];
-                            saveEntryToStorage(logType, today, blankEntry);
+                            const blankEntry = {1:['']};
+                            saveEntryToStorage(logType, today, blankEntry, 'undefined');
                             const state = { page: logType, date: today };
                             setState(state);
                         } else {
@@ -145,9 +163,25 @@ class LogList extends HTMLElement {
                     break;
                 }
                 case 'weekly': {
+                    // Get the date, and format it to the storage template
                     const day = new Date().getDate();
-                    const week = parseInt(day / 7) + 1;
-                    getEntryFromStorage(logType, week)
+                    const week = parseInt(day / 7, 10) + 1;
+                    const year = new Date().getFullYear();
+                    const today = `${year  }${   week  }${day}`;
+                    console.log(today); 
+                    getEntryFromStorage(logType, today, (entryData) => {
+                        if (!entryData) {
+                            const blankEntry = {1:[''], 2:[''], 3:[''], 4:[''], 5:[''], 6:[''], 7:['']};
+                            saveEntryToStorage(logType, today, blankEntry, 'undefined');
+                            const state = { page: logType, date: today };
+                            setState(state);
+                        } else {
+                            // do something
+                            // right now, just go to that page when there already is one
+                            const state = { page: logType, date: today };
+                            setState(state);
+                        }
+                    });
                     break;
                 }
                 case 'monthly': {

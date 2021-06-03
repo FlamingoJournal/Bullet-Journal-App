@@ -6,18 +6,18 @@
 import { saveEntryToStorage, getEntryFromStorage } from '../scripts/indexdb.js';
 
 class BulletEntries extends HTMLElement {
-    // set position(pos) {
-    //     if (pos) {
-    //         this.setAttribute('position', pos);
-    //     }
-    //     else {
-    //         this.removeAttribute('position');
-    //     }
-    // }
+    set position(pos) {
+        if (pos) {
+            this.setAttribute('position', pos);
+        }
+        else {
+            this.removeAttribute('position');
+        }
+    }
 
-    // get position() {
-    //     return this.getAttribute('position');
-    // }
+    get position() {
+        return this.getAttribute('position');
+    }
     
     set date(date) {
         if (date) {
@@ -153,7 +153,7 @@ class BulletEntries extends HTMLElement {
             // 2021may01monday
             // 2021may01tuesday
             //  get info from storage, add new data array to current date key, save it back in
-            saveEntryToStorage(self.logtype, self.date, data);
+            saveEntryToStorage(self.logtype, self.date, data, self.position);
         });
 
         // When page loads, retrieve localStorage info and create textareas accordingly
@@ -161,17 +161,17 @@ class BulletEntries extends HTMLElement {
         // eslint-disable-next-line no-unused-vars
         function fetchData() {
             getEntryFromStorage(self.logtype, self.date, (entryData) => {
-                if (entryData[0] == 'undefined') {
+                if (entryData[self.position][0] === 'undefined') {
                     firstEntry.value = '';
                 } else {
                     // eslint-disable-next-line prefer-destructuring
-                    firstEntry.value = entryData[0];
+                    firstEntry.value = entryData[self.position][0];
                 }
 
                 firstEntry.style.height = `${firstEntry.scrollHeight}px`;
-                for (let i = 1; i < entryData.length; i += 1) {
+                for (let i = 1; i < entryData[self.position].length; i += 1) {
                     addNewEntry();
-                    text.lastElementChild.value = entryData[i];
+                    text.lastElementChild.value = entryData[self.position][i];
                     text.lastElementChild.style.height = `${text.lastElementChild.scrollHeight}px`;
                 }
             });
