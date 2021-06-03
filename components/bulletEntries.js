@@ -6,6 +6,18 @@
 import { saveEntryToStorage, getEntryFromStorage } from '../scripts/indexdb.js';
 
 class BulletEntries extends HTMLElement {
+    set position(pos) {
+        if (pos) {
+            this.setAttribute('position', pos);
+        } else {
+            this.removeAttribute('position');
+        }
+    }
+
+    get position() {
+        return this.getAttribute('position');
+    }
+
     set date(date) {
         if (date) {
             this.setAttribute('date', date);
@@ -130,15 +142,17 @@ class BulletEntries extends HTMLElement {
         firstEntry.addEventListener('blur', checkBlur);
 
         // Go through the textareas and save their values into localStorage
-        text.addEventListener('click', () => {
+        self.addEventListener('blur', () => {
             const entries = self.shadowRoot.querySelectorAll('textarea');
             const data = [];
             for (let i = 0; i < entries.length; i += 1) {
                 data.push(entries[i].value);
             }
             console.log('saving?');
+            // 2021may01monday
+            // 2021may01tuesday
             //  get info from storage, add new data array to current date key, save it back in
-            saveEntryToStorage(self.logtype, self.date, data);
+            saveEntryToStorage(self.logtype, self.date, data, self.position);
         });
 
         // When page loads, retrieve localStorage info and create textareas accordingly
@@ -146,32 +160,20 @@ class BulletEntries extends HTMLElement {
         // eslint-disable-next-line no-unused-vars
         function fetchData() {
             getEntryFromStorage(self.logtype, self.date, (entryData) => {
-                if (entryData[0] == 'undefined') {
+                if (entryData[self.position][0] === 'undefined') {
                     firstEntry.value = '';
                 } else {
                     // eslint-disable-next-line prefer-destructuring
-                    firstEntry.value = entryData[0];
+                    firstEntry.value = entryData[self.position][0];
                 }
 
                 firstEntry.style.height = `${firstEntry.scrollHeight}px`;
-                for (let i = 1; i < entryData.length; i += 1) {
+                for (let i = 1; i < entryData[self.position].length; i += 1) {
                     addNewEntry();
-                    text.lastElementChild.value = entryData[i];
+                    text.lastElementChild.value = entryData[self.position][i];
                     text.lastElementChild.style.height = `${text.lastElementChild.scrollHeight}px`;
                 }
             });
-            // const logStorage = JSON.parse(localStorage.getItem(self.logtype));
-            // if (logStorage[self.date]) {
-            //     const data = logStorage[self.date];
-            //     // eslint-disable-next-line prefer-destructuring
-            //     firstEntry.value = data[0];
-            //     firstEntry.style.height = `${firstEntry.scrollHeight}px`;
-            //     for (let i = 1; i < data.length; i += 1) {
-            //         addNewEntry();
-            //         text.lastElementChild.value = data[i];
-            //         text.lastElementChild.style.height = `${text.lastElementChild.scrollHeight}px`;
-            //     }
-            // }
         }
 
         setTimeout(fetchData, 1);
