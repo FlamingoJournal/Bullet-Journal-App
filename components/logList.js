@@ -91,6 +91,59 @@ class LogList extends HTMLElement {
 
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+        // For switching themes
+        const logList = this.shadowRoot.querySelector('.log-list-comp'); // get <log-list>
+        const logo = document.querySelector('#flamingo-logo'); // get falmingo logo and title img
+        const color = JSON.parse(localStorage.getItem('color')); // get the color theme from local storage
+
+        // when reloading choose theme based on local stoage theme
+        switch (color) {
+            // use dark mode
+            case 'dark': {
+                logList.style.backgroundColor = '#7C7C7C';
+                break;
+            }
+            // use default
+            case 'normal': {
+                logList.style.backgroundColor = '#9DBEB9';
+                break;
+            }
+            // use light mode
+            case 'light': {
+                logList.style.backgroundColor = '#FFC2B4';
+                break;
+            }
+            default: {
+                break;
+            }
+        }
+
+        // whenever the user goes to home page after changing theme
+        logo.addEventListener('click', () => {
+            const colors = JSON.parse(localStorage.getItem('color')); // get the color theme from local storage
+
+            switch (colors) {
+                // use dark mode
+                case 'dark': {
+                    logList.style.backgroundColor = '#7C7C7C';
+                    break;
+                }
+                // use default
+                case 'normal': {
+                    logList.style.backgroundColor = '#9DBEB9';
+                    break;
+                }
+                // use light mode
+                case 'light': {
+                    logList.style.backgroundColor = '#FFC2B4';
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
+        });
     }
 
     /**
