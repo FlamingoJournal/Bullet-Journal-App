@@ -37,6 +37,13 @@
     grid-area: week-5;
 }
 
+.monthly {
+    font-size: calc(12px + 1vw);
+    font-style: normal;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+}
+
 #home .monthly-log-grid-container {
     display: none;
 }

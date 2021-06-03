@@ -41,6 +41,14 @@
         'sunday';
 }
 
+/* Titles*/
+.weekly {
+    font-size: calc(12px + 1.5vw);
+    font-style: normal;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+}
+
 /* ROUTING */
 #home .weekly-log-grid-container {
     display: none;
