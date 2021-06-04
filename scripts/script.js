@@ -2,6 +2,7 @@
 
 /** **************NAVIGATION******************* */
 import { router } from './router.js';
+import { getAllKeys } from './indexdb.js';
 // import router from './router';
 // Router imported so you can use it to manipulate your SPA app here
 const { setState } = router;
@@ -11,10 +12,19 @@ const leftArrow = document.getElementById('nav-left');
  * Left arrow functionality, switches to the previous page in the current log.
  * @todo Implement this function
  */
-leftArrow.onclick = function () {
-    // get title
-    // determine state based on title
-    setState({ page: 'Settings', day: 'title' });
+leftArrow.onclick = function navigateLeft() {
+    const logType = document
+        .querySelector('bullet-entries')
+        .getAttribute('logType');
+    const title = document.querySelector('bullet-entries').getAttribute('date');
+    getAllKeys(logType, (entryKeys) => {
+        const logIndex = entryKeys.indexOf(title);
+        if (logIndex - 1 >= 0) {
+            const nextDate = entryKeys[logIndex - 1];
+            const state = { page: logType, date: nextDate };
+            setState(state);
+        }
+    });
 };
 
 const rightArrow = document.getElementById('nav-right');
@@ -22,8 +32,19 @@ const rightArrow = document.getElementById('nav-right');
  * Right arrow functionality, switches to the next page in the current log.
  * @todo Implement this function
  */
-rightArrow.onclick = function () {
-    // setState();
+rightArrow.onclick = function navigateRight() {
+    const logType = document
+        .querySelector('bullet-entries')
+        .getAttribute('logType');
+    const title = document.querySelector('bullet-entries').getAttribute('date');
+    getAllKeys(logType, (entryKeys) => {
+        const logIndex = entryKeys.indexOf(title);
+        if (logIndex + 1 < entryKeys.length) {
+            const nextDate = entryKeys[logIndex + 1];
+            const state = { page: logType, date: nextDate };
+            setState(state);
+        }
+    });
 };
 
 const dailyTab = document.getElementById('daily-btn');
