@@ -28,6 +28,12 @@
         <article>
             <pre class="prettyprint source linenums"><code>// eslint-disable-next-line import/newline-after-import
 import { router } from '../scripts/router.js';
+import {
+    saveEntryToStorage,
+    getEntryFromStorage,
+    getAllKeys,
+} from '../scripts/indexdb.js';
+
 const { setState } = router;
 
 // &lt;journal-entry> custom web component
@@ -71,10 +77,11 @@ class LogList extends HTMLElement {
                 box-shadow: 0px 0px 10px 0px white;
                 text-align: center;
                 margin-bottom: 10px;
+                cursor: pointer;
             }
             
             .most-recent:hover {
-            background-color: lightgray;
+                background-color: lightgray;
             }
 
             .logs-list {
@@ -96,8 +103,8 @@ class LogList extends HTMLElement {
             }
 
             .logs-list li:hover {
-            color: gray;
-            text-decoration: underline;
+                color: gray;
+                text-decoration: underline;
             }
         &lt;/style>
 
@@ -107,12 +114,64 @@ class LogList extends HTMLElement {
             &lt;button class="most-recent" id="create-new" type="button">CREATE NEW&lt;/button>
             &lt;ul class="logs-list">
             &lt;/ul>
-            
         &lt;/div>
         `;
 
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+        // For switching themes
+        const logList = this.shadowRoot.querySelector('.log-list-comp'); // get &lt;log-list>
+        const logo = document.querySelector('#flamingo-logo'); // get falmingo logo and title img
+        const color = JSON.parse(localStorage.getItem('color')); // get the color theme from local storage
+
+        // when reloading choose theme based on local stoage theme
+        switch (color) {
+            // use dark mode
+            case 'dark': {
+                logList.style.backgroundColor = '#7C7C7C';
+                break;
+            }
+            // use default
+            case 'normal': {
+                logList.style.backgroundColor = '#9DBEB9';
+                break;
+            }
+            // use light mode
+            case 'light': {
+                logList.style.backgroundColor = '#FFC2B4';
+                break;
+            }
+            default: {
+                break;
+            }
+        }
+
+        // whenever the user goes to home page after changing theme
+        logo.addEventListener('click', () => {
+            const colors = JSON.parse(localStorage.getItem('color')); // get the color theme from local storage
+
+            switch (colors) {
+                // use dark mode
+                case 'dark': {
+                    logList.style.backgroundColor = '#7C7C7C';
+                    break;
+                }
+                // use default
+                case 'normal': {
+                    logList.style.backgroundColor = '#9DBEB9';
+                    break;
+                }
+                // use light mode
+                case 'light': {
+                    logList.style.backgroundColor = '#FFC2B4';
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
+        });
     }
 
     /**
@@ -127,85 +186,115 @@ class LogList extends HTMLElement {
         const mostRecentButton = this.shadowRoot.querySelector('.most-recent');
         const createNewButton = this.shadowRoot.querySelector('#create-new');
         const logsList = this.shadowRoot.querySelector('.logs-list');
-        switch (logType) {
-            case 'daily': {
-                logTitle.textContent = 'DAILY LOG';
+        logTitle.textContent = `${logType.toUpperCase()} LOG`;
 
-                // refresh list
-                // get rid of all old stuff
-                while (logsList.firstElementChild) {
-                    logsList.removeChild(logsList.firstElementChild);
-                }
-                // entries exist
-                if (localStorage.getItem('daily')) {
-                    const dailies = JSON.parse(localStorage.getItem('daily'));
-                    const keys = Object.keys(dailies);
-                    for (let i = 0; i &lt; keys.length; i += 1) {
-                        const listEntry = document.createElement('li');
-                        listEntry.textContent = keys[i];
-                        const state = { page: 'daily', date: keys[i] };
-                        listEntry.addEventListener('click', () => {
-                            setState(state);
-                        });
-                        logsList.appendChild(listEntry);
+        // get rid of old entries if there are any
+        while (logsList.firstElementChild) {
+            logsList.removeChild(logsList.firstElementChild);
+        }
+
+        // fill entry list
+        getAllKeys(logType, (keysArray) => {
+            for (let i = 0; i &lt; keysArray.length; i += 1) {
+                const listEntry = document.createElement('li');
+                switch (logType) {
+                    // case 'weekly': {
+                    //     listEntry.textContent = keysArray[i].substring(keysArray[i].length - 1);
+                    //     break;
+                    // }
+                    case 'monthly': {
+                        // Format listEntry.textContent = keysArray[i];
+                        break;
+                    }
+                    case 'future': {
+                        // Format listEntry.textContent = keysArray[i];
+                        break;
+                    }
+                    default: {
+                        listEntry.textContent = keysArray[i];
+                        break;
                     }
                 }
-                mostRecentButton.addEventListener('click', () => {
-                    // setState?
-                    // populate entries
+                const state = { page: logType, date: keysArray[i] };
+                listEntry.addEventListener('click', () => {
+                    setState(state);
+                    console.log(state);
                 });
-                createNewButton.addEventListener('click', () => {
-                    // check if today's log already exists
-                    // dailies = {"5/02/2021": ["baked a cake", "ate breakfast"], '05032021': ["pooped"]}
-                    if (localStorage.getItem('daily')) {
-                        const dailies = JSON.parse(
-                            localStorage.getItem('daily')
-                        );
-                        const today = new Date().toLocaleDateString();
-                        if (dailies[today]) {
-                            // console.log('log already exists for today');
-                        } else {
-                            // today's log doesn't exist yet
-                            dailies[today] = [];
-                            localStorage.setItem(
-                                'daily',
-                                JSON.stringify(dailies)
+                logsList.appendChild(listEntry);
+            }
+        });
+
+        createNewButton.addEventListener('click', () => {
+            switch (logType) {
+                case 'daily': {
+                    const today = new Date().toLocaleDateString();
+                    getEntryFromStorage(logType, today, (entryData) => {
+                        if (!entryData) {
+                            const blankEntry = { 1: [''] };
+                            saveEntryToStorage(
+                                logType,
+                                today,
+                                blankEntry,
+                                'undefined'
                             );
-                            const state = { page: 'daily', date: today };
+                            const state = { page: logType, date: today };
+                            setState(state);
+                        } else {
+                            // do something
+                            // right now, just go to that page when there already is one
+                            const state = { page: logType, date: today };
                             setState(state);
                         }
-                    }
-                    //  no daily log yet. First time user?
-                    else {
-                        const dailies = {}; // create new object to hold entries
-                        const today = new Date().toLocaleDateString();
-                        dailies[today] = [];
-                        localStorage.setItem('daily', JSON.stringify(dailies));
-                        const state = { page: 'daily', date: today };
-                        setState(state);
-                    }
-                });
-                break;
+                    });
+                    break;
+                }
+                case 'weekly': {
+                    // Get the date, and format it to the storage template
+                    const day = new Date().getDate();
+                    const week = parseInt(day / 7, 10) + 1;
+                    const year = new Date().getFullYear();
+                    const today = `${year}${week}${day}`;
+                    console.log(today);
+                    getEntryFromStorage(logType, today, (entryData) => {
+                        if (!entryData) {
+                            const blankEntry = {
+                                1: [''],
+                                2: [''],
+                                3: [''],
+                                4: [''],
+                                5: [''],
+                                6: [''],
+                                7: [''],
+                            };
+                            saveEntryToStorage(
+                                logType,
+                                today,
+                                blankEntry,
+                                'undefined'
+                            );
+                            const state = { page: logType, date: today };
+                            setState(state);
+                        } else {
+                            // do something
+                            // right now, just go to that page when there already is one
+                            const state = { page: logType, date: today };
+                            setState(state);
+                        }
+                    });
+                    break;
+                }
+                case 'monthly': {
+                    break;
+                }
+                case 'future': {
+                    break;
+                }
+                default: {
+                    break;
+                }
             }
-            case 'weekly': {
-                logTitle.textContent = 'WEEKLY LOG';
-                mostRecentButton.addEventListener('click', () => {});
-                break;
-            }
-            case 'monthly': {
-                logTitle.textContent = 'MONTHLY LOG';
-                mostRecentButton.addEventListener('click', () => {});
-                break;
-            }
-            case 'future': {
-                logTitle.textContent = 'FUTURE LOG';
-                mostRecentButton.addEventListener('click', () => {});
-                break;
-            }
-            default: {
-                break;
-            }
-        }
+        });
+        mostRecentButton.addEventListener('click', () => {});
     }
 }
 
@@ -226,7 +315,7 @@ customElements.define('log-list', LogList);
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Tue Jun 01 2021 23:22:55 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu Jun 03 2021 20:41:59 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
