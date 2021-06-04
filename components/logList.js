@@ -33,7 +33,7 @@ class LogList extends HTMLElement {
             .log-title {
                 padding-top: 10px;
                 margin-bottom: 5px;
-                font-size: 26px;
+                font-size: 30px;
                 font-family: 'Lato', sans-serif;
                 font-weight: bold;
                 text-align: center;
@@ -66,6 +66,7 @@ class LogList extends HTMLElement {
                 padding-left: 0;
                 font-family: 'Lato', sans-serif;
                 font-weight: bold;
+                font-size: 24px;
                 width: 80%;
                 margin: 0 auto;
                 background-color: white;
