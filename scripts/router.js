@@ -47,7 +47,7 @@ router.setState = function switchState(state) {
             const leftPage = document.querySelector(
                 '.weekly-log-left-grid-container'
             );
-            
+
             let counter = 1;
             // eslint-disable-next-line no-restricted-syntax
             for (const day of leftPage.children) {
@@ -73,7 +73,7 @@ router.setState = function switchState(state) {
                 newPage.logtype = 'weekly';
                 newPage.date = state.date;
                 newPage.position = counter;
-                console.log(day.children.length); 
+                console.log(day.children.length);
                 if (day.children.length > 0) {
                     day.removeChild(day.lastElementChild);
                 }
@@ -81,7 +81,7 @@ router.setState = function switchState(state) {
 
                 counter += 1;
             }
-            
+
             break;
         }
         case 'monthly': {
@@ -102,7 +102,7 @@ router.setState = function switchState(state) {
                 }
                 week.appendChild(newPage);
 
-                counter += 1; 
+                counter += 1;
             }
             break;
         }
@@ -112,15 +112,28 @@ router.setState = function switchState(state) {
             const mainPage = document.querySelector(
                 '.future-log-grid-container'
             );
-            const monthNamesFirstHalf = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN"];
-            const monthNamesSecondHalf = ["JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+            const monthNamesFirstHalf = [
+                'JAN',
+                'FEB',
+                'MAR',
+                'APR',
+                'MAY',
+                'JUN',
+            ];
+            const monthNamesSecondHalf = [
+                'JUL',
+                'AUG',
+                'SEP',
+                'OCT',
+                'NOV',
+                'DEC',
+            ];
             // Renaming Divs appropriately
             for (let i = 0; i < mainPage.children.length; i += 1) {
                 console.log(state.whichHalf);
                 if (state.whichHalf === 1) {
                     mainPage.children[i].innerHTML = monthNamesFirstHalf[i];
-                }
-                else {
+                } else {
                     mainPage.children[i].innerHTML = monthNamesSecondHalf[i];
                 }
             }
@@ -137,7 +150,7 @@ router.setState = function switchState(state) {
                 }
                 month.appendChild(newPage);
 
-                counter += 1; 
+                counter += 1;
             }
             break;
         }

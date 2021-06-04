@@ -171,23 +171,24 @@ class LogList extends HTMLElement {
                 const listEntry = document.createElement('li');
                 listEntry.textContent = keysArray[i];
                 let state;
-                if (logType === "future"){
+                if (logType === 'future') {
                     let half;
                     // If the key is January, pass half 1 into whichHalf
-                    // else, pass half 2 into whichHalf 
-                    if (keysArray[i].substring(0,2) === "Ja")
-                    {
+                    // else, pass half 2 into whichHalf
+                    if (keysArray[i].substring(0, 2) === 'Ja') {
                         half = 1;
-                    }
-                    else {
+                    } else {
                         half = 2;
                     }
-                    state = { page: logType, date: keysArray[i], whichHalf: half};
+                    state = {
+                        page: logType,
+                        date: keysArray[i],
+                        whichHalf: half,
+                    };
+                } else {
+                    state = { page: logType, date: keysArray[i] };
                 }
-                else {
-                    state = { page: logType, date: keysArray[i]};
-                }
-                
+
                 listEntry.addEventListener('click', () => {
                     setState(state);
                     console.log(state);
@@ -199,7 +200,11 @@ class LogList extends HTMLElement {
         createNewButton.addEventListener('click', () => {
             switch (logType) {
                 case 'daily': {
-                    const today = new Date().toLocaleDateString(undefined, {year: 'numeric', month: 'long', day: 'numeric' });
+                    const today = new Date().toLocaleDateString(undefined, {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                    });
                     getEntryFromStorage(logType, today, (entryData) => {
                         if (!entryData) {
                             const blankEntry = { 1: [''] };
@@ -224,11 +229,22 @@ class LogList extends HTMLElement {
                     const week = parseInt(day / 7, 10) + 1;
                     const month = new Date().getMonth();
                     const year = new Date().getFullYear();
-                    const monthNames = ["January", "February", "March", "April", "May", "June",
-                    "July", "August", "September", "October", "November", "December"
+                    const monthNames = [
+                        'January',
+                        'February',
+                        'March',
+                        'April',
+                        'May',
+                        'June',
+                        'July',
+                        'August',
+                        'September',
+                        'October',
+                        'November',
+                        'December',
                     ];
-                    
-                    const today = `Week ${  week  }, ${  monthNames[month] } ${year}`;
+
+                    const today = `Week ${week}, ${monthNames[month]} ${year}`;
                     getEntryFromStorage(logType, today, (entryData) => {
                         if (!entryData) {
                             const blankEntry = {
@@ -259,11 +275,22 @@ class LogList extends HTMLElement {
                     // Get the date, and format it to the storage template
                     const month = new Date().getMonth();
                     const year = new Date().getFullYear();
-                    const monthNames = ["January", "February", "March", "April", "May", "June",
-                    "July", "August", "September", "October", "November", "December"
+                    const monthNames = [
+                        'January',
+                        'February',
+                        'March',
+                        'April',
+                        'May',
+                        'June',
+                        'July',
+                        'August',
+                        'September',
+                        'October',
+                        'November',
+                        'December',
                     ];
-                    
-                    const today = `${monthNames[month]  } ${  year}`;
+
+                    const today = `${monthNames[month]} ${year}`;
                     getEntryFromStorage(logType, today, (entryData) => {
                         if (!entryData) {
                             const blankEntry = {
@@ -290,14 +317,13 @@ class LogList extends HTMLElement {
                 }
                 case 'future': {
                     const month = new Date().getMonth();
-                    const half = parseInt((month / 6), 10) + 1;
+                    const half = parseInt(month / 6, 10) + 1;
                     const year = new Date().getFullYear();
                     let today;
                     if (half === 1) {
-                        today = `January - June, ${  year}`;   
-                    }
-                    else {
-                        today = `July - December, ${  year}`;
+                        today = `January - June, ${year}`;
+                    } else {
+                        today = `July - December, ${year}`;
                     }
                     getEntryFromStorage(logType, today, (entryData) => {
                         if (!entryData) {
@@ -315,10 +341,18 @@ class LogList extends HTMLElement {
                                 blankEntry,
                                 'undefined'
                             );
-                            const state = { page: logType, date: today, whichHalf: half};
+                            const state = {
+                                page: logType,
+                                date: today,
+                                whichHalf: half,
+                            };
                             setState(state);
                         } else {
-                            const state = { page: logType, date: today, whichHalf: half};
+                            const state = {
+                                page: logType,
+                                date: today,
+                                whichHalf: half,
+                            };
                             setState(state);
                         }
                     });
