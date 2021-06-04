@@ -10,6 +10,8 @@
     grid-template-rows: 1fr;
     gap: 0px 0px;
     grid-template-areas: 'single-page';
+    overflow-y: scroll;
+    height:92.5vh;
 }
 
 .daily-log-content-div {

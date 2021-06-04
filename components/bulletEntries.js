@@ -59,6 +59,8 @@ class BulletEntries extends HTMLElement {
                 width: 97%;
                 resize: none;
                 font-size: 20px;
+                border-radius: 8px;
+
             }
         </style>
         <div class="text">
