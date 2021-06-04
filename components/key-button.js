@@ -1,7 +1,20 @@
 class keyButton extends HTMLElement {
+    
+    set logtype(logType) {
+        if (logType) {
+            this.setAttribute('logtype', logType);
+        } else {
+            this.removeAttribute('logtype');
+        }
+    }
+
+    get logtype() {
+        return this.getAttribute('logtype');
+    }
+    
     constructor() {
         super();
-
+        
         const template = document.createElement('template');
 
         template.innerHTML = `
@@ -27,7 +40,15 @@ class keyButton extends HTMLElement {
           <!-- Key Buttons Start -->
                 <div id="button-group">
                     <!--src= https://www.w3schools.com/charsets/ref_utf_dingbats.asp -->
-                    <!-- <button value="&#9744;" class="buttonGroup">&#9744;  INCOMPLETE</button> square <br /> -->
+                    <button value="&#8658;" class="buttonGroup">
+                    &#8658; MIGRATE
+                    </button> 
+                    <!-- Migration Arrow-->
+                    <button value="&#9744;" class="buttonGroup">
+                        &#9744; INCOMPLETE
+                    </button> 
+                    <!-- square without check-->
+                    <br />
                     <button value="&#9745;" class="buttonGroup">
                         &#9745; COMPLETE
                     </button>
@@ -39,7 +60,7 @@ class keyButton extends HTMLElement {
                     <!-- circle -->
                     <br />
                     <button value="&ndash;" class="buttonGroup">
-                        &ndash; IMPORTANT
+                        &ndash; NOTE
                     </button>
                     <!-- dash -->
                     <br />
@@ -59,10 +80,12 @@ class keyButton extends HTMLElement {
 
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(template.content.cloneNode(true));
-
+        const self = this;
         const btns = this.shadowRoot
             .getElementById('button-group')
             .querySelectorAll('button'); // keys
+
+        
         const textAreas = document.querySelectorAll('textarea');
         let area;
 
@@ -74,10 +97,47 @@ class keyButton extends HTMLElement {
             });
         });
 
+        
+        // find appropriate bullet entries from logtype
+        //console.log(self.logtype)
+        
         // on button click add key to last clicked textarea
         btns.forEach((btn) => {
             btn.addEventListener('click', () => {
-                area.value += btn.value;
+                // area.value += btn.value;
+                let bulletEntries;
+                switch(self.logtype) {
+                    case 'daily': {
+                        bulletEntries = document.querySelector('.single-page > bullet-entries');
+                        break;
+                    }
+                    case 'weekly': {
+                        bulletEntries = document.querySelectorAll('.weekly-log-grid-container bullet-entries');
+                        break;
+                    }
+                    case 'monthly': {
+                        bulletEntries = document.querySelectorAll('.monthly-log-grid-container bullet-entries');
+                        break;
+                    }
+                    case 'future': {
+                        bulletEntries = document.querySelectorAll('.future-log-grid-container bullet-entries');
+                        break;
+                    }
+                    default: {
+                        break;
+                    }
+                }
+                let area;
+        
+                // Get text area when clicked
+                bulletEntries.forEach((bulletEntry) => {
+                    bulletEntry.addEventListener('click', () => {
+                        area = bulletEntry;
+                        console.log(area)
+                    });
+                });
+                    
+                
             });
         });
     }

@@ -191,7 +191,6 @@ class LogList extends HTMLElement {
 
                 listEntry.addEventListener('click', () => {
                     setState(state);
-                    console.log(state);
                 });
                 logsList.appendChild(listEntry);
             }

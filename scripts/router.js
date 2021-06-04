@@ -10,6 +10,9 @@ export const router = {};
 router.setState = function switchState(state) {
     const body = document.querySelector('body');
     const title = document.querySelector('.title');
+    const keyButton = document.querySelector('key-button');
+    const newKeyButton = document.createElement('key-button');
+
     switch (state.page) {
         case 'home': {
             body.id = 'home';
@@ -28,6 +31,8 @@ router.setState = function switchState(state) {
             // pushState();
             body.id = 'daily-log';
             title.textContent = state.date;
+            
+            
             const singlePage = document.querySelector('.single-page');
             const newPage = document.createElement('bullet-entries');
             newPage.logtype = 'daily';
@@ -38,14 +43,16 @@ router.setState = function switchState(state) {
             } else {
                 singlePage.appendChild(newPage);
             }
-
+            keyButton.logtype = 'daily';
+            
             break;
         }
         case 'weekly': {
             body.id = 'weekly-log';
             title.textContent = state.date;
+            
             const leftPage = document.querySelector(
-                '.weekly-log-left-grid-container'
+                '.weekly-log-left-grid'
             );
 
             let counter = 1;
@@ -64,7 +71,7 @@ router.setState = function switchState(state) {
             }
 
             const rightPage = document.querySelector(
-                '.weekly-log-right-grid-container'
+                '.weekly-log-right-grid'
             );
 
             // eslint-disable-next-line no-restricted-syntax
@@ -73,7 +80,6 @@ router.setState = function switchState(state) {
                 newPage.logtype = 'weekly';
                 newPage.date = state.date;
                 newPage.position = counter;
-                console.log(day.children.length);
                 if (day.children.length > 0) {
                     day.removeChild(day.lastElementChild);
                 }
@@ -81,18 +87,19 @@ router.setState = function switchState(state) {
 
                 counter += 1;
             }
-
+            keyButton.logtype = 'weekly';
             break;
         }
         case 'monthly': {
             body.id = 'monthly-log';
             title.textContent = state.date;
-            const mainPage = document.querySelector(
-                '.monthly-log-grid-container'
+            
+            const leftPage = document.querySelector(
+                '.monthly-left'
             );
             let counter = 1;
             // eslint-disable-next-line no-restricted-syntax
-            for (const week of mainPage.children) {
+            for (const week of leftPage.children) {
                 const newPage = document.createElement('bullet-entries');
                 newPage.logtype = 'monthly';
                 newPage.date = state.date;
@@ -104,11 +111,29 @@ router.setState = function switchState(state) {
 
                 counter += 1;
             }
+            const rightPage = document.querySelector(
+                '.monthly-right'
+            );
+            // eslint-disable-next-line no-restricted-syntax
+            for (const week of rightPage.children) {
+                const newPage = document.createElement('bullet-entries');
+                newPage.logtype = 'monthly';
+                newPage.date = state.date;
+                newPage.position = counter;
+                if (week.children.length > 0) {
+                    week.removeChild(week.lastElementChild);
+                }
+                week.appendChild(newPage);
+
+                counter += 1;
+            }
+            keyButton.logtype = 'monthly';
             break;
         }
         case 'future': {
             body.id = 'future-log';
             title.textContent = state.date;
+            
             const mainPage = document.querySelector(
                 '.future-log-grid-container'
             );
@@ -152,6 +177,7 @@ router.setState = function switchState(state) {
 
                 counter += 1;
             }
+            keyButton.logtype = 'future';
             break;
         }
         default: {
