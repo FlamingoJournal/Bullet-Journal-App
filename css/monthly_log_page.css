@@ -17,8 +17,8 @@
     grid-template-rows: 1fr 1fr;
     gap: 0px 0px;
     grid-template-areas:
-    'week-1'
-    'week-2';
+        'week-1'
+        'week-2';
 }
 
 .monthly-right-grid {
@@ -27,9 +27,9 @@
     grid-template-rows: 1fr 1fr 1fr;
     gap: 0px 0px;
     grid-template-areas:
-    'week-3'
-    'week-4'
-    'week-5';
+        'week-3'
+        'week-4'
+        'week-5';
 }
 
 .monthly-left {
@@ -40,7 +40,8 @@
     grid-area: monthly-right;
 }
 
-.monthly-left > div, .monthly-right > div {
+.monthly-left > div,
+.monthly-right > div {
     padding: 0;
     margin: 1px;
     background-color: white;
@@ -66,7 +67,8 @@
     grid-area: week-5;
 }
 
-.monthly-left > div, .monthly-right > div {
+.monthly-left > div,
+.monthly-right > div {
     font-size: calc(12px + 1vw);
     font-style: normal;
     font-weight: bold;
