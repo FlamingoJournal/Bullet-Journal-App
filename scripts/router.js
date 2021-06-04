@@ -11,7 +11,7 @@ router.setState = function switchState(state) {
     const body = document.querySelector('body');
     const title = document.querySelector('.title');
     const keyButton = document.querySelector('key-button');
-    const newKeyButton = document.createElement('key-button');
+    // const newKeyButton = document.createElement('key-button');
 
     switch (state.page) {
         case 'home': {
@@ -31,8 +31,7 @@ router.setState = function switchState(state) {
             // pushState();
             body.id = 'daily-log';
             title.textContent = state.date;
-            
-            
+
             const singlePage = document.querySelector('.single-page');
             const newPage = document.createElement('bullet-entries');
             newPage.logtype = 'daily';
@@ -44,16 +43,14 @@ router.setState = function switchState(state) {
                 singlePage.appendChild(newPage);
             }
             keyButton.logtype = 'daily';
-            
+
             break;
         }
         case 'weekly': {
             body.id = 'weekly-log';
             title.textContent = state.date;
-            
-            const leftPage = document.querySelector(
-                '.weekly-log-left-grid'
-            );
+
+            const leftPage = document.querySelector('.weekly-log-left-grid');
 
             let counter = 1;
             // eslint-disable-next-line no-restricted-syntax
@@ -70,9 +67,7 @@ router.setState = function switchState(state) {
                 counter += 1;
             }
 
-            const rightPage = document.querySelector(
-                '.weekly-log-right-grid'
-            );
+            const rightPage = document.querySelector('.weekly-log-right-grid');
 
             // eslint-disable-next-line no-restricted-syntax
             for (const day of rightPage.children) {
@@ -93,10 +88,8 @@ router.setState = function switchState(state) {
         case 'monthly': {
             body.id = 'monthly-log';
             title.textContent = state.date;
-            
-            const leftPage = document.querySelector(
-                '.monthly-left'
-            );
+
+            const leftPage = document.querySelector('.monthly-left');
             let counter = 1;
             // eslint-disable-next-line no-restricted-syntax
             for (const week of leftPage.children) {
@@ -111,9 +104,7 @@ router.setState = function switchState(state) {
 
                 counter += 1;
             }
-            const rightPage = document.querySelector(
-                '.monthly-right'
-            );
+            const rightPage = document.querySelector('.monthly-right');
             // eslint-disable-next-line no-restricted-syntax
             for (const week of rightPage.children) {
                 const newPage = document.createElement('bullet-entries');
@@ -133,7 +124,7 @@ router.setState = function switchState(state) {
         case 'future': {
             body.id = 'future-log';
             title.textContent = state.date;
-            
+
             const mainPage = document.querySelector(
                 '.future-log-grid-container'
             );

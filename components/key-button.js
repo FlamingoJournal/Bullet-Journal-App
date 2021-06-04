@@ -1,5 +1,4 @@
 class keyButton extends HTMLElement {
-    
     set logtype(logType) {
         if (logType) {
             this.setAttribute('logtype', logType);
@@ -11,10 +10,10 @@ class keyButton extends HTMLElement {
     get logtype() {
         return this.getAttribute('logtype');
     }
-    
+
     constructor() {
         super();
-        
+
         const template = document.createElement('template');
 
         template.innerHTML = `
@@ -85,42 +84,48 @@ class keyButton extends HTMLElement {
             .getElementById('button-group')
             .querySelectorAll('button'); // keys
 
-        
-        const textAreas = document.querySelectorAll('textarea');
-        let area;
+        // const textAreas = document.querySelectorAll('textarea');
 
         // Get text area when clicked
-        textAreas.forEach((textArea) => {
-            textArea.addEventListener('click', () => {
-                area = textArea;
-                // console.log(area)
-            });
-        });
+        // textAreas.forEach((textArea) => {
+        //     textArea.addEventListener('click', () => {
+        //         const area;
+        //         area = textArea;
+        //         // console.log(area)
+        //     });
+        // });
 
-        
         // find appropriate bullet entries from logtype
-        //console.log(self.logtype)
-        
+        // console.log(self.logtype)
+
         // on button click add key to last clicked textarea
         btns.forEach((btn) => {
             btn.addEventListener('click', () => {
                 // area.value += btn.value;
                 let bulletEntries;
-                switch(self.logtype) {
+                switch (self.logtype) {
                     case 'daily': {
-                        bulletEntries = document.querySelector('.single-page > bullet-entries');
+                        bulletEntries = document.querySelector(
+                            '.single-page > bullet-entries'
+                        );
                         break;
                     }
                     case 'weekly': {
-                        bulletEntries = document.querySelectorAll('.weekly-log-grid-container bullet-entries');
+                        bulletEntries = document.querySelectorAll(
+                            '.weekly-log-grid-container bullet-entries'
+                        );
                         break;
                     }
                     case 'monthly': {
-                        bulletEntries = document.querySelectorAll('.monthly-log-grid-container bullet-entries');
+                        bulletEntries = document.querySelectorAll(
+                            '.monthly-log-grid-container bullet-entries'
+                        );
                         break;
                     }
                     case 'future': {
-                        bulletEntries = document.querySelectorAll('.future-log-grid-container bullet-entries');
+                        bulletEntries = document.querySelectorAll(
+                            '.future-log-grid-container bullet-entries'
+                        );
                         break;
                     }
                     default: {
@@ -128,16 +133,14 @@ class keyButton extends HTMLElement {
                     }
                 }
                 let area;
-        
+
                 // Get text area when clicked
                 bulletEntries.forEach((bulletEntry) => {
                     bulletEntry.addEventListener('click', () => {
                         area = bulletEntry;
-                        console.log(area)
+                        console.log(area);
                     });
                 });
-                    
-                
             });
         });
     }
