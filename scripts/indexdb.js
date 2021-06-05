@@ -18,8 +18,8 @@ dbReq.onupgradeneeded = function (event) {
     db.createObjectStore('monthly', { autoIncrement: false });
     db.createObjectStore('future', { autoIncrement: false });
     db.createObjectStore('mostRecent', { autoIncrement: false });
-    db.createObjectStore('color', { autoIncrement: false });
 };
+// Create logList instances on home page
 dbReq.onsuccess = function (event) {
     db = event.target.result;
     const logLists = document.querySelectorAll('log-list');
@@ -37,10 +37,12 @@ dbReq.onerror = function (event) {
  * @param {*} logType The store name that is being added to
  * @param {*} date Unique identifier for log
  * @param {*} data Array that holds all of the text area content
+ * @param {*} position This will specify which index within a day for which
+ * to save to. This is used for saving multiple bulletEntry instances on one
+ * page
  */
 
 export function saveEntryToStorage(logType, date, data, position) {
-    // Start a database transaction and get the notes object store
     const tx = db.transaction([String(logType)], 'readwrite');
     const store = tx.objectStore(String(logType));
     if (position === 'undefined') {
@@ -56,7 +58,7 @@ export function saveEntryToStorage(logType, date, data, position) {
             }
         };
     }
-    // Wait for the database transaction to complete
+
     tx.onerror = function (event) {
         alert(`error storing note ${event.target.errorCode}`);
     };
@@ -72,6 +74,7 @@ export function getEntryFromStorage(logType, date, dataHandlerFunction) {
     const tx = db.transaction([String(logType)], 'readwrite');
     const store = tx.objectStore(String(logType));
     const req = store.get(date);
+    // Pass value from passed in key to a callback function
     req.onsuccess = function () {
         dataHandlerFunction(req.result);
     };
@@ -86,6 +89,7 @@ export function getAllKeys(logType, dataHandlerFunction) {
     const tx = db.transaction([String(logType)], 'readwrite');
     const store = tx.objectStore(String(logType));
     const req = store.getAllKeys();
+    // Pass all the key names to a callback function
     req.onsuccess = function () {
         dataHandlerFunction(req.result);
     };

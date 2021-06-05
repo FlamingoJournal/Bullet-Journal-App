@@ -1,16 +1,39 @@
-// script.js
-
 /** **************NAVIGATION******************* */
 import { router } from './router.js';
-import { getAllKeys } from './indexdb.js';
-// import router from './router';
-// Router imported so you can use it to manipulate your SPA app here
+import { getAllKeys, getEntryFromStorage } from './indexdb.js';
+
 const { setState } = router;
+
+/**
+ *
+ * @param {*} logType the store that is going to be switched to
+ */
+function goToMostRecent(logType) {
+    getEntryFromStorage('mostRecent', logType, (entryData) => {
+        if (entryData !== undefined) {
+            let state;
+            if (logType === 'future' && entryData.substring(0, 2) === 'Ja') {
+                state = {
+                    page: logType,
+                    date: entryData,
+                    whichHalf: 1,
+                };
+            } else {
+                state = {
+                    page: logType,
+                    date: entryData,
+                    whichHalf: 2,
+                };
+            }
+            setState(state);
+        }
+    });
+}
 
 const leftArrow = document.getElementById('nav-left');
 /**
- * Left arrow functionality, switches to the previous page in the current log.
- * @todo Implement this function
+ * When the leftArrow is clicked, navigate to the log before current if it
+ * exists
  */
 leftArrow.onclick = function navigateLeft() {
     const logType = document
@@ -36,8 +59,8 @@ leftArrow.onclick = function navigateLeft() {
 
 const rightArrow = document.getElementById('nav-right');
 /**
- * Right arrow functionality, switches to the next page in the current log.
- * @todo Implement this function
+ * When the rightArrow is clicked, navigate to the log after current if it
+ * exists
  */
 rightArrow.onclick = function navigateRight() {
     const logType = document
@@ -63,46 +86,43 @@ rightArrow.onclick = function navigateRight() {
 
 const dailyTab = document.getElementById('daily-btn');
 /**
- * Show daily log entries in sidebar on click.
- * @todo Implement this function
+ * When the daily tab is clicked on, call goToMostRecent to switch to the
+ * most recent daily log
  */
 dailyTab.onclick = function () {
-    // for element in localstorage.daily{
-    //     daily_tab.appendChild(html.a)
-    // }
+    goToMostRecent('daily');
 };
 
 const weeklyTab = document.getElementById('weekly-btn');
 /**
- * Show weekly log entries in sidebar on click.
- * @todo Implement this function
+ * When the weekly tab is clicked on, call goToMostRecent to switch to the
+ * most recent weekly log
  */
 weeklyTab.onclick = function () {
-    // setState();
+    goToMostRecent('weekly');
 };
 
 const monthlyTab = document.getElementById('monthly-btn');
 /**
- * Show monthly log entries in sidebar on click.
- * @todo Implement this function
+ * When the monthly tab is clicked on, call goToMostRecent to switch to the
+ * most recent monthly log
  */
 monthlyTab.onclick = function () {
-    // setState();
+    goToMostRecent('monthly');
 };
 
 const futureTab = document.getElementById('future-btn');
 /**
- * Show future log entries in sidebar on click.
- * @todo Implement this function
+ * When the future tab is clicked on, call goToMostRecent to switch to the
+ * most recent future log
  */
 futureTab.onclick = function () {
-    // setState();
+    goToMostRecent('future');
 };
 
 const homeButton = document.getElementById('flamingo-logo');
 /**
- * Go back to the home/default page on logo click.
- * @todo Implement this function
+ * When the home tab is clicked on, switch to the home page
  */
 homeButton.onclick = function () {
     setState({ page: 'home' });

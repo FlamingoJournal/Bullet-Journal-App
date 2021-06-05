@@ -1,11 +1,11 @@
-// const router = {};
-// export default router;
+import { saveEntryToStorage } from './indexdb.js';
 
 export const router = {};
 
 /**
  *
- * @param {*} state An object that has data about the caller and will switch pages based on that information
+ * @param {*} state An object that has data about the caller and will
+ *                  switch pages based on that information
  */
 router.setState = function switchState(state) {
     const body = document.querySelector('body');
@@ -20,15 +20,21 @@ router.setState = function switchState(state) {
     for (const entry of allBulletEntries) {
         entry.remove();
     }
+    // If you are switching to a log, update mostRecent Store
+    // with the log being switched to
+    if (state.page !== 'home') {
+        saveEntryToStorage('mostRecent', state.page, state.date, 'undefined');
+    }
 
     switch (state.page) {
+        // Dynamically 'create' logList when switching to home page
         case 'home': {
             body.id = 'home';
             const logLists = document.querySelectorAll('log-list');
             logLists[0].type = 'daily';
             logLists[1].type = 'weekly';
             logLists[2].type = 'monthly';
-            logLists[3].type = 'future'; // !!! log lists aren't properly set unless we switch to home from a different page, calling setState
+            logLists[3].type = 'future';
             break;
         }
         case 'daily': {
@@ -53,6 +59,9 @@ router.setState = function switchState(state) {
             const leftPage = document.querySelector('.weekly-log-left-grid');
 
             let counter = 1;
+
+            // Create bulletEntry instances for each day of the week
+            // on the left side of the page
             // eslint-disable-next-line no-restricted-syntax
             for (const day of leftPage.children) {
                 const newPage = document.createElement('bullet-entries');
@@ -65,7 +74,8 @@ router.setState = function switchState(state) {
             }
 
             const rightPage = document.querySelector('.weekly-log-right-grid');
-
+            // Create bulletEntry instances for each day of the week
+            // on the right side of the page
             // eslint-disable-next-line no-restricted-syntax
             for (const day of rightPage.children) {
                 const newPage = document.createElement('bullet-entries');
@@ -84,7 +94,11 @@ router.setState = function switchState(state) {
             title.textContent = state.date;
 
             const leftPage = document.querySelector('.monthly-left');
+            // counter will hold the value of position for saveEntryToStorage
             let counter = 1;
+
+            // Create bulletEntry instances for each week of the month
+            // on the left side of the page
             // eslint-disable-next-line no-restricted-syntax
             for (const week of leftPage.children) {
                 const newPage = document.createElement('bullet-entries');
@@ -95,7 +109,11 @@ router.setState = function switchState(state) {
 
                 counter += 1;
             }
+
             const rightPage = document.querySelector('.monthly-right');
+
+            // Create bulletEntry instances for each week of the month
+            // on the right side of the page
             // eslint-disable-next-line no-restricted-syntax
             for (const week of rightPage.children) {
                 const newPage = document.createElement('bullet-entries');
@@ -134,7 +152,6 @@ router.setState = function switchState(state) {
             ];
             // Renaming Divs appropriately
             for (let i = 0; i < mainPage.children.length; i += 1) {
-                console.log(state.whichHalf);
                 if (state.whichHalf === 1) {
                     mainPage.children[i].innerHTML = monthNamesFirstHalf[i];
                 } else {
@@ -143,6 +160,7 @@ router.setState = function switchState(state) {
             }
 
             let counter = 1;
+            // Create bulletEntry instances for each month of the half-year
             // eslint-disable-next-line no-restricted-syntax
             for (const month of mainPage.children) {
                 const newPage = document.createElement('bullet-entries');
@@ -163,5 +181,4 @@ router.setState = function switchState(state) {
             break;
         }
     }
-    // page switches to daily, date is given somehow? create bulletEntry dynamically, set date
 };
