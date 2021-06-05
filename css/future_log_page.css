@@ -13,9 +13,7 @@
     padding: 5px;
     background-color: white;
     margin: 1px;
-}
 
-.future {
     font-size: calc(12px + 1.5vw);
     font-style: normal;
     font-weight: bold;

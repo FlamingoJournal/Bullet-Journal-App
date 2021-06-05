@@ -59,6 +59,8 @@ class BulletEntries extends HTMLElement {
                 width: 97%;
                 resize: none;
                 font-size: 20px;
+                border-radius: 8px;
+
             }
         </style>
         <div class="text">
@@ -148,7 +150,6 @@ class BulletEntries extends HTMLElement {
             for (let i = 0; i < entries.length; i += 1) {
                 data.push(entries[i].value);
             }
-            console.log('saving?');
             // 2021may01monday
             // 2021may01tuesday
             //  get info from storage, add new data array to current date key, save it back in

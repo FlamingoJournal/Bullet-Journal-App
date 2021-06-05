@@ -17,7 +17,7 @@
 }
 
 /* LEFT */
-.weekly-log-left-grid-container {
+.weekly-log-left-grid {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
@@ -29,7 +29,7 @@
 }
 
 /* RIGHT */
-.weekly-log-right-grid-container {
+.weekly-log-right-grid {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
@@ -42,7 +42,8 @@
 }
 
 /* Titles*/
-.weekly {
+.weekly-log-left-grid > div,
+.weekly-log-right-grid > div {
     font-size: calc(12px + 1.5vw);
     font-style: normal;
     font-weight: bold;

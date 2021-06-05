@@ -50,9 +50,8 @@ export function saveEntryToStorage(logType, date, data, position) {
 
         storeData.onsuccess = function () {
             if (storeData) {
-                console.log(storeData);
                 storeData.result[position] = data;
-                console.log(storeData.result);
+
                 store.put(storeData.result, date);
             }
         };
