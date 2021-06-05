@@ -21,7 +21,14 @@ leftArrow.onclick = function navigateLeft() {
         const logIndex = entryKeys.indexOf(title);
         if (logIndex - 1 >= 0) {
             const nextDate = entryKeys[logIndex - 1];
-            const state = { page: logType, date: nextDate };
+            let state;
+            // If you are switching in the future log, you also need to change
+            // the titles of the divs. This means we have to set whichHalf accordingly
+            if (logType === 'future' && nextDate.substring(0, 2) === 'Ja') {
+                state = { page: logType, date: nextDate, whichHalf: 1 };
+            } else {
+                state = { page: logType, date: nextDate, whichHalf: 2 };
+            }
             setState(state);
         }
     });
@@ -41,7 +48,14 @@ rightArrow.onclick = function navigateRight() {
         const logIndex = entryKeys.indexOf(title);
         if (logIndex + 1 < entryKeys.length) {
             const nextDate = entryKeys[logIndex + 1];
-            const state = { page: logType, date: nextDate };
+            let state;
+            // If you are switching in the future log, you also need to change
+            // the titles of the divs. This means we have to set whichHalf accordingly
+            if (logType === 'future' && nextDate.substring(0, 2) === 'Ja') {
+                state = { page: logType, date: nextDate, whichHalf: 1 };
+            } else {
+                state = { page: logType, date: nextDate, whichHalf: 2 };
+            }
             setState(state);
         }
     });

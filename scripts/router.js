@@ -13,6 +13,14 @@ router.setState = function switchState(state) {
     const keyButton = document.querySelector('key-button');
     // const newKeyButton = document.createElement('key-button');
 
+    const allBulletEntries = document.querySelectorAll('bullet-entries');
+
+    // If there are instances of bullet-entry in the dom, delete them.
+    // eslint-disable-next-line no-restricted-syntax
+    for (const entry of allBulletEntries) {
+        entry.remove();
+    }
+
     switch (state.page) {
         case 'home': {
             body.id = 'home';
@@ -24,11 +32,6 @@ router.setState = function switchState(state) {
             break;
         }
         case 'daily': {
-            // swap the ID to daily, show the daily divs
-            // delete any leftover custom textareas from last time we were here
-            // create new textareas with date passed in
-            // textarea needs to pull data and save data to that date in the storage
-            // pushState();
             body.id = 'daily-log';
             title.textContent = state.date;
 
@@ -37,11 +40,8 @@ router.setState = function switchState(state) {
             newPage.logtype = 'daily';
             newPage.date = state.date;
             newPage.position = 1;
-            if (singlePage.children.length > 0) {
-                singlePage.replaceChild(newPage, singlePage.lastElementChild);
-            } else {
-                singlePage.appendChild(newPage);
-            }
+            singlePage.appendChild(newPage);
+
             keyButton.logtype = 'daily';
 
             break;
@@ -59,9 +59,6 @@ router.setState = function switchState(state) {
                 newPage.logtype = 'weekly';
                 newPage.date = state.date;
                 newPage.position = counter;
-                if (day.children.length > 0) {
-                    day.removeChild(day.lastElementChild);
-                }
                 day.appendChild(newPage);
 
                 counter += 1;
@@ -75,9 +72,6 @@ router.setState = function switchState(state) {
                 newPage.logtype = 'weekly';
                 newPage.date = state.date;
                 newPage.position = counter;
-                if (day.children.length > 0) {
-                    day.removeChild(day.lastElementChild);
-                }
                 day.appendChild(newPage);
 
                 counter += 1;
@@ -97,9 +91,6 @@ router.setState = function switchState(state) {
                 newPage.logtype = 'monthly';
                 newPage.date = state.date;
                 newPage.position = counter;
-                if (week.children.length > 0) {
-                    week.removeChild(week.lastElementChild);
-                }
                 week.appendChild(newPage);
 
                 counter += 1;
@@ -111,9 +102,6 @@ router.setState = function switchState(state) {
                 newPage.logtype = 'monthly';
                 newPage.date = state.date;
                 newPage.position = counter;
-                if (week.children.length > 0) {
-                    week.removeChild(week.lastElementChild);
-                }
                 week.appendChild(newPage);
 
                 counter += 1;
