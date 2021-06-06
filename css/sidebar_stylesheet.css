@@ -27,24 +27,32 @@
 }
 
 .tabs-buttonGrp {
-    display: flex;
     justify-content: center;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr; */
 }
 
 .tabs-buttonGrp button {
     border: transparent;
+    width: 100%;
     background-color: transparent;
+    padding: 12px;
     border-bottom: 2px solid gray;
-
+    display: block;
     font-family: 'Lato', sans-serif;
-    font-size: 10pt;
+    font-size: 14pt;
     font-weight: bold;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+
 }
 
 /* Change background color of buttons on hover */
 .tabs-buttonGrp button:hover {
     background-color: #ddd;
-    border-bottom: 2px solid darkgray;
+    border-bottom: 2px solid gray;
 }
 
 /* Create an active/current tablink class */
@@ -52,6 +60,10 @@
     background-color: #ccc;
     border-bottom: 2px solid black;
 }
+
+#daily-btn {
+    border-top: 2px solid gray;
+  }
 
 /* Log Key Buttons */
 .log-key {
