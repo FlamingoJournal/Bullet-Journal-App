@@ -46,7 +46,6 @@
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
-
 }
 
 /* Change background color of buttons on hover */
@@ -63,7 +62,7 @@
 
 #daily-btn {
     border-top: 2px solid gray;
-  }
+}
 
 /* Log Key Buttons */
 .log-key {
