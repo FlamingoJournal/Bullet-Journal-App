@@ -11,13 +11,18 @@
     grid-template-areas: 'weekly-page-left weekly-page-right';
 }
 
-.monday, .tuesday, .wednesday {
-    height: calc((100vh - 110px)/3);
+.monday,
+.tuesday,
+.wednesday {
+    height: calc((100vh - 110px) / 3);
     overflow-y: scroll;
 }
 
-.thursday, .friday, .saturday, .sunday {
-    height: calc((100vh - 110px)/4);
+.thursday,
+.friday,
+.saturday,
+.sunday {
+    height: calc((100vh - 110px) / 4);
     overflow-y: scroll;
 }
 
