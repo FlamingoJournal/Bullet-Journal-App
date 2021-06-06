@@ -56,13 +56,21 @@ class BulletEntries extends HTMLElement {
         template.innerHTML = `
         <style>
             textarea {
-                width: 98%;
+                width: 100%;
                 resize: none;
                 font-size: 20px;
                 border-radius: 8px;
                 display: block;
-                margin: 5px 
             }
+
+            .entry {
+                width: 98%;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+
         </style>
         <div class="text">
             <textarea class="entry" cols="50" rows="1"></textarea>
