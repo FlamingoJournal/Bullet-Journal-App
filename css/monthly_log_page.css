@@ -47,6 +47,17 @@
     background-color: white;
 }
 
+.week-1,
+.week-2 {
+    height: calc((100vh - 110px) / 2);
+}
+
+.week-3,
+.week-4,
+.week-5 {
+    height: calc((100vh - 110px) / 3);
+}
+
 .week-1 {
     grid-area: week-1;
 }

@@ -11,6 +11,21 @@
     grid-template-areas: 'weekly-page-left weekly-page-right';
 }
 
+.monday,
+.tuesday,
+.wednesday {
+    height: calc((100vh - 110px) / 3);
+    overflow-y: scroll;
+}
+
+.thursday,
+.friday,
+.saturday,
+.sunday {
+    height: calc((100vh - 110px) / 4);
+    overflow-y: scroll;
+}
+
 .weekly-log-grid-container > div > div {
     margin: 1px;
     background-color: white;
