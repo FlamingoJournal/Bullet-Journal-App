@@ -27,30 +27,49 @@
 }
 
 .tabs-buttonGrp {
-    display: flex;
     justify-content: center;
 }
 
 .tabs-buttonGrp button {
     border: transparent;
+    width: 100%;
     background-color: transparent;
-    border-bottom: 2px solid gray;
-
+    padding: 12px;
+    border-bottom: 2px solid var(--contrast-lines);
+    display: block;
     font-family: 'Lato', sans-serif;
-    font-size: 10pt;
+    font-size: 14pt;
     font-weight: bold;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Change background color of buttons on hover */
 .tabs-buttonGrp button:hover {
     background-color: #ddd;
-    border-bottom: 2px solid darkgray;
+    border-bottom: 2px solid var(--contrast-lines);
+    cursor: pointer;
 }
 
-/* Create an active/current tablink class */
-.tabs-buttonGrp button.active {
-    background-color: #ccc;
-    border-bottom: 2px solid black;
+#daily-btn {
+    border-top: 2px solid var(--contrast-lines);
+}
+
+#daily-log #daily-btn {
+    background-color: #ddd;
+}
+
+#weekly-log #weekly-btn {
+    background-color: #ddd;
+}
+
+#monthly-log #monthly-btn {
+    background-color: #ddd;
+}
+
+#future-log #future-btn {
+    background-color: #ddd;
 }
 
 /* Log Key Buttons */

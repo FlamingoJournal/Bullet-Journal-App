@@ -3,6 +3,7 @@
 
 /* Styling for main */
 .daily-log-grid-container {
+    height: calc(100vh - 101px);
     margin: 10px;
     background-color: white;
     display: grid;
@@ -11,12 +12,11 @@
     gap: 0px 0px;
     grid-template-areas: 'single-page';
     overflow-y: scroll;
-    height: 92.5vh;
 }
 
 .daily-log-content-div {
+    padding: 5px;
     grid-area: single-page;
-    background-color: var(--background-color);
 }
 
 #home .daily-log-grid-container {
