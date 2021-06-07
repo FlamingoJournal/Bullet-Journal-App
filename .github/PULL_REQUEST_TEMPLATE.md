@@ -7,7 +7,7 @@ Please include a summary of the change.
 
 Fixes issues: #(add issue numbers)
 
-## Type of change
+# Type of change
 
 Please delete options that are not relevant.
 
