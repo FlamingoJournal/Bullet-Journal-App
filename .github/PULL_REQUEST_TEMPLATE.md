@@ -22,7 +22,9 @@ Please delete options that are not relevant.
 
 (mark all items with an x in the checkbox)
 
--   [ ] Updated branch with changes from main
+-   [ ] Updated branch with changes from main.
+-   [ ] Added a reviewer to the pull request.
+-   [ ] Linked issues to the pull request, if applicable.
 -   [ ] Checked all pages of the web app to make sure nothing broke.
 -   [ ] My code follows the style guidelines of this project (use prettier on appropriate files).
--   [ ] I have commented any JS code written, particularly in hard-to-understand areas
+-   [ ] I have commented any JS code written, particularly in hard-to-understand areas.
