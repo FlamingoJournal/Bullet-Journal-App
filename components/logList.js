@@ -44,7 +44,7 @@ class LogList extends HTMLElement {
                 background-color: white;
                 border-color: transparent;
                 border-radius: 30px;
-                box-shadow: 0px 0px 10px 0px white;
+                box-shadow: 0px 0px 10px 0px rgb(200,200,200);
                 text-align: center;
                 margin-bottom: 10px;
                 cursor: pointer;
@@ -76,6 +76,7 @@ class LogList extends HTMLElement {
             .logs-list li:hover {
                 color: gray;
                 text-decoration: underline;
+                cursor: pointer;
             }
         </style>
 

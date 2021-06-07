@@ -32,6 +32,11 @@ class settingsModal extends HTMLElement {
                     border: none;
                     width: 30px;
                     height: 30px;
+                    cursor: pointer;
+                }
+
+                .settingsButton:hover {
+                    filter: drop-shadow( 0px 0px 10px rgba(150, 150, 150, 0.65));
                 }
 
                 .settingsModal {
