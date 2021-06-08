@@ -8,11 +8,10 @@ const dbReq = indexedDB.open('myDatabase', 1);
  *                  with version 1 and stores
  */
 dbReq.onupgradeneeded = function (event) {
-    // Set the db variable to our database so we can use it!
+    // Set the db variable to our database
     db = event.target.result;
 
-    // Create an object store named notes. Object stores
-    // in databases are where data are stored.
+    // Create object stores
     db.createObjectStore('daily', { autoIncrement: false });
     db.createObjectStore('weekly', { autoIncrement: false });
     db.createObjectStore('monthly', { autoIncrement: false });
@@ -39,7 +38,7 @@ dbReq.onerror = function (event) {
  * @param {*} data Array that holds all of the text area content
  * @param {*} position This will specify which index within a day for which
  * to save to. This is used for saving multiple bulletEntry instances on one
- * page
+ * page. Undefined if saving for first time
  */
 
 export function saveEntryToStorage(logType, date, data, position) {

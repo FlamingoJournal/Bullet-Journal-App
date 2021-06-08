@@ -10,8 +10,6 @@ export const router = {};
 router.setState = function switchState(state) {
     const body = document.querySelector('body');
     const title = document.querySelector('.title');
-    const keyButton = document.querySelector('key-button');
-    // const newKeyButton = document.createElement('key-button');
 
     const allBulletEntries = document.querySelectorAll('bullet-entries');
 
@@ -47,9 +45,6 @@ router.setState = function switchState(state) {
             newPage.date = state.date;
             newPage.position = 1;
             singlePage.appendChild(newPage);
-
-            keyButton.logtype = 'daily';
-
             break;
         }
         case 'weekly': {
@@ -86,7 +81,6 @@ router.setState = function switchState(state) {
 
                 counter += 1;
             }
-            keyButton.logtype = 'weekly';
             break;
         }
         case 'monthly': {
@@ -124,7 +118,6 @@ router.setState = function switchState(state) {
 
                 counter += 1;
             }
-            keyButton.logtype = 'monthly';
             break;
         }
         case 'future': {
@@ -174,7 +167,6 @@ router.setState = function switchState(state) {
 
                 counter += 1;
             }
-            keyButton.logtype = 'future';
             break;
         }
         default: {
