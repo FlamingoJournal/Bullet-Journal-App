@@ -5,6 +5,11 @@
 // <journal-entry> custom web component
 import { saveEntryToStorage, getEntryFromStorage } from '../scripts/indexdb.js';
 
+/**
+ * Custom component representing each block of bullet entries found on the log pages. Each block has self-contained text areas.
+ * Allows more text areas to be added dynamically when the user presses Ctrl+Enter or clicks away from the current text area.
+ * Also has support for tabbing and auto-increasing text area height.
+ */
 class BulletEntries extends HTMLElement {
     set position(pos) {
         if (pos) {

@@ -1,5 +1,8 @@
 import { getEntryFromStorage } from '../scripts/indexdb.js';
 
+/**
+ * Custom component representing the key buttons attached to the sidebar. Used to select key symbols that are then added to the text areas on the log page.
+ */
 class keyButton extends HTMLElement {
     constructor() {
         super();
