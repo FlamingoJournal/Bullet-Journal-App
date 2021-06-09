@@ -1,5 +1,3 @@
-// import { color_theme } from './logList.js';
-
 // function to reload page when user is in home page
 function homeReload() {
     const bodyId = document.querySelector('body').id; // get body id

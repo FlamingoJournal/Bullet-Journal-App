@@ -42,12 +42,6 @@ class BulletEntries extends HTMLElement {
         return this.getAttribute('logtype');
     }
 
-    //  runs when element is added to the DOM.
-    // connectedCallback() {
-    //     this.fetchData();
-
-    // }
-
     constructor() {
         super();
 
@@ -80,14 +74,19 @@ class BulletEntries extends HTMLElement {
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(template.content.cloneNode(true));
         const self = this;
-        // increases textarea height automatically
 
+        /**
+         * increases textarea height automatically
+         */
         function autoScroll() {
             this.style.height = 'auto';
             this.style.height = `${this.scrollHeight}px`;
         }
 
-        // prevents enter from creating a new line, creates new entry instead
+        /**
+         * Prevents enter from creating a new line, creates new entry instead
+         * @param {*} e key that was pressed
+         */
         function checkEnterKey(e) {
             if (e.ctrlKey && e.key == 'Enter') {
                 e.preventDefault(); //  stop new line
@@ -99,7 +98,9 @@ class BulletEntries extends HTMLElement {
             }
         }
 
-        //  override user's tab
+        /**
+         * Override user's tab
+         */
         function checkTab(e) {
             if (e.key == 'Tab') {
                 e.preventDefault();
@@ -115,7 +116,9 @@ class BulletEntries extends HTMLElement {
             }
         }
 
-        // Deletes current textarea if it's empty and backspace/delete is pressed
+        /**
+         * Deletes current textarea if it's empty and backspace/delete is pressed
+         */
         function checkDelete(e) {
             if ((e.key == 'Backspace' || e.key == 'Delete') && !this.value) {
                 e.preventDefault();
@@ -124,7 +127,27 @@ class BulletEntries extends HTMLElement {
             }
         }
 
-        // create a new text area, give it the proper class, style, and event listeners, then add it to the document
+        /**
+         * When a new textarea is clicked on, its position data is stored in storage
+         * for the key to use
+         */
+        function savePosition() {
+            const textAreas = self.shadowRoot.querySelectorAll('textarea');
+            // Cast object to array
+            const propertyNames = Object.values(textAreas);
+            const textAreaPos = propertyNames.indexOf(this);
+            // Create object that holds which position the bullet entry is and the index of
+            // the last clicked on text area
+            const area = {
+                position: parseInt(self.position, 10),
+                textAreaIndex: textAreaPos,
+            };
+            saveEntryToStorage('mostRecent', 'lastTextArea', area, 'undefined');
+        }
+
+        /**
+         * create a new text area, give it the proper class, style, and event listeners, then add it to the document
+         */
         function addNewEntry() {
             const newEntry = document.createElement('textarea');
             newEntry.className = 'entry';
@@ -135,10 +158,13 @@ class BulletEntries extends HTMLElement {
             newEntry.addEventListener('keydown', checkDelete);
             newEntry.addEventListener('keydown', checkTab);
             newEntry.addEventListener('blur', checkBlur);
+            newEntry.addEventListener('click', savePosition);
             text.appendChild(newEntry);
         }
 
-        // add a new textarea if the user clicks off of the latest textarea and there's stuff in it
+        /**
+         * Add a new textarea if the user clicks off of the latest textarea and there's stuff in it
+         */
         function checkBlur() {
             if (this.value && !this.nextElementSibling) {
                 addNewEntry();
@@ -151,6 +177,7 @@ class BulletEntries extends HTMLElement {
         firstEntry.addEventListener('keydown', checkEnterKey);
         firstEntry.addEventListener('keydown', checkTab);
         firstEntry.addEventListener('blur', checkBlur);
+        firstEntry.addEventListener('click', savePosition);
 
         // Go through the textareas and save their values into localStorage
         self.addEventListener('blur', () => {
@@ -159,14 +186,13 @@ class BulletEntries extends HTMLElement {
             for (let i = 0; i < entries.length; i += 1) {
                 data.push(entries[i].value);
             }
-            // 2021may01monday
-            // 2021may01tuesday
-            //  get info from storage, add new data array to current date key, save it back in
             saveEntryToStorage(self.logtype, self.date, data, self.position);
         });
 
-        // When page loads, retrieve localStorage info and create textareas accordingly
-
+        /**
+         * Function that gets bulletEntry data from storage and populates
+         * text areas
+         */
         // eslint-disable-next-line no-unused-vars
         function fetchData() {
             getEntryFromStorage(self.logtype, self.date, (entryData) => {
