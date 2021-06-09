@@ -1,5 +1,8 @@
-// Datapicker.js
-
+/** 
+ * Class that holds the datePicker custom element that lives on the home page
+ * Contains a calendar and two buttons
+ * @extends HTMLElement
+ */
 class datePicker extends HTMLElement {
     constructor() {
         super();

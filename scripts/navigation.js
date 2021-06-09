@@ -1,4 +1,3 @@
-/** **************NAVIGATION******************* */
 import { router } from './router.js';
 import { getAllKeys, getEntryFromStorage } from './indexdb.js';
 

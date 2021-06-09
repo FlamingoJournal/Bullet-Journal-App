@@ -2,9 +2,13 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable eqeqeq */
-// <journal-entry> custom web component
-import { saveEntryToStorage, getEntryFromStorage } from '../scripts/indexdb.js';
 
+import { saveEntryToStorage, getEntryFromStorage } from '../scripts/indexdb.js';
+/** 
+ * Class that holds the bulletEntries custom element that lives on log pages
+ * Group of textareas that have specific properties
+ * @extends HTMLElement
+ */
 class BulletEntries extends HTMLElement {
     set position(pos) {
         if (pos) {

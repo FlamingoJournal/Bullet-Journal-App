@@ -1,5 +1,10 @@
 import { getEntryFromStorage } from '../scripts/indexdb.js';
 
+/** 
+ * Class that holds the key buttons custom element that lives on the log pages
+ * Holds all of the bullet types
+ * @extends HTMLElement
+ */
 class keyButton extends HTMLElement {
     constructor() {
         super();

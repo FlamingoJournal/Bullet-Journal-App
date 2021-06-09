@@ -7,6 +7,11 @@ import {
 
 const { setState } = router;
 
+/** 
+ * Class that holds the logList custom element that lives on the home screen
+ * Shows all logs of a certain type and allows for navigation to logs
+ * @extends HTMLElement
+ */
 class LogList extends HTMLElement {
     constructor() {
         super();

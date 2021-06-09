@@ -14,6 +14,11 @@ function homeReload() {
     }
 }
 
+/** 
+ * Class that holds the settings custom element which lives on all pages
+ * Brings up a modal that allows user to change color scheme
+ * @extends HTMLElement
+ */
 class settingsModal extends HTMLElement {
     constructor() {
         super();
