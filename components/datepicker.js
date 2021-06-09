@@ -1,4 +1,4 @@
-/** 
+/**
  * Custom component for the date picker attached to the sidebar and the home page.
  * Currently not functional.
  * Contains a calendar and two buttons
