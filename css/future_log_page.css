@@ -20,6 +20,11 @@
     font-family: 'Lato', sans-serif;
 }
 
+.future-log-grid-container div {
+    overflow-y: scroll;
+    height: calc((100vh - 130px) / 2);
+}
+
 #log .future-log-grid-container {
     display: none;
 }

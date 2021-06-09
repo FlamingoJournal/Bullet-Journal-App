@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/newline-after-import
 import { router } from '../scripts/router.js';
 import {
     saveEntryToStorage,
@@ -8,7 +7,6 @@ import {
 
 const { setState } = router;
 
-// <journal-entry> custom web component
 class LogList extends HTMLElement {
     constructor() {
         super();
@@ -46,7 +44,7 @@ class LogList extends HTMLElement {
                 background-color: white;
                 border-color: transparent;
                 border-radius: 30px;
-                box-shadow: 0px 0px 10px 0px white;
+                box-shadow: 0px 0px 10px 0px rgb(200,200,200);
                 text-align: center;
                 margin-bottom: 10px;
                 cursor: pointer;
@@ -78,6 +76,7 @@ class LogList extends HTMLElement {
             .logs-list li:hover {
                 color: gray;
                 text-decoration: underline;
+                cursor: pointer;
             }
         </style>
 
@@ -151,8 +150,7 @@ class LogList extends HTMLElement {
      * `set` binds an object property to a function to be called when there is an attempt to set that property.
      * Change log details based on log type given.
      * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set}
-     * @todo Retrieve logs from database and populate entries
-     * @todo Make the most recent button switch to the appropriate most recent log
+     * @param {*} logType set attributes of this logList instance based on the type passed in
      */
     set type(logType) {
         const logTitle = this.shadowRoot.querySelector('.log-title');
@@ -197,15 +195,21 @@ class LogList extends HTMLElement {
             }
         });
 
+        /**
+         * When the create new button is clicked, add a new entry for today, or
+         * if it already exists, switch to it
+         */
         createNewButton.addEventListener('click', () => {
             switch (logType) {
                 case 'daily': {
+                    // Get the date, and format it to the storage template
                     const today = new Date().toLocaleDateString(undefined, {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric',
                     });
                     getEntryFromStorage(logType, today, (entryData) => {
+                        // If today's log doesn't exists, create it, then switch to it
                         if (!entryData) {
                             const blankEntry = { 1: [''] };
                             saveEntryToStorage(
@@ -214,12 +218,9 @@ class LogList extends HTMLElement {
                                 blankEntry,
                                 'undefined'
                             );
-                            const state = { page: logType, date: today };
-                            setState(state);
-                        } else {
-                            const state = { page: logType, date: today };
-                            setState(state);
                         }
+                        const state = { page: logType, date: today };
+                        setState(state);
                     });
                     break;
                 }
@@ -246,6 +247,7 @@ class LogList extends HTMLElement {
 
                     const today = `Week ${week}, ${monthNames[month]} ${year}`;
                     getEntryFromStorage(logType, today, (entryData) => {
+                        // If today's log doesn't exists, create it, then switch to it
                         if (!entryData) {
                             const blankEntry = {
                                 1: [''],
@@ -262,12 +264,9 @@ class LogList extends HTMLElement {
                                 blankEntry,
                                 'undefined'
                             );
-                            const state = { page: logType, date: today };
-                            setState(state);
-                        } else {
-                            const state = { page: logType, date: today };
-                            setState(state);
                         }
+                        const state = { page: logType, date: today };
+                        setState(state);
                     });
                     break;
                 }
@@ -292,6 +291,7 @@ class LogList extends HTMLElement {
 
                     const today = `${monthNames[month]} ${year}`;
                     getEntryFromStorage(logType, today, (entryData) => {
+                        // If today's log doesn't exists, create it, then switch to it
                         if (!entryData) {
                             const blankEntry = {
                                 1: [''],
@@ -306,12 +306,9 @@ class LogList extends HTMLElement {
                                 blankEntry,
                                 'undefined'
                             );
-                            const state = { page: logType, date: today };
-                            setState(state);
-                        } else {
-                            const state = { page: logType, date: today };
-                            setState(state);
                         }
+                        const state = { page: logType, date: today };
+                        setState(state);
                     });
                     break;
                 }
@@ -320,12 +317,14 @@ class LogList extends HTMLElement {
                     const half = parseInt(month / 6, 10) + 1;
                     const year = new Date().getFullYear();
                     let today;
+                    // Figure out which half of the year it currently is
                     if (half === 1) {
                         today = `January - June, ${year}`;
                     } else {
                         today = `July - December, ${year}`;
                     }
                     getEntryFromStorage(logType, today, (entryData) => {
+                        // If today's log doesn't exists, create it, then switch to it
                         if (!entryData) {
                             const blankEntry = {
                                 1: [''],
@@ -341,20 +340,13 @@ class LogList extends HTMLElement {
                                 blankEntry,
                                 'undefined'
                             );
-                            const state = {
-                                page: logType,
-                                date: today,
-                                whichHalf: half,
-                            };
-                            setState(state);
-                        } else {
-                            const state = {
-                                page: logType,
-                                date: today,
-                                whichHalf: half,
-                            };
-                            setState(state);
                         }
+                        const state = {
+                            page: logType,
+                            date: today,
+                            whichHalf: half,
+                        };
+                        setState(state);
                     });
                     break;
                 }
@@ -363,7 +355,33 @@ class LogList extends HTMLElement {
                 }
             }
         });
-        mostRecentButton.addEventListener('click', () => {});
+
+        mostRecentButton.addEventListener('click', () => {
+            getEntryFromStorage('mostRecent', logType, (entryData) => {
+                if (entryData !== undefined) {
+                    let state;
+                    // If you are switching in the future log, you also need to change
+                    // the titles of the divs. This means we have to set whichHalf accordingly
+                    if (
+                        logType === 'future' &&
+                        entryData.substring(0, 2) === 'Ja'
+                    ) {
+                        state = {
+                            page: logType,
+                            date: entryData,
+                            whichHalf: 1,
+                        };
+                    } else {
+                        state = {
+                            page: logType,
+                            date: entryData,
+                            whichHalf: 2,
+                        };
+                    }
+                    setState(state);
+                }
+            });
+        });
     }
 }
 

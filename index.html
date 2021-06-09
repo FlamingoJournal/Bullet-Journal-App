@@ -7,8 +7,14 @@
         <title>Flamingo Journal</title>
         <!-- Main Stylesheet -->
         <link rel="stylesheet" href="css/master.css" />
+        <link
+            rel="shortcut icon"
+            type="image/x-icon"
+            href="Files/Icons/favicon-1.ico"
+        />
     </head>
 
+    <!-- Body -->
     <body id="home" class="body-grid-container">
         <div class="navbar navbar-grid-container">
             <img
@@ -55,7 +61,7 @@
 
                 <!-- DAILY LOG DIV -->
                 <div class="daily-log-grid-container">
-                    <div class="daily single-page"></div>
+                    <div class="daily single-page daily-log-content-div"></div>
                 </div>
 
                 <!-- WEEKLY LOG DIV -->
@@ -112,14 +118,12 @@
             </div>
         </main>
         <!-- Main Script -->
-        <script src="./scripts/script.js" type="module"></script>
+        <script src="./scripts/navigation.js" type="module"></script>
         <script src="./scripts/router.js" type="module"></script>
         <script src="./scripts/indexdb.js" type="module"></script>
-        <!-- <script src="./scripts/textbox.js" type="module"></script> -->
         <!-- Components -->
         <script src="./components/settingsModal.js" type="module"></script>
         <script src="./components/logList.js" type="module"></script>
-        <!-- <script src="./components/datepicker.js" type="module"></script> -->
         <script src="./components/key-button.js" type="module"></script>
         <script src="./components/bulletEntries.js" type="module"></script>
     </body>
