@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/datepicker.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/datepicker.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// Datapicker.js
+
+/**
+ * Custom component for the date picker attached to the sidebar and the home page. Currently not functional.
+ */
+class datePicker extends HTMLElement {
+    constructor() {
+        super();
+
+        const template = document.createElement('template');
+
+        template.innerHTML = `
+          &lt;style>
+            .buttons {
+                position: absolute;
+                top: 25%;
+                left: 50%;
+                margin-top: -50px;
+                margin-left: -125px;
+                width: 500px;
+                height: 500px;
+                align-items: center;
+            
+                /* display: flex;
+                justify-content: center;*/
+            }
+            
+            .search-btn {
+                font-family: 'Lato', sans-serif;
+                background-color: var(--log-background-color);
+                border-radius: 25px;
+            }
+            
+            .clear-btn {
+                font-family: 'Lato', sans-serif;
+                background-color: var(--log-background-color);
+                border-radius: 25px;
+            }
+            
+            input[type='date'] {
+                background-color: var(--log-background-color);
+                color: black;
+                border-radius: 1em;
+                font-family: 'Lato', sans-serif;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+                outline: none;
+            }
+            
+            input[type='button']::-moz-focus-inner {
+                border: 0;
+            }
+            
+            input[type='date']:after {
+                /* content: "\\25BC"; */
+                color: rgb(255, 255, 255);
+                padding: 0 5px;
+                display: none;
+            }
+            
+            input[type='date']:hover:after {
+                color: var(--team-primary);
+            }
+            
+            input[type='date']::-webkit-calendar-picker-indicator {
+                position: absolute;
+                top: 0;
+                left: -20px;
+                right: 0;
+                bottom: 0;
+                /*padding-left: 10px; */
+                width: 16%;
+                height: 3%;
+                color: transparent;
+                background: transparent;
+            }
+        
+
+          &lt;/style>
+          &lt;section>
+            &lt;div id="buttons">
+                &lt;input type="date" id="calendar" />
+                &lt;button id="search-btn">SEARCH&lt;/button>
+                &lt;button id="clear-btn">CLEAR&lt;/button>
+            &lt;/div>
+          &lt;/section>
+          `;
+
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+        /**
+         * Function that clears the selected date on the datepicker
+         */
+        const clearBtn = this.shadowRoot.getElementById('clear-btn');
+        clearBtn.onclick = function clear() {
+            document.getElementById('calendar').valueAsDate = null;
+        };
+
+        /**
+         * Function that searches the picked date on the datepicker
+         * @todo Get month and year from outputted string
+         */
+        const searchBtn = this.shadowRoot.getElementById('search-btn');
+        searchBtn.onclick = function search() {
+            const selDate = document.getElementById('calendar').value;
+            return selDate;
+        };
+    }
+}
+
+customElements.define('date-picker', datePicker);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BulletEntries.html">BulletEntries</a></li><li><a href="datePicker.html">datePicker</a></li><li><a href="keyButton.html">keyButton</a></li><li><a href="LogList.html">LogList</a></li><li><a href="settingsModal.html">settingsModal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#getAllKeys">getAllKeys</a></li><li><a href="global.html#getEntryFromStorage">getEntryFromStorage</a></li><li><a href="global.html#goToMostRecent">goToMostRecent</a></li><li><a href="global.html#saveEntryToStorage">saveEntryToStorage</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jun 09 2021 21:35:52 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
