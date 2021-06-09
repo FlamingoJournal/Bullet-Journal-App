@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/logList.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/logList.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { router } from '../scripts/router.js';
+import {
+    saveEntryToStorage,
+    getEntryFromStorage,
+    getAllKeys,
+} from '../scripts/indexdb.js';
+
+const { setState } = router;
+
+class LogList extends HTMLElement {
+    constructor() {
+        super();
+
+        const template = document.createElement('template');
+
+        template.innerHTML = `
+        &lt;style>
+            .log-list-comp {
+                width: 24vw;
+                height: 33vh;
+                background-color: #9DBEB9;
+                border-radius: 25px;
+                border-width: 3px;
+                border-color: black;
+                text-align: center;
+                margin-left: 5px;
+                margin-right: 5px;
+                float: left;
+            }
+
+            .log-title {
+                padding-top: 10px;
+                margin-bottom: 5px;
+                font-size: 30px;
+                font-family: 'Lato', sans-serif;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            .most-recent {
+                font-size: 13px;
+                font-family: 'Lato', sans-serif;
+                font-weight: bold;
+                background-color: white;
+                border-color: transparent;
+                border-radius: 30px;
+                box-shadow: 0px 0px 10px 0px rgb(200,200,200);
+                text-align: center;
+                margin-bottom: 10px;
+                cursor: pointer;
+            }
+            
+            .most-recent:hover {
+                background-color: lightgray;
+            }
+
+            .logs-list {
+                min-height: 50%;
+                max-height: 60%;
+                list-style: none;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                margin-left: 0;
+                padding-left: 0;
+                font-family: 'Lato', sans-serif;
+                font-weight: bold;
+                font-size: 24px;
+                width: 80%;
+                margin: 0 auto;
+                background-color: white;
+                border-radius: 11px;
+                text-align: center;
+                overflow-y: scroll;
+            }
+
+            .logs-list li:hover {
+                color: gray;
+                text-decoration: underline;
+                cursor: pointer;
+            }
+        &lt;/style>
+
+        &lt;div class="log-list-comp">
+            &lt;h1 class="log-title">DAILY LOG&lt;/h2>
+            &lt;button class="most-recent" id="most-recent" type="button">LAST VIEWED&lt;/button>
+            &lt;button class="most-recent" id="create-new" type="button">&lt;/button>
+            &lt;ul class="logs-list">
+            &lt;/ul>
+        &lt;/div>
+        `;
+
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+        // For switching themes
+        const logList = this.shadowRoot.querySelector('.log-list-comp'); // get &lt;log-list>
+        const logo = document.querySelector('#flamingo-logo'); // get falmingo logo and title img
+        const color = JSON.parse(localStorage.getItem('color')); // get the color theme from local storage
+
+        // when reloading choose theme based on local stoage theme
+        switch (color) {
+            // use dark mode
+            case 'dark': {
+                logList.style.backgroundColor = '#7C7C7C';
+                break;
+            }
+            // use default
+            case 'normal': {
+                logList.style.backgroundColor = '#9DBEB9';
+                break;
+            }
+            // use light mode
+            case 'light': {
+                logList.style.backgroundColor = '#FFC2B4';
+                break;
+            }
+            default: {
+                break;
+            }
+        }
+
+        // whenever the user goes to home page after changing theme
+        logo.addEventListener('click', () => {
+            const colors = JSON.parse(localStorage.getItem('color')); // get the color theme from local storage
+
+            switch (colors) {
+                // use dark mode
+                case 'dark': {
+                    logList.style.backgroundColor = '#7C7C7C';
+                    break;
+                }
+                // use default
+                case 'normal': {
+                    logList.style.backgroundColor = '#9DBEB9';
+                    break;
+                }
+                // use light mode
+                case 'light': {
+                    logList.style.backgroundColor = '#FFC2B4';
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
+        });
+    }
+
+    /**
+     * `set` binds an object property to a function to be called when there is an attempt to set that property.
+     * Change log details based on log type given.
+     * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set}
+     * @param {*} logType set attributes of this logList instance based on the type passed in
+     */
+    set type(logType) {
+        const logTitle = this.shadowRoot.querySelector('.log-title');
+        const mostRecentButton = this.shadowRoot.querySelector('.most-recent');
+        const createNewButton = this.shadowRoot.querySelector('#create-new');
+        const logsList = this.shadowRoot.querySelector('.logs-list');
+        logTitle.textContent = `${logType.toUpperCase()} LOG`;
+
+        switch (logType) {
+            case 'daily': {
+                createNewButton.textContent = "TODAY'S LOG";
+                break;
+            }
+            case 'weekly': {
+                createNewButton.textContent = "THIS WEEK'S LOG";
+                break;
+            }
+            case 'monthly': {
+                createNewButton.textContent = "THIS MONTH'S LOG";
+                break;
+            }
+            case 'future': {
+                createNewButton.textContent = "THIS HALF'S LOG";
+                break;
+            }
+            default: {
+                break;
+            }
+        }
+
+        // get rid of old entries if there are any
+        while (logsList.firstElementChild) {
+            logsList.removeChild(logsList.firstElementChild);
+        }
+
+        // fill entry list
+        getAllKeys(logType, (keysArray) => {
+            for (let i = 0; i &lt; keysArray.length; i += 1) {
+                const listEntry = document.createElement('li');
+                listEntry.textContent = keysArray[i];
+                let state;
+                if (logType === 'future') {
+                    let half;
+                    // If the key is January, pass half 1 into whichHalf
+                    // else, pass half 2 into whichHalf
+                    if (keysArray[i].substring(0, 2) === 'Ja') {
+                        half = 1;
+                    } else {
+                        half = 2;
+                    }
+                    state = {
+                        page: logType,
+                        date: keysArray[i],
+                        whichHalf: half,
+                    };
+                } else {
+                    state = { page: logType, date: keysArray[i] };
+                }
+
+                listEntry.addEventListener('click', () => {
+                    setState(state);
+                });
+                logsList.appendChild(listEntry);
+            }
+        });
+
+        /**
+         * When the create new button is clicked, add a new entry for today, or
+         * if it already exists, switch to it
+         */
+        createNewButton.addEventListener('click', () => {
+            switch (logType) {
+                case 'daily': {
+                    // Get the date, and format it to the storage template
+                    const today = new Date().toLocaleDateString(undefined, {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                    });
+                    getEntryFromStorage(logType, today, (entryData) => {
+                        // If today's log doesn't exists, create it, then switch to it
+                        if (!entryData) {
+                            const blankEntry = { 1: [''] };
+                            saveEntryToStorage(
+                                logType,
+                                today,
+                                blankEntry,
+                                'undefined'
+                            );
+                        }
+                        const state = { page: logType, date: today };
+                        setState(state);
+                    });
+                    break;
+                }
+                case 'weekly': {
+                    // Get the date, and format it to the storage template
+                    const day = new Date().getDate();
+                    const week = parseInt(day / 7, 10) + 1;
+                    const month = new Date().getMonth();
+                    const year = new Date().getFullYear();
+                    const monthNames = [
+                        'January',
+                        'February',
+                        'March',
+                        'April',
+                        'May',
+                        'June',
+                        'July',
+                        'August',
+                        'September',
+                        'October',
+                        'November',
+                        'December',
+                    ];
+
+                    const today = `Week ${week}, ${monthNames[month]} ${year}`;
+                    getEntryFromStorage(logType, today, (entryData) => {
+                        // If today's log doesn't exists, create it, then switch to it
+                        if (!entryData) {
+                            const blankEntry = {
+                                1: [''],
+                                2: [''],
+                                3: [''],
+                                4: [''],
+                                5: [''],
+                                6: [''],
+                                7: [''],
+                            };
+                            saveEntryToStorage(
+                                logType,
+                                today,
+                                blankEntry,
+                                'undefined'
+                            );
+                        }
+                        const state = { page: logType, date: today };
+                        setState(state);
+                    });
+                    break;
+                }
+                case 'monthly': {
+                    // Get the date, and format it to the storage template
+                    const month = new Date().getMonth();
+                    const year = new Date().getFullYear();
+                    const monthNames = [
+                        'January',
+                        'February',
+                        'March',
+                        'April',
+                        'May',
+                        'June',
+                        'July',
+                        'August',
+                        'September',
+                        'October',
+                        'November',
+                        'December',
+                    ];
+
+                    const today = `${monthNames[month]} ${year}`;
+                    getEntryFromStorage(logType, today, (entryData) => {
+                        // If today's log doesn't exists, create it, then switch to it
+                        if (!entryData) {
+                            const blankEntry = {
+                                1: [''],
+                                2: [''],
+                                3: [''],
+                                4: [''],
+                                5: [''],
+                            };
+                            saveEntryToStorage(
+                                logType,
+                                today,
+                                blankEntry,
+                                'undefined'
+                            );
+                        }
+                        const state = { page: logType, date: today };
+                        setState(state);
+                    });
+                    break;
+                }
+                case 'future': {
+                    const month = new Date().getMonth();
+                    const half = parseInt(month / 6, 10) + 1;
+                    const year = new Date().getFullYear();
+                    let today;
+                    // Figure out which half of the year it currently is
+                    if (half === 1) {
+                        today = `January - June, ${year}`;
+                    } else {
+                        today = `July - December, ${year}`;
+                    }
+                    getEntryFromStorage(logType, today, (entryData) => {
+                        // If today's log doesn't exists, create it, then switch to it
+                        if (!entryData) {
+                            const blankEntry = {
+                                1: [''],
+                                2: [''],
+                                3: [''],
+                                4: [''],
+                                5: [''],
+                                6: [''],
+                            };
+                            saveEntryToStorage(
+                                logType,
+                                today,
+                                blankEntry,
+                                'undefined'
+                            );
+                        }
+                        const state = {
+                            page: logType,
+                            date: today,
+                            whichHalf: half,
+                        };
+                        setState(state);
+                    });
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
+        });
+
+        mostRecentButton.addEventListener('click', () => {
+            getEntryFromStorage('mostRecent', logType, (entryData) => {
+                if (entryData !== undefined) {
+                    let state;
+                    // If you are switching in the future log, you also need to change
+                    // the titles of the divs. This means we have to set whichHalf accordingly
+                    if (
+                        logType === 'future' &amp;&amp;
+                        entryData.substring(0, 2) === 'Ja'
+                    ) {
+                        state = {
+                            page: logType,
+                            date: entryData,
+                            whichHalf: 1,
+                        };
+                    } else {
+                        state = {
+                            page: logType,
+                            date: entryData,
+                            whichHalf: 2,
+                        };
+                    }
+                    setState(state);
+                }
+            });
+        });
+    }
+}
+
+customElements.define('log-list', LogList);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#getAllKeys">getAllKeys</a></li><li><a href="global.html#getEntryFromStorage">getEntryFromStorage</a></li><li><a href="global.html#goToMostRecent">goToMostRecent</a></li><li><a href="global.html#saveEntryToStorage">saveEntryToStorage</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jun 09 2021 21:00:15 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
