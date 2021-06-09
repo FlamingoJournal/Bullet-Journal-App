@@ -82,8 +82,8 @@ class LogList extends HTMLElement {
 
         <div class="log-list-comp">
             <h1 class="log-title">DAILY LOG</h2>
-            <button class="most-recent" id="most-recent" type="button">MOST RECENT</button>
-            <button class="most-recent" id="create-new" type="button">CREATE NEW</button>
+            <button class="most-recent" id="most-recent" type="button">LAST VIEWED</button>
+            <button class="most-recent" id="create-new" type="button"></button>
             <ul class="logs-list">
             </ul>
         </div>
@@ -158,6 +158,28 @@ class LogList extends HTMLElement {
         const createNewButton = this.shadowRoot.querySelector('#create-new');
         const logsList = this.shadowRoot.querySelector('.logs-list');
         logTitle.textContent = `${logType.toUpperCase()} LOG`;
+
+        switch (logType) {
+            case 'daily': {
+                createNewButton.textContent = "TODAY'S LOG";
+                break;
+            }
+            case 'weekly': {
+                createNewButton.textContent = "THIS WEEK'S LOG";
+                break;
+            }
+            case 'monthly': {
+                createNewButton.textContent = "THIS MONTH'S LOG";
+                break;
+            }
+            case 'future': {
+                createNewButton.textContent = "THIS HALF'S LOG";
+                break;
+            }
+            default: {
+                break;
+            }
+        }
 
         // get rid of old entries if there are any
         while (logsList.firstElementChild) {

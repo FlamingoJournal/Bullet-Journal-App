@@ -1,16 +1,6 @@
+import { getEntryFromStorage } from '../scripts/indexdb.js';
+
 class keyButton extends HTMLElement {
-    set logtype(logType) {
-        if (logType) {
-            this.setAttribute('logtype', logType);
-        } else {
-            this.removeAttribute('logtype');
-        }
-    }
-
-    get logtype() {
-        return this.getAttribute('logtype');
-    }
-
     constructor() {
         super();
 
@@ -79,70 +69,47 @@ class keyButton extends HTMLElement {
 
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(template.content.cloneNode(true));
-        const self = this;
-        const btns = this.shadowRoot
-            .getElementById('button-group')
-            .querySelectorAll('button'); // keys
 
-        // const textAreas = document.querySelectorAll('textarea');
+        // Interface with Bullet Entries
+        const btns = this.shadowRoot.querySelectorAll('.buttonGroup');
 
-        // Get text area when clicked
-        // textAreas.forEach((textArea) => {
-        //     textArea.addEventListener('click', () => {
-        //         const area;
-        //         area = textArea;
-        //         // console.log(area)
-        //     });
-        // });
+        // Add event listeners to all buttons to add their values to
+        // most recent text area
+        // eslint-disable-next-line no-restricted-syntax
+        for (const button of btns) {
+            button.addEventListener('click', () => {
+                getEntryFromStorage(
+                    'mostRecent',
+                    'lastTextArea',
+                    (entryData) => {
+                        // Get Position of last clicked bullet entry
+                        const pos = entryData.position - 1;
+                        const bulletEnt =
+                            document.querySelectorAll('bullet-entries')[pos];
 
-        // find appropriate bullet entries from logtype
-        // console.log(self.logtype)
+                        // Get last clicked text area
+                        const TAIndex = entryData.textAreaIndex;
+                        const textareaDiv =
+                            bulletEnt.shadowRoot.querySelector('.text');
+                        const textarea =
+                            textareaDiv.querySelectorAll('textarea')[TAIndex];
 
-        // on button click add key to last clicked textarea
-        btns.forEach((btn) => {
-            btn.addEventListener('click', () => {
-                // area.value += btn.value;
-                let bulletEntries;
-                switch (self.logtype) {
-                    case 'daily': {
-                        bulletEntries = document.querySelector(
-                            '.single-page > bullet-entries'
-                        );
-                        break;
-                    }
-                    case 'weekly': {
-                        bulletEntries = document.querySelectorAll(
-                            '.weekly-log-grid-container bullet-entries'
-                        );
-                        break;
-                    }
-                    case 'monthly': {
-                        bulletEntries = document.querySelectorAll(
-                            '.monthly-log-grid-container bullet-entries'
-                        );
-                        break;
-                    }
-                    case 'future': {
-                        bulletEntries = document.querySelectorAll(
-                            '.future-log-grid-container bullet-entries'
-                        );
-                        break;
-                    }
-                    default: {
-                        break;
-                    }
-                }
-                let area;
+                        textarea.focus();
+                        const startPosition = textarea.selectionStart;
+                        const endPosition = textarea.selectionEnd;
 
-                // Get text area when clicked
-                bulletEntries.forEach((bulletEntry) => {
-                    bulletEntry.addEventListener('click', () => {
-                        area = bulletEntry;
-                        console.log(area);
-                    });
-                });
+                        textarea.value = `${textarea.value.substring(
+                            0,
+                            startPosition
+                        )}${button.value}${textarea.value.substring(
+                            endPosition
+                        )}`;
+                        textarea.selectionStart = startPosition + 1;
+                        textarea.selectionEnd = startPosition + 1;
+                    }
+                );
             });
-        });
+        }
     }
 }
 

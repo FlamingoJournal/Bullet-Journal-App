@@ -1,12 +1,7 @@
 # Uses JSDoc-action
 # https://github.com/marketplace/actions/jsdoc-action
 
-# Recommending to only activate when pushing to main.
-# This avoids merge conflicts.
-
 name: JSDoc
-
-# Changing to push to main.
 
 on:
     push:
@@ -23,18 +18,12 @@ jobs:
             - name: Switch Branch
               run: git switch -c docGen
 
-            - name: Build Scripts
+            - name: Build Docs
               uses: andstor/jsdoc-action@v1
               with:
-                  source_dir: ./scripts
+                  source_dir: ./
                   recurse: true
-                  output_dir: ./docs
-
-            - name: Build Components
-              uses: andstor/jsdoc-action@v1
-              with:
-                  source_dir: ./components
-                  recurse: true
+                  front_page: README.md
                   output_dir: ./docs
 
             - name: Commit Docs
