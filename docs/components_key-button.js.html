@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/key-button.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/key-button.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { getEntryFromStorage } from '../scripts/indexdb.js';
+
+/**
+ * Custom component representing the key buttons attached to the sidebar. Used to select key symbols that are then added to the text areas on the log page.
+ */
+class keyButton extends HTMLElement {
+    constructor() {
+        super();
+
+        const template = document.createElement('template');
+
+        template.innerHTML = `
+          &lt;style>
+            #button-group {
+                text-align: left;
+            }
+            
+            /* Sets color for key buttons*/
+            .buttonGroup {
+                border: none;
+                font-size: 20px;
+                font-family: 'Lato', sans-serif;
+                background: transparent;
+            }
+            
+            /* When the cursor hovers on a button */
+            .buttonGroup:hover {
+                border: solid;
+                cursor: pointer;
+            }        
+          &lt;/style>
+          &lt;!-- Key Buttons Start -->
+                &lt;div id="button-group">
+                    &lt;!--src= https://www.w3schools.com/charsets/ref_utf_dingbats.asp -->
+                    &lt;button value="&amp;#8658;" class="buttonGroup">
+                    &amp;#8658; MIGRATE
+                    &lt;/button> 
+                    &lt;!-- Migration Arrow-->
+                    &lt;button value="&amp;#9744;" class="buttonGroup">
+                        &amp;#9744; INCOMPLETE
+                    &lt;/button> 
+                    &lt;!-- square without check-->
+                    &lt;br />
+                    &lt;button value="&amp;#9745;" class="buttonGroup">
+                        &amp;#9745; COMPLETE
+                    &lt;/button>
+                    &lt;!-- square w/ check -->
+                    &lt;br />
+                    &lt;button value="&amp;#9675;" class="buttonGroup">
+                        &amp;#9675; EVENT
+                    &lt;/button>
+                    &lt;!-- circle -->
+                    &lt;br />
+                    &lt;button value="&amp;ndash;" class="buttonGroup">
+                        &amp;ndash; NOTE
+                    &lt;/button>
+                    &lt;!-- dash -->
+                    &lt;br />
+                    &lt;button value="&amp;#10033;" class="buttonGroup">
+                        &amp;#10033; PRIORITY
+                    &lt;/button>
+                    &lt;!-- star -->
+                    &lt;br />
+                    &lt;button value="&amp;#9888;" class="buttonGroup">
+                        &amp;#9888; INSPIRATIONAL
+                    &lt;/button>
+                    &lt;!-- exclamation mark -->
+                    &lt;br />
+                &lt;/div>
+                &lt;!-- Key Buttons End -->
+          `;
+
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+        // Interface with Bullet Entries
+        const btns = this.shadowRoot.querySelectorAll('.buttonGroup');
+
+        // Add event listeners to all buttons to add their values to
+        // most recent text area
+        // eslint-disable-next-line no-restricted-syntax
+        for (const button of btns) {
+            button.addEventListener('click', () => {
+                getEntryFromStorage(
+                    'mostRecent',
+                    'lastTextArea',
+                    (entryData) => {
+                        // Get Position of last clicked bullet entry
+                        const pos = entryData.position - 1;
+                        const bulletEnt =
+                            document.querySelectorAll('bullet-entries')[pos];
+
+                        // Get last clicked text area
+                        const TAIndex = entryData.textAreaIndex;
+                        const textareaDiv =
+                            bulletEnt.shadowRoot.querySelector('.text');
+                        const textarea =
+                            textareaDiv.querySelectorAll('textarea')[TAIndex];
+
+                        textarea.focus();
+                        const startPosition = textarea.selectionStart;
+                        const endPosition = textarea.selectionEnd;
+
+                        textarea.value = `${textarea.value.substring(
+                            0,
+                            startPosition
+                        )}${button.value}${textarea.value.substring(
+                            endPosition
+                        )}`;
+                        textarea.selectionStart = startPosition + 1;
+                        textarea.selectionEnd = startPosition + 1;
+                    }
+                );
+            });
+        }
+    }
+}
+
+customElements.define('key-button', keyButton);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BulletEntries.html">BulletEntries</a></li><li><a href="datePicker.html">datePicker</a></li><li><a href="keyButton.html">keyButton</a></li><li><a href="LogList.html">LogList</a></li><li><a href="settingsModal.html">settingsModal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#getAllKeys">getAllKeys</a></li><li><a href="global.html#getEntryFromStorage">getEntryFromStorage</a></li><li><a href="global.html#goToMostRecent">goToMostRecent</a></li><li><a href="global.html#saveEntryToStorage">saveEntryToStorage</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jun 09 2021 21:35:52 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

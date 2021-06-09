@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/settingsModal.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/settingsModal.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// function to reload page when user is in home page
+function homeReload() {
+    const bodyId = document.querySelector('body').id; // get body id
+
+    // if bodyId is home then reload page
+    switch (bodyId) {
+        case 'home': {
+            window.location.reload();
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+}
+/**
+ * Custom component representing the settings popup when the cog on the top right is clicked. Lets the user change the color theme of the website.
+ */
+class settingsModal extends HTMLElement {
+    constructor() {
+        super();
+
+        const template = document.createElement('template');
+
+        template.innerHTML = `
+            &lt;style>
+                .settingsButton {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: transparent;
+                    border: none;
+                    width: 30px;
+                    height: 30px;
+                    cursor: pointer;
+                }
+
+                .settingsButton:hover {
+                    filter: drop-shadow( 0px 0px 10px rgba(150, 150, 150, 0.65));
+                }
+
+                .settingsModal {
+                    display:none;
+                    position: fixed;
+                    z-index: 1;
+                    left: 0; 
+                    top: 0;
+                    height: 100%;
+                    width: 100%;
+                    background-color: rgba(0, 0, 0, 0.4);
+                }
+                
+                .settingsModal-content {
+                    background-color: #B0C1BF;
+                    margin: 20% auto;
+                    padding: 20px;
+                    width: 40%;
+                    height: 35%; 
+                    border-radius: 25px;
+                    border-style:solid;
+                    border-width:5px;
+                    border-color: #6E838A;
+                    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 
+                    0 7px 20px 0 rgba(0, 0, 0, 0.15);
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    margin-top: -14%;
+                    margin-left: -20%;
+
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    grid-template-rows: 10% 1fr;
+                    gap: 0px 0px;
+                    grid-template-areas:
+                    "Header Header Header"
+                    "leftTheme midTheme rightTheme";
+                }
+
+                .settingsModal-content button {
+                    // display: flex;
+                    background-color: transparent;
+                    outline: none;
+                    border: transparent;
+                }
+
+
+                .settingsModalClose {
+                    width: 30px;
+                    grid-area: Header;
+                    color: black;
+                    float: right;
+                    font-size: 30px;
+                    display: 'inline-block';
+                }
+                
+                .settingsModalClose:hover, .settingsModalClose:focus {
+                    color: white;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+                
+                .modalHeader {
+                    grid-area: Header;
+                    text-align: center;
+                    position: relative;
+                    font-family: Lato;
+                    font-style: normal;
+                    font-weight: 1200;
+                    font-size: 3vw;
+                    font-size: 3vh;
+                    line-height: 60px;
+                    margin-top: 0;
+                    margin-left: 25%;
+                    margin-right: 25%;
+                    letter-spacing: 0.15em;
+                    color: #000000;
+                    display: 'inline-block';
+                }
+
+                #home .leftTheme > img{
+                    grid-area: leftTheme;
+                    position: absolute;
+                }
+                #home .midTheme > img {
+                    grid-area: midTheme;
+                    position: absolute;
+                }
+
+                #home .rightTheme > img{
+                    grid-area: rightTheme;
+                    position: absolute;
+                }
+
+            &lt;/style>
+            &lt;section>
+                &lt;button id="openSettings" class="settingsButton" className='log'>&lt;img class="settingsImage" src="../Files/Icons/settings/settings.svg">&lt;/button>
+                &lt;div class="settingsModal">
+                    &lt;div class="settingsModal-content">
+                        &lt;span class="settingsModalClose">&amp;times;&lt;/span>
+                        &lt;h3 class="modalHeader">CHOOSE THEME&lt;/h3>
+                                                
+                        &lt;button class='leftTheme'>&lt;img style="width:80%; height:80%;" src="../Files/Icons/settings/dark_mode_circle.svg">&lt;/button>
+                        &lt;button class='midTheme'>&lt;img style="width:80%; height:80%;" src="../Files/Icons/settings/default_mode_circle.svg">&lt;/button>
+                        &lt;button class='rightTheme'>&lt;img style="width:80%; height:80%;" src="../Files/Icons/settings/pink_mode_circle.svg">&lt;/button>
+                    &lt;/div>
+                &lt;/div>
+            &lt;/section>
+            `;
+
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+        // saveEntryToStorage('color', '0', 'normal');
+        let color = 'normal';
+        if (localStorage.getItem('color') == null) {
+            localStorage.setItem('color', JSON.stringify(color));
+        } else {
+            color = JSON.parse(localStorage.getItem('color'));
+        }
+
+        const openModalBtn = this.shadowRoot.querySelector('.settingsButton'); // get open modal button
+        const modal = this.shadowRoot.querySelector('.settingsModal'); // get modal window
+        const closeBtn = this.shadowRoot.querySelector('.settingsModalClose'); // get close modal button
+
+        const header = document.querySelector('.navbar'); // get the header
+        const sidebar = document.querySelector('.sidebar'); // get the sidebar
+        const datepicker = document.querySelector('.datepicker > input'); // get date picker in sidebar
+        const settingModal = this.shadowRoot.querySelector(
+            '.settingsModal-content'
+        );
+
+        const leftButton = this.shadowRoot.querySelector('.leftTheme'); // get left button in settings modal
+        const midButton = this.shadowRoot.querySelector('.midTheme'); // get middle button in settings modal
+        const rightButton = this.shadowRoot.querySelector('.rightTheme'); // get right button in settings modal
+
+        // when reloading check color scheme from local storage
+        switch (color) {
+            // use dark mode
+            case 'dark': {
+                header.style.backgroundColor = '#393E46';
+                sidebar.style.backgroundColor = '#7C7C7C';
+                datepicker.style.backgroundColor = '#393E46';
+                settingModal.style.backgroundColor = '#7C7C7C';
+                break;
+            }
+            // use default
+            case 'normal': {
+                header.style.backgroundColor = '#194350';
+                sidebar.style.backgroundColor = '#9DBEB9';
+                datepicker.style.backgroundColor = '#194350';
+                settingModal.style.backgroundColor = '#9DBEB9';
+                break;
+            }
+            // use light mode
+            case 'light': {
+                header.style.backgroundColor = '#FF8882';
+                sidebar.style.backgroundColor = '#FFC2B4';
+                datepicker.style.backgroundColor = '#FF8882';
+                settingModal.style.backgroundColor = '#FFC2B4';
+                break;
+            }
+
+            default: {
+                break;
+            }
+        }
+
+        openModalBtn.onclick = function () {
+            modal.style.display = 'block';
+        };
+
+        closeBtn.onclick = function () {
+            modal.style.display = 'none';
+        };
+
+        // when left theme is clicked change the color scheme
+        leftButton.addEventListener('click', () => {
+            // change color for navbar, sidebar, datepicker, settings modal, and loglist
+            header.style.backgroundColor = '#393E46';
+            sidebar.style.backgroundColor = '#7C7C7C';
+            datepicker.style.backgroundColor = '#393E46';
+            settingModal.style.backgroundColor = '#7C7C7C';
+            color = 'dark';
+            localStorage.setItem('color', JSON.stringify(color));
+
+            homeReload(); // changes color for loglist
+        });
+        // when middle theme is clicked change the color scheme
+        midButton.addEventListener('click', () => {
+            // change color for navbar, sidebar, datepicker, settings modal, and loglist
+            header.style.backgroundColor = '#194350';
+            sidebar.style.backgroundColor = '#9DBEB9';
+            datepicker.style.backgroundColor = '#194350';
+            settingModal.style.backgroundColor = '#9DBEB9';
+            color = 'normal';
+            localStorage.setItem('color', JSON.stringify(color));
+
+            homeReload(); // changes color for loglist
+        });
+        // when right theme is clicked change the color scheme
+        rightButton.addEventListener('click', () => {
+            // change color for navbar, sidebar, datepicker, settings modal, and loglist
+            header.style.backgroundColor = '#FF8882';
+            sidebar.style.backgroundColor = '#FFC2B4';
+            datepicker.style.backgroundColor = '#FF8882';
+            settingModal.style.backgroundColor = '#FFC2B4';
+            color = 'light';
+            localStorage.setItem('color', JSON.stringify(color));
+
+            homeReload(); // changes color for loglist
+        });
+    }
+}
+
+customElements.define('settings-modal', settingsModal);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BulletEntries.html">BulletEntries</a></li><li><a href="datePicker.html">datePicker</a></li><li><a href="keyButton.html">keyButton</a></li><li><a href="LogList.html">LogList</a></li><li><a href="settingsModal.html">settingsModal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#getAllKeys">getAllKeys</a></li><li><a href="global.html#getEntryFromStorage">getEntryFromStorage</a></li><li><a href="global.html#goToMostRecent">goToMostRecent</a></li><li><a href="global.html#saveEntryToStorage">saveEntryToStorage</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jun 09 2021 21:35:52 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
