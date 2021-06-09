@@ -8,8 +8,10 @@ import {
 const { setState } = router;
 
 /**
- * Custom component representing each log list on the home page. Dynamically retrieves pages from storage and allows for navigation to those pages.
+ * Custom component representing each log list on the home page.
+ * Dynamically retrieves pages from storage and allows for navigation to those pages.
  * Also handles creating new pages or navigating to the last viewed log page.
+ * @extends HTMLElement
  */
 class LogList extends HTMLElement {
     constructor() {

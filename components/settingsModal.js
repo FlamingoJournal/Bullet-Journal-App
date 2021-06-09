@@ -14,7 +14,9 @@ function homeReload() {
     }
 }
 /**
- * Custom component representing the settings popup when the cog on the top right is clicked. Lets the user change the color theme of the website.
+ * Custom component representing the settings popup when the cog on the top right is clicked.
+ * Lets the user change the color theme of the website.
+ * @extends HTMLElement
  */
 class settingsModal extends HTMLElement {
     constructor() {
