@@ -1,5 +1,8 @@
 // Datapicker.js
 
+/**
+ * Custom component for the date picker attached to the sidebar and the home page. Currently not functional.
+ */
 class datePicker extends HTMLElement {
     constructor() {
         super();

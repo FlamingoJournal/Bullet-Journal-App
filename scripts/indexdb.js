@@ -32,7 +32,7 @@ dbReq.onerror = function (event) {
 };
 
 /**
- *
+ * Function to save bullet entries into storage.
  * @param {*} logType The store name that is being added to
  * @param {*} date Unique identifier for log
  * @param {*} data Array that holds all of the text area content
@@ -64,7 +64,7 @@ export function saveEntryToStorage(logType, date, data, position) {
 }
 
 /**
- *
+ * Function to get a specific key's value (log entry) from storage.
  * @param {*} logType The store name that is being accessed
  * @param {*} date Unique identifier for log
  * @param {*} dataHandlerFunction Caller function that will take data and do something with it
@@ -80,7 +80,7 @@ export function getEntryFromStorage(logType, date, dataHandlerFunction) {
 }
 
 /**
- *
+ * Function to get all key values (log titles) from storage.
  * @param {*} logType The store name that is being accessed
  * @param {*} dataHandlerFunction Caller function that will take data and do something with it
  */
