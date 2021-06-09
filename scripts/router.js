@@ -3,7 +3,7 @@ import { saveEntryToStorage } from './indexdb.js';
 export const router = {};
 
 /**
- *
+ *  Function to handle SPA functionality. Used to switch pages and update components accordingly
  * @param {*} state An object that has data about the caller and will
  *                  switch pages based on that information
  */
