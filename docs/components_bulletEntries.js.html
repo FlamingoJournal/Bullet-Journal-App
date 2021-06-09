@@ -1,9 +1,38 @@
-/* eslint-disable no-use-before-define */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/bulletEntries.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/bulletEntries.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* eslint-disable no-use-before-define */
 /* eslint-disable no-undef */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable eqeqeq */
-
+// &lt;journal-entry> custom web component
 import { saveEntryToStorage, getEntryFromStorage } from '../scripts/indexdb.js';
+
 /**
  * Custom component representing each block of bullet entries found on the log pages. Each block has self-contained text areas.
  * Allows more text areas to be added dynamically when the user presses Ctrl+Enter or clicks away from the current text area.
@@ -52,7 +81,7 @@ class BulletEntries extends HTMLElement {
         const template = document.createElement('template');
 
         template.innerHTML = `
-        <style>
+        &lt;style>
             textarea {
                 width: 100%;
                 resize: none;
@@ -69,10 +98,10 @@ class BulletEntries extends HTMLElement {
                 margin-bottom: 5px;
             }
 
-        </style>
-        <div class="text">
-            <textarea class="entry" cols="50" rows="1"></textarea>
-        </div>
+        &lt;/style>
+        &lt;div class="text">
+            &lt;textarea class="entry" cols="50" rows="1">&lt;/textarea>
+        &lt;/div>
         `;
 
         this.attachShadow({ mode: 'open' });
@@ -92,9 +121,9 @@ class BulletEntries extends HTMLElement {
          * @param {*} e key that was pressed
          */
         function checkEnterKey(e) {
-            if (e.ctrlKey && e.key == 'Enter') {
+            if (e.ctrlKey &amp;&amp; e.key == 'Enter') {
                 e.preventDefault(); //  stop new line
-                if (this.value && !this.nextElementSibling) {
+                if (this.value &amp;&amp; !this.nextElementSibling) {
                     //  something is in the textarea, and we're in the last textarea
                     addNewEntry();
                     this.nextElementSibling.focus();
@@ -124,7 +153,7 @@ class BulletEntries extends HTMLElement {
          * Deletes current textarea if it's empty and backspace/delete is pressed
          */
         function checkDelete(e) {
-            if ((e.key == 'Backspace' || e.key == 'Delete') && !this.value) {
+            if ((e.key == 'Backspace' || e.key == 'Delete') &amp;&amp; !this.value) {
                 e.preventDefault();
                 this.previousElementSibling.focus();
                 this.remove();
@@ -170,7 +199,7 @@ class BulletEntries extends HTMLElement {
          * Add a new textarea if the user clicks off of the latest textarea and there's stuff in it
          */
         function checkBlur() {
-            if (this.value && !this.nextElementSibling) {
+            if (this.value &amp;&amp; !this.nextElementSibling) {
                 addNewEntry();
             }
         }
@@ -187,7 +216,7 @@ class BulletEntries extends HTMLElement {
         self.addEventListener('blur', () => {
             const entries = self.shadowRoot.querySelectorAll('textarea');
             const data = [];
-            for (let i = 0; i < entries.length; i += 1) {
+            for (let i = 0; i &lt; entries.length; i += 1) {
                 data.push(entries[i].value);
             }
             saveEntryToStorage(self.logtype, self.date, data, self.position);
@@ -208,7 +237,7 @@ class BulletEntries extends HTMLElement {
                 }
 
                 firstEntry.style.height = `${firstEntry.scrollHeight}px`;
-                for (let i = 1; i < entryData[self.position].length; i += 1) {
+                for (let i = 1; i &lt; entryData[self.position].length; i += 1) {
                     addNewEntry();
                     text.lastElementChild.value = entryData[self.position][i];
                     text.lastElementChild.style.height = `${text.lastElementChild.scrollHeight}px`;
@@ -223,3 +252,26 @@ class BulletEntries extends HTMLElement {
 }
 
 customElements.define('bullet-entries', BulletEntries);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BulletEntries.html">BulletEntries</a></li><li><a href="datePicker.html">datePicker</a></li><li><a href="keyButton.html">keyButton</a></li><li><a href="LogList.html">LogList</a></li><li><a href="settingsModal.html">settingsModal</a></li></ul><h3>Global</h3><ul><li><a href="global.html#getAllKeys">getAllKeys</a></li><li><a href="global.html#getEntryFromStorage">getEntryFromStorage</a></li><li><a href="global.html#goToMostRecent">goToMostRecent</a></li><li><a href="global.html#saveEntryToStorage">saveEntryToStorage</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jun 09 2021 21:35:52 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -4,7 +4,7 @@ import { getAllKeys, getEntryFromStorage } from './indexdb.js';
 const { setState } = router;
 
 /**
- *
+ * Function to switch page to last viewed daily/weekly/monthly/future log entry.
  * @param {*} logType the store that is going to be switched to
  */
 function goToMostRecent(logType) {
