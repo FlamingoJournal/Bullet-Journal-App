@@ -36,3 +36,9 @@ This will open a locally deployed version of the application.
 -   Open `localhost:8080` in your browser
 
 You will now have a locally deployed version of this application using `http-server` executed on demand.
+
+<br>
+
+# **Important Note about this Repository's 'Insights'**
+
+Many parts of this project were developed over [VSCode's Live Share Extension](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare). The data regarding contributions from each member in the insights tab is not entirely accurate.
