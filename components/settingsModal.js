@@ -1,23 +1,3 @@
-// function to reload page when user is in home page
-function homeReload() {
-    const bodyId = document.querySelector('body').id; // get body id
-
-    // if bodyId is home then reload page
-    switch (bodyId) {
-        case 'home': {
-            window.location.reload();
-            break;
-        }
-        default: {
-            break;
-        }
-    }
-}
-/**
- * Custom component representing the settings popup when the cog on the top right is clicked.
- * Lets the user change the color theme of the website.
- * @extends HTMLElement
- */
 class settingsModal extends HTMLElement {
     constructor() {
         super();
@@ -171,7 +151,7 @@ class settingsModal extends HTMLElement {
         const settingModal = this.shadowRoot.querySelector(
             '.settingsModal-content'
         );
-
+        const logLists = document.querySelectorAll('log-list'); // get log lists
         const leftButton = this.shadowRoot.querySelector('.leftTheme'); // get left button in settings modal
         const midButton = this.shadowRoot.querySelector('.midTheme'); // get middle button in settings modal
         const rightButton = this.shadowRoot.querySelector('.rightTheme'); // get right button in settings modal
@@ -223,10 +203,16 @@ class settingsModal extends HTMLElement {
             sidebar.style.backgroundColor = '#7C7C7C';
             datepicker.style.backgroundColor = '#393E46';
             settingModal.style.backgroundColor = '#7C7C7C';
+            logLists.forEach((e) => {
+                const loglist = e;
+                loglist.shadowRoot.querySelector(
+                    '.log-list-comp'
+                ).style.backgroundColor = '#7C7C7C';
+            });
             color = 'dark';
             localStorage.setItem('color', JSON.stringify(color));
 
-            homeReload(); // changes color for loglist
+            // homeReload('#7C7C7C'); // changes color for loglist
         });
         // when middle theme is clicked change the color scheme
         midButton.addEventListener('click', () => {
@@ -235,10 +221,16 @@ class settingsModal extends HTMLElement {
             sidebar.style.backgroundColor = '#9DBEB9';
             datepicker.style.backgroundColor = '#194350';
             settingModal.style.backgroundColor = '#9DBEB9';
+            logLists.forEach((e) => {
+                const loglist = e;
+                loglist.shadowRoot.querySelector(
+                    '.log-list-comp'
+                ).style.backgroundColor = '#9DBEB9';
+            });
             color = 'normal';
             localStorage.setItem('color', JSON.stringify(color));
 
-            homeReload(); // changes color for loglist
+            // homeReload('#9DBEB9'); // changes color for loglist
         });
         // when right theme is clicked change the color scheme
         rightButton.addEventListener('click', () => {
@@ -247,10 +239,16 @@ class settingsModal extends HTMLElement {
             sidebar.style.backgroundColor = '#FFC2B4';
             datepicker.style.backgroundColor = '#FF8882';
             settingModal.style.backgroundColor = '#FFC2B4';
+            logLists.forEach((e) => {
+                const loglist = e;
+                loglist.shadowRoot.querySelector(
+                    '.log-list-comp'
+                ).style.backgroundColor = '#FFC2B4';
+            });
             color = 'light';
             localStorage.setItem('color', JSON.stringify(color));
 
-            homeReload(); // changes color for loglist
+            // homeReload('#FFC2B4'); // changes color for loglist
         });
     }
 }

@@ -267,7 +267,7 @@ describe('Color Changing for Bullet Journal ', () => {
 
     // Goes to home page
     // Checks that daily, weekly, monthly, and future log list is light green-blue
-    it('Goes to home Page and checks that log list theme is dark theme', async () => {
+    it('Goes to home Page and checks that log list theme is default theme', async () => {
         // gets the flamingo logo image
         const logo = await page.$('.navbar > img');
         await logo.click();
@@ -409,6 +409,24 @@ describe('Color Changing for Bullet Journal ', () => {
         // expect future background to be light pink
         expect(futureTheme).toMatch('rgb(255, 194, 180)');
     }, 10000);
+
+    it('Closes settings modal', async () => {
+        // gets the closing modal
+        const closeModal = await page.evaluateHandle(
+            'document.querySelector("settings-modal").shadowRoot.querySelector("section > div > div > span")'
+        );
+        await closeModal.click();
+
+        const display = await page.evaluate(() => {
+            //   gets the settings modal div
+            const modal = document
+                .querySelector('settings-modal')
+                .shadowRoot.querySelector('section > div');
+            //   gets the display component of the style of the modal
+            return getComputedStyle(modal).getPropertyValue('display');
+        });
+        expect(display).toMatch('none');
+    });
 
     // Goes to daily log
     // Checks that navbar, datepicker color is dark pink
