@@ -1,7 +1,8 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest": true
     },
     "extends": ["airbnb-base", "prettier"],
     "parserOptions": {
@@ -10,6 +11,10 @@
     "ignorePatterns": ["docs/**"],
     "rules": {
         "import/prefer-default-export": "off",
-        "import/extensions": "off"
+        "import/extensions": "off",
+        "no-underscore-dangle": "off"
+    },
+    "globals": {
+        "page": true
     }
 }
