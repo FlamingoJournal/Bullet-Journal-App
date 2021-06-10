@@ -11,7 +11,6 @@ export const router = {};
 router.setState = function switchState(state) {
     const body = document.querySelector('body');
     const title = document.querySelector('.title');
-
     const allBulletEntries = document.querySelectorAll('bullet-entries');
 
     // If there are instances of bullet-entry in the dom, delete them.

@@ -161,25 +161,42 @@ class LogList extends HTMLElement {
     set type(logType) {
         const logTitle = this.shadowRoot.querySelector('.log-title');
         const mostRecentButton = this.shadowRoot.querySelector('.most-recent');
+        const newRecentButton = document.createElement('button');
+        newRecentButton.className = 'most-recent';
+        newRecentButton.id = 'most-recent';
+        newRecentButton.type = 'button';
+        newRecentButton.textContent = 'LAST VIEWED';
+        mostRecentButton.parentNode.replaceChild(
+            newRecentButton,
+            mostRecentButton
+        );
         const createNewButton = this.shadowRoot.querySelector('#create-new');
+        const newCreateNewButton = document.createElement('button');
+        newCreateNewButton.className = 'most-recent';
+        newCreateNewButton.id = 'create-new';
+        newCreateNewButton.type = 'button';
+        createNewButton.parentNode.replaceChild(
+            newCreateNewButton,
+            createNewButton
+        );
         const logsList = this.shadowRoot.querySelector('.logs-list');
         logTitle.textContent = `${logType.toUpperCase()} LOG`;
 
         switch (logType) {
             case 'daily': {
-                createNewButton.textContent = "TODAY'S LOG";
+                newCreateNewButton.textContent = "TODAY'S LOG";
                 break;
             }
             case 'weekly': {
-                createNewButton.textContent = "THIS WEEK'S LOG";
+                newCreateNewButton.textContent = "THIS WEEK'S LOG";
                 break;
             }
             case 'monthly': {
-                createNewButton.textContent = "THIS MONTH'S LOG";
+                newCreateNewButton.textContent = "THIS MONTH'S LOG";
                 break;
             }
             case 'future': {
-                createNewButton.textContent = "THIS HALF'S LOG";
+                newCreateNewButton.textContent = "THIS HALF'S LOG";
                 break;
             }
             default: {
@@ -227,7 +244,8 @@ class LogList extends HTMLElement {
          * When the create new button is clicked, add a new entry for today, or
          * if it already exists, switch to it
          */
-        createNewButton.addEventListener('click', () => {
+
+        newCreateNewButton.addEventListener('click', () => {
             switch (logType) {
                 case 'daily': {
                     // Get the date, and format it to the storage template
@@ -384,7 +402,7 @@ class LogList extends HTMLElement {
             }
         });
 
-        mostRecentButton.addEventListener('click', () => {
+        newRecentButton.addEventListener('click', () => {
             getEntryFromStorage('mostRecent', logType, (entryData) => {
                 if (entryData !== undefined) {
                     let state;
