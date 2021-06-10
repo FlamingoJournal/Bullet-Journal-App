@@ -24,26 +24,29 @@
             -   Yes
     -   run `npm install --save-dev --save-exact prettier`
     -   Double check to see that .eslintrc.json looks like this:
-  <img width="250px" src="images/ESLint_JSON.jpg">
-    - Double check to see that .prettierrc.json looks like this:
-  <img width="250px" src="images/Prettier_JSON.jpg">
+        <img width="250px" src="images/ESLint_JSON.jpg">
+    -   Double check to see that .prettierrc.json looks like this:
+        <img width="250px" src="images/Prettier_JSON.jpg">
 
 # Using ESLint
-- To use ESLint, run the following command:
-  - `npx eslint (file path)`
-  - *Ex:* `npx eslint ./scripts/router.js`
+
+-   To use ESLint, run the following command:
+    -   `npx eslint (file path)`
+    -   _Ex:_ `npx eslint ./scripts/router.js`
 
 # Using Prettier
-- To use Prettier, run the following command:
-  - `npx prettier --write (file path)`
-  - *Ex:* `npx prettier --write ./scripts/router.js`
-- To reformat an entire directory:
-  - `npx prettier --write (folder/*)`
-  - *Ex:* `npx prettier --write components/\*`
-- To reformat the entire directory:
-  - `npx prettier --write .` in the root directory of the project
+
+-   To use Prettier, run the following command:
+    -   `npx prettier --write (file path)`
+    -   _Ex:_ `npx prettier --write ./scripts/router.js`
+-   To reformat an entire directory:
+    -   `npx prettier --write (folder/*)`
+    -   _Ex:_ `npx prettier --write components/\*`
+-   To reformat the entire directory:
+    -   `npx prettier --write .` in the root directory of the project
 
 # Important Note
+
 If the `node_modules` directory is not already in the `.gitignore` file, then add it to `.gitignore`.
 
 ### Author: [Sergio Talavera](https://github.com/stalaver)
