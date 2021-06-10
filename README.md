@@ -4,9 +4,11 @@ This repository contains an easy-to-use personal bullet journal that was created
 
 To view a live deployment of the app, [click here](https://cse110-sp21-group18.github.io/Bullet-Journal-App).
 
-You can also visit, [https://flamingojournal.me](https://flamingojournal.me)
+You can also visit, [https://flamingojournal.me](https://cse110-sp21-group18.github.io/Bullet-Journal-App)
 
 To visit our generated documentation, [click here!](https://cse110-sp21-group18.github.io/Bullet-Journal-App/docs/index.html)
+
+To view our development process for this project, [click here!](https://github.com/cse110-sp21-group18/cse110-sp21-group18)
 
 # Features
 
