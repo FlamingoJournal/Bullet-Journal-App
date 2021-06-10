@@ -11,7 +11,7 @@ export const router = {};
 router.setState = function switchState(state) {
     const body = document.querySelector('body');
     const title = document.querySelector('.title');
-    
+
     const allBulletEntries = document.querySelectorAll('bullet-entries');
 
     // If there are instances of bullet-entry in the dom, delete them.
@@ -33,7 +33,7 @@ router.setState = function switchState(state) {
             logLists[0].type = 'daily';
             logLists[1].type = 'weekly';
             logLists[2].type = 'monthly';
-            logLists[3].type = 'future'; 
+            logLists[3].type = 'future';
             break;
         }
         case 'daily': {
@@ -82,7 +82,7 @@ router.setState = function switchState(state) {
 
                 counter += 1;
             }
-           
+
             break;
         }
         case 'monthly': {
@@ -120,7 +120,7 @@ router.setState = function switchState(state) {
 
                 counter += 1;
             }
-            
+
             break;
         }
         case 'future': {
@@ -154,7 +154,7 @@ router.setState = function switchState(state) {
                     mainPage.children[i].innerHTML = monthNamesSecondHalf[i];
                 }
             }
-            
+
             let counter = 1;
             // Create bulletEntry instances for each month of the half-year
             // eslint-disable-next-line no-restricted-syntax
@@ -179,10 +179,11 @@ router.setState = function switchState(state) {
     // if setState was not called by popstate, then pushState
     if (!state.popped) {
         if (state.page === 'home') {
+            // eslint-disable-next-line no-restricted-globals
             history.pushState(state, '', '/');
-        }
-        else {
-            history.pushState(state, '', '#' + state.date);
+        } else {
+            // eslint-disable-next-line no-restricted-globals
+            history.pushState(state, '', `#${state.date}`);
         }
     }
 };
