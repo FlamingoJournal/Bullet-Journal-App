@@ -93,7 +93,7 @@ describe('Basic navegation flow for Bullet Journal ', () => {
 
         // gets the header
         const h1 = await page.$('.title');
-        const property = await h1.getProperty('innerText');
+        const property = await h1.getProperty('innerHTML');
         expect(property._remoteObject.value).toContain(date);
     }, 20000);
 
@@ -144,7 +144,7 @@ describe('Basic navegation flow for Bullet Journal ', () => {
 
         // gets the header
         const h1 = await page.$('.title');
-        const property = await h1.getProperty('innerText');
+        const property = await h1.getProperty('innerHTML');
         expect(property._remoteObject.value).toContain(tag);
     }, 20000);
 
@@ -185,7 +185,7 @@ describe('Basic navegation flow for Bullet Journal ', () => {
 
         // get header
         const h1 = await page.$('.title');
-        const property = await h1.getProperty('innerText');
+        const property = await h1.getProperty('innerHTML');
         expect(property._remoteObject.value).toContain(date);
     }, 20000);
 
@@ -212,7 +212,7 @@ describe('Basic navegation flow for Bullet Journal ', () => {
 
         // get Header
         const h1 = await page.$('.title');
-        const property = await h1.getProperty('innerText');
+        const property = await h1.getProperty('innerHTML');
         expect(property._remoteObject.value).toContain(date);
     }, 20000);
 
@@ -255,7 +255,7 @@ describe('Basic navegation flow for Bullet Journal ', () => {
 
         // gets the header
         const h1 = await page.$('.title');
-        const property = await h1.getProperty('innerText');
+        const property = await h1.getProperty('innerHTML');
         expect(property._remoteObject.value).toContain(date);
     }, 20000);
 
@@ -299,7 +299,7 @@ describe('Basic navegation flow for Bullet Journal ', () => {
 
         // gets the header
         const h1 = await page.$('.title');
-        const property = await h1.getProperty('innerText');
+        const property = await h1.getProperty('innerHTML');
         expect(property._remoteObject.value).toContain(date);
     }, 20000);
 
@@ -340,7 +340,7 @@ describe('Basic navegation flow for Bullet Journal ', () => {
 
         // gets the header
         const h1 = await page.$('.title');
-        const property = await h1.getProperty('innerText');
+        const property = await h1.getProperty('innerHTML');
         expect(property._remoteObject.value).toContain(date);
     }, 20000);
 
@@ -368,7 +368,7 @@ describe('Basic navegation flow for Bullet Journal ', () => {
 
         // gets the header
         const h1 = await page.$('.title');
-        const property = await h1.getProperty('innerText');
+        const property = await h1.getProperty('innerHTML');
         expect(property._remoteObject.value).toContain(date);
     }, 20000);
 
@@ -437,7 +437,7 @@ describe('Basic navegation flow for Bullet Journal ', () => {
 
         // gets the header
         const h1 = await page.$('.title');
-        const property = await h1.getProperty('innerText');
+        const property = await h1.getProperty('innerHTML');
         expect(property._remoteObject.value).toContain(date);
     }, 20000);
 
@@ -475,7 +475,7 @@ describe('Basic navegation flow for Bullet Journal ', () => {
 
         // gets the header
         const h1 = await page.$('.title');
-        const property = await h1.getProperty('innerText');
+        const property = await h1.getProperty('innerHTML');
         expect(property._remoteObject.value).toContain(date);
     }, 20000);
 
@@ -510,7 +510,7 @@ describe('Basic navegation flow for Bullet Journal ', () => {
 
         // gets the header
         const h1 = await page.$('.title');
-        const property = await h1.getProperty('innerText');
+        const property = await h1.getProperty('innerHTML');
         expect(property._remoteObject.value).toContain(date);
     }, 20000);
 
@@ -532,7 +532,7 @@ describe('Basic navegation flow for Bullet Journal ', () => {
 
         // gets the header
         const h1 = await page.$('.title');
-        const property = await h1.getProperty('innerText');
+        const property = await h1.getProperty('innerHTML');
         expect(property._remoteObject.value).toContain(date);
     }, 20000);
 
@@ -559,7 +559,7 @@ describe('Basic navegation flow for Bullet Journal ', () => {
         await tag.click();
         await page.waitForTimeout(500);
         const h1 = await page.$('.title');
-        const property = await h1.getProperty('innerText');
+        const property = await h1.getProperty('innerHTML');
         expect(property._remoteObject.value).toContain(date);
     }, 20000);
 
@@ -585,7 +585,7 @@ describe('Basic navegation flow for Bullet Journal ', () => {
         await tag.click();
         await page.waitForTimeout(500);
         const h1 = await page.$('.title');
-        const property = await h1.getProperty('innerText');
+        const property = await h1.getProperty('innerHTML');
         expect(property._remoteObject.value).toContain(date);
     }, 20000);
 
@@ -637,7 +637,7 @@ describe('Basic navegation flow for Bullet Journal ', () => {
         await tag.click();
         await page.waitForTimeout(500);
         const h1 = await page.$('.title');
-        const property = await h1.getProperty('innerText');
+        const property = await h1.getProperty('innerHTML');
         expect(property._remoteObject.value).toContain(date);
     }, 20000);
 });
