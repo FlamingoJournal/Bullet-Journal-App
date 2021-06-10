@@ -4,7 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "jest"
+        "test": "jest --coverage",
+        "serve": "http-server . -p 5500"
     },
     "repository": {
         "type": "git",
@@ -47,5 +48,8 @@
     "jest": {
         "preset": "jest-puppeteer",
         "verbose": true
+    },
+    "dependencies": {
+        "http-server": "^0.12.3"
     }
 }

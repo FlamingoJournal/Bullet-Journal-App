@@ -1,21 +1,15 @@
-# Currently no tests set up, so this will cause errors.
-# Will turn off until tests are set up
+# Action that triggers Jest/Puppeteer tests
 
-# name: Jest
-# on: [push]
-# jobs:
-#     Run-Jest:
-#         runs-on: ubuntu-latest
-#         steps:
-#             # - uses: actions/checkout@v2
-#             # - name: Install
-#             #   run: yarn add --dev jest
-
-#             # - name: Run Tests
-#             #   run: npm run test
-
-#             - uses: willcaul/jest-github-action@v1
-#               env:
-#                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#               with:
-#                   test-command: 'npm test'
+name: Jest
+on: [push]
+jobs:
+    Run-Jest:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Install Jest
+              run: |
+                  npm install --save-dev jest babel-jest @babel/core @babel/preset-env
+                  npm install --save-dev puppeteer jest-puppeteer
+            - name: Run Tests
+              run: npm test
