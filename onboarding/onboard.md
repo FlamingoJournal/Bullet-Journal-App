@@ -24,6 +24,7 @@ Assuming you have [cloned](https://docs.github.com/en/github/creating-cloning-an
 -   Create a pull request with the upstream repository.
 -   Make sure to read the pull request template carefully; fill out all the required information and make sure to perform the steps detailed in the checklist.
 -   Ensure all GitHub Actions tests pass. If not, make the necessary changes to fix any failed tests.
+    -   Refer to [our guide](../onboarding/ESLint-Prettier-Local-Install-Use-Guide.md) on installing `prettier` and `eslint` for automating style fixes to your files directly.
 -   After all tests have passed, add a reviewer to the pull request and any necessary tags, link any related issues, and comment any other information. Move on to step 3.
 
 ---
