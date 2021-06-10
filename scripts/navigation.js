@@ -126,3 +126,18 @@ const homeButton = document.getElementById('flamingo-logo');
 homeButton.onclick = function () {
     setState({ page: 'home' });
 };
+/**
+ * When window loads, reset url
+ */
+window.addEventListener('load', () => {
+    // eslint-disable-next-line no-restricted-globals
+    history.replaceState({ page: 'home' }, '', '/');
+});
+/**
+ * When back and forward arrows are clicked, change the page
+ */
+window.addEventListener('popstate', (e) => {
+    const { state } = e;
+    state.popped = true;
+    router.setState(state);
+});

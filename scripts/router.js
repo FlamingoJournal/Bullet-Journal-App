@@ -7,6 +7,7 @@ export const router = {};
  * @param {*} state An object that has data about the caller and will
  *                  switch pages based on that information
  */
+
 router.setState = function switchState(state) {
     const body = document.querySelector('body');
     const title = document.querySelector('.title');
@@ -81,6 +82,7 @@ router.setState = function switchState(state) {
 
                 counter += 1;
             }
+
             break;
         }
         case 'monthly': {
@@ -118,6 +120,7 @@ router.setState = function switchState(state) {
 
                 counter += 1;
             }
+
             break;
         }
         case 'future': {
@@ -171,6 +174,16 @@ router.setState = function switchState(state) {
         }
         default: {
             break;
+        }
+    }
+    // if setState was not called by popstate, then pushState
+    if (!state.popped) {
+        if (state.page === 'home') {
+            // eslint-disable-next-line no-restricted-globals
+            history.pushState(state, '', '/');
+        } else {
+            // eslint-disable-next-line no-restricted-globals
+            history.pushState(state, '', `#${state.date}`);
         }
     }
 };
