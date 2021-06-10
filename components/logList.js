@@ -166,13 +166,19 @@ class LogList extends HTMLElement {
         newRecentButton.id = 'most-recent';
         newRecentButton.type = 'button';
         newRecentButton.textContent = 'LAST VIEWED';
-        mostRecentButton.parentNode.replaceChild(newRecentButton, mostRecentButton);
+        mostRecentButton.parentNode.replaceChild(
+            newRecentButton,
+            mostRecentButton
+        );
         const createNewButton = this.shadowRoot.querySelector('#create-new');
         const newCreateNewButton = document.createElement('button');
         newCreateNewButton.className = 'most-recent';
         newCreateNewButton.id = 'create-new';
         newCreateNewButton.type = 'button';
-        createNewButton.parentNode.replaceChild(newCreateNewButton, createNewButton);
+        createNewButton.parentNode.replaceChild(
+            newCreateNewButton,
+            createNewButton
+        );
         const logsList = this.shadowRoot.querySelector('.logs-list');
         logTitle.textContent = `${logType.toUpperCase()} LOG`;
 
