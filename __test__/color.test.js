@@ -410,26 +410,6 @@ describe('Color Changing for Bullet Journal ', () => {
         expect(futureTheme).toMatch('rgb(255, 194, 180)');
     }, 10000);
 
-    // Closes settings modal
-    // Check if the setting modal component works correctly
-    it('Closes settings modal', async () => {
-        // gets the closing modal
-        const closeModal = await page.evaluateHandle(
-            'document.querySelector("settings-modal").shadowRoot.querySelector("section > div > div > span")'
-        );
-        await closeModal.click();
-
-        const display = await page.evaluate(() => {
-            //   gets the settings modal div
-            const modal = document
-                .querySelector('settings-modal')
-                .shadowRoot.querySelector('section > div');
-            //   gets the display component of the style of the modal
-            return getComputedStyle(modal).getPropertyValue('display');
-        });
-        expect(display).toMatch('none');
-    });
-
     // Goes to daily log
     // Checks that navbar, datepicker color is dark pink
     // Checks the sidebar, color is light pink
